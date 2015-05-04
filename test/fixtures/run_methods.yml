@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  run_command: 
+  description: MyText
+
+two:
+  name: 
+  run_command: 
+  description: MyText

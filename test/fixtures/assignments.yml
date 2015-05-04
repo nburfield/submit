@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lock: false
+  due_date: 2014-10-23 12:47:52
+  start_date: 2014-10-23 12:47:52
+  description: MyText
+  course_id: 
+
+two:
+  lock: false
+  due_date: 2014-10-23 12:47:52
+  start_date: 2014-10-23 12:47:52
+  description: MyText
+  course_id: 

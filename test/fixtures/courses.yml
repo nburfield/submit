@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  open: false
+  semester: MyString
+  description: MyText
+  join_token: MyString
+
+two:
+  name: MyString
+  open: false
+  semester: MyString
+  description: MyText
+  join_token: MyString

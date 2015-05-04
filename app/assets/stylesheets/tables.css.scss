@@ -1,0 +1,81 @@
+@import 'variables';
+
+.files-display {
+  width: 100%;
+}
+
+table.courses-list,
+table.users-list {
+  background-color: #cdcdcd;
+  border-collapse: collapse;  border: 4px solid #dfdfdf;
+  font-family: arial;
+  font-size: $font-size-standard;
+  margin: 0 auto;
+  text-align: left;
+
+  thead tr th,
+  tfoot tr th {
+    background-color: #dfdfdf;
+    font-size: $font-size-standard;
+    padding: 4px 15px;
+  }
+
+  thead .header {
+    background-image: url('table_bg.gif');
+    background-position: center right;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  tbody td {
+    background-color: #e9e9e9;
+    color: #3d3d3d;
+    padding: 4px 15px;
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(odd) td {
+    background-color: #f9f9f9;
+  }
+
+  tbody tr:hover td {
+    background-color: #dfdfdf;
+  }
+
+  thead tr .headerSortUp {
+    background-image: url('table_asc.gif');
+  }
+
+  thead tr .headerSortDown {
+    background-image: url('table_desc.gif');
+  }
+}
+
+table {
+  border: 4px solid $color-table-border;
+  border-collapse: collapse;
+  color: $font-color-dark;
+  margin: 0 auto;
+  text-align: left;
+
+  td,
+  th {
+    padding: 3px 16px;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: $color-table-odd;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: $color-table-even;
+  }
+
+  thead tr {
+    background-color: $color-table-background;
+
+    td {
+      font-weight: bold;
+    }
+  }
+}

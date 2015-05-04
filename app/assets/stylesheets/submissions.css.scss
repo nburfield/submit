@@ -1,0 +1,167 @@
+@import 'variables';
+
+.manage-submission {
+  height: 250px;
+  overflow: auto;
+}
+
+.assignment-description {
+  border: 1px solid $color-border-light;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.edit_submission {
+  textarea {
+    background-color: $color-form-white;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-standard;
+    height: 125px;
+    margin-bottom: 10px;  
+    resize: none;
+    width: 100%;
+  }
+
+  [type=number] {
+    background-color: $color-form-white;
+    border: 1px solid $color-border-light;
+    cursor: pointer;
+    font-size: $font-size-standard;
+    padding: 5px;
+    width: 50px;
+  }
+
+  [type=submit] {
+    background-color: $color-form-white;
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-standard;
+    margin: 16px auto 0;
+    padding: 5px;
+    width: 250px;
+    cursor: pointer;
+  }
+}
+
+.grade-display {
+  background-color: $color-group-background;
+  border: 1px solid $color-group-border;
+  color: $font-color-dark;
+  margin-bottom: 25px;
+  padding: 10px;
+
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+}
+
+.submitted {
+  margin: 10px;
+  text-align: center;
+  
+  .date {
+    margin-bottom: 5px;
+  }
+
+  .submission-late,
+  .submission-ontime {
+    border: 1px solid $color-border-dark;
+    display: inline-block;
+    padding: 5px;
+  }
+
+  .submission-late {
+    border-color: $color-red;
+  }
+
+  .submission-ontime {
+    border-color: $color-green;
+  }
+}
+
+.test-case {
+  margin: 10px;
+  
+  .run-method {
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  .run-input-list {
+    text-align: center;
+
+    .run-input-fail,
+    .run-input-pass {
+      border: 1px solid $color-border-dark;
+      display: inline-block;
+      padding: 5px;
+    }
+
+    .run-input-fail {
+      border-color: $color-red;
+    }
+
+    .run-input-pass {
+      border-color: $color-green;
+    }
+  }
+}
+
+.run-save-pass,
+.run-save-fail {
+  margin-top: 25px;
+  position: relative;
+  width: 100%;
+
+  thead {
+    text-align: center;
+
+    th {
+      background-color: $color-table-background;
+    }
+
+    td {
+      background-color: $color-table-background;
+      font-size: 15px;
+      font-weight: normal;
+    }
+  }
+
+  tbody {
+    th {
+      border: 1px solid $color-border-light;
+      border-bottom: 0;
+      padding: 8px 16px;
+    }
+
+    tr {
+      background-color: $color-white;
+    }
+
+    td {
+      background-color: $color-white;
+      border: 1px solid $color-border-light;
+      border-top: 0;
+    }
+  }
+
+  .return-to-top {
+    position: absolute;
+    right: 10px;
+
+    a {
+      font-size: $font-size-small;
+    }
+  }
+}
+
+.run-save-fail {
+  border-color: $color-red;
+}

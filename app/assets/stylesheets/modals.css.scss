@@ -1,0 +1,88 @@
+@import 'variables';
+
+.modal-popup {
+  background-color: $color-modal-background;
+  border: 5px solid $color-border-dark;
+  border-radius: 10px;
+  height: 500px;
+  left: 25%;
+  overflow-y: auto;
+  padding: 20px;
+  position: fixed;
+  top: 100px;
+  width: 50%;
+
+  h1 {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  form {
+    display: inline-block;
+    height: 100%;
+  }
+
+  label {
+    color: $font-color-dark;
+    display: inline-block;
+    font-size: $font-size-standard;
+    line-height: 30px;
+    margin: 0 auto;
+    padding: 0 5px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  [type=text] {
+    border: 1px solid $color-border-light;
+    border-radius: 0;
+    display: block;
+    font-size: $font-size-medium;
+    padding: 5px;
+    width: 250px;
+  }
+
+  [type='submit'] {
+    background-color: $color-form-white;
+    border: 1px solid $color-border-light;
+    border-radius: 0;
+    cursor: pointer;
+    display: block;
+    font-size: $font-size-standard;
+    margin: 16px auto 0;
+    padding: 5px;
+    width: 250px;
+  }
+
+  textarea {
+    background-color: $color-form-white;
+    border: 1px solid $color-border-light;
+    border-radius: 0;
+    box-sizing: border-box;
+    display: block;
+    font-size: $font-size-standard;
+    padding: 5px;
+    resize: none;
+    width: 100%;
+  }
+
+  .modal-close {
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+  }
+}
+
+.modal-curtain {
+  background-color: $color-modal-curtain;
+  display: none;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1000;
+}

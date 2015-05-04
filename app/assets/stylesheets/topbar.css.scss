@@ -1,0 +1,95 @@
+@import 'variables';
+
+.topbar {
+  background-color: $color-topbar-background;
+  box-shadow: 3px 3px 3px $color-action-shadow;
+  height: $topbar-height;
+  margin-bottom: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 200;
+
+  .user-info {
+    float: right;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    width: auto;
+
+    .expand {
+      background-color: $color-topbar-secondary;
+      box-shadow: 0 3px 4px $color-group-shadow;
+      height: 5px;
+      position: relative;
+      right: 0;
+      width: 100%;
+
+      div {
+        color: $color-white;
+        font-size: 15px;
+        height: 5px;
+        line-height: 0;
+        position: relative;
+        text-align: center;
+        top: -4px;
+        width: 100%;
+      }
+    }
+
+    p {
+      background-color: $color-topbar-secondary;
+      border: 1px solid $color-topbar-secondary;
+      color: $font-color-light;
+      font-size: $font-size-medium;
+      height: 100%;
+      padding: 20px;
+      padding-bottom: 3px;
+      padding-top: 2px;
+    }
+
+    .account-actions {
+      background-color: $color-topbar-secondary;
+      border-bottom: 5px solid $color-topbar-background;
+      border-left: 5px solid $color-topbar-background;
+      border-right: 5px solid $color-topbar-background;
+      display: none;
+      height: auto;
+      position: absolute;
+      right: -5px;
+      top: 30px;
+      width: 250px;
+      z-index: -100;
+    }
+
+    li {
+      padding: 10px;
+
+      a {
+        color: $font-color-light;
+        font-size: $font-size-medium;
+      }
+
+      img {
+        height: $font-size-medium;
+        padding-right: 15px;
+        width: $font-size-medium;
+      }
+    }
+
+    li:hover {
+      background-color: $color-topbar-tertiary;
+    }
+  }
+
+  .user-info:hover {
+    background-color: $color-red;
+
+    .account-actions {
+      display: inline;
+    }
+    
+    .expand {
+      display: none;
+    }
+  }
+}

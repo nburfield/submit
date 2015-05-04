@@ -1,0 +1,153 @@
+@import 'variables';
+
+.upload-data-wrapper {
+  display: table;
+  height: 100%;
+  width: 100%;
+
+  .editor {
+    height: 800px;
+    position: relative;
+    width: 100%;
+  }
+
+  .editor-save-status {
+    font-family: 'Ubuntu', sans-serif;
+    height: 40px;
+    line-height: 40px;
+    padding-right: 10px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    width: 100px;
+  }
+
+  .editor-left-col {
+    display: table-cell;
+    height: 100%;
+    padding-right: 5px;
+    width: 70%;
+  }
+
+  .editor-right-col {
+    display: table-cell;
+    width: 30%;
+
+    .comment-table {
+      height: 100%;
+      width: 100%;
+
+      table {
+        width: 100%;
+
+        thead tr th:nth-child(3) {
+          width: 50px;
+        }
+
+        thead tr th:first-of-type {
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  .editor-form {
+    background-color: $color-form-white;
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    position: relative;
+
+    [type=text] {
+      background-color: $color-form-white;
+      border-radius: 0;
+      border: 1px solid $color-border-light;
+      font-size: $font-size-medium;
+      height: 28px;
+      outline: none;
+      position: absolute;
+      color: $font-color-dark;
+      top: 0;
+      left: 31%;
+      width: 69%;
+    }
+
+    a {
+      display: inline-block;
+      background-color: $color-form-white;
+      border-radius: 0;
+      border: 1px solid $color-border-light;
+      font-size: $font-size-standard;
+      padding: 5px 0;
+      cursor: pointer;
+      width: 15%;
+      text-align: center;
+      color: buttontext;
+    }
+
+    [type=submit] {
+      background-color: $color-form-white;
+      border-radius: 0;
+      border: 1px solid $color-border-light;
+      font-size: $font-size-standard;
+      width: 15%;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.comment-form {
+  form {
+    width: 60%;
+
+    textarea {
+      height: 200px;
+    }
+  }
+
+  .comment-pool {
+    box-sizing: border-box;
+    float: right;
+    margin-top: 113px;
+    min-height: 50%;
+    padding: 0 15px;
+    width: 40%;
+
+    #comment-favorites,
+    #comment-suggestions {
+      width: 100%;
+    }
+  }
+}
+
+#annotations {
+  left: 70%;
+  position: absolute;
+  top: 12%;
+  width: 25%;
+}
+
+.ace_gutter-cell
+.ace_breakpoint { 
+  border-radius: 20px 0 0 20px; 
+  box-shadow: 0 0 1px 1px $color-red inset; 
+} 
+
+.file-uploader {
+  position: relative;
+
+  .drag-drop {
+    width: -moz-calc(100% - 84px);
+    width: -webkit-calc(100% - 84px);
+    width: calc(100% - 84px);
+  }
+
+  .create-new-file {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    width: 64px;
+  }
+}

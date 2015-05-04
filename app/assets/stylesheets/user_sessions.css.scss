@@ -1,0 +1,60 @@
+@import 'variables';
+
+.authentication {
+  background-image: image-url('unr.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+}
+
+.login-prompt {
+  background-color: $color-background;
+  border-radius: 25px;
+  margin: 64px auto;
+  padding: 25px;
+  width: 300px;
+
+  h2 {
+    color: $font-color-dark;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  [type=email],
+  [type=password] {
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-medium;
+    margin: 0 auto;
+    padding: 5px;
+    width: 250px;
+  }
+
+  [type=checkbox] {
+    display: block;
+    margin: 0 auto;
+  }
+
+  [type=submit] {
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-standard;
+    margin: 16px auto 0;
+    padding: 5px;
+    width: 250px;
+  }
+}
+
+.login-footer {
+  color: $font-color-dark;
+  font-size: $font-size-small;
+  margin-top: 32px;
+  text-align: center;
+
+  a {
+    color: $font-color-dark;
+    text-decoration: none;
+  }
+}

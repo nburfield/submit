@@ -1,0 +1,84 @@
+@import 'variables';
+
+form.new_assignment, 
+form.edit_assignment {
+  [type='text'] {
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-medium;
+    margin: 0 auto;
+    padding: 5px;
+    width: 250px;
+  }
+
+  [type='number'] {
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-medium;
+    margin: 0 auto;
+    padding: 5px;
+    width: 250px;
+  }
+
+  textarea {
+    background-color: $color-form-white;
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-standard;
+    margin: 0 auto;
+    padding: 5px;
+    width: 500px;
+    height: 300px;
+  }
+
+  select {
+    background-color: $color-form-white;
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-standard;
+    margin: 0 auto;
+    padding: 5px;
+    width: 250px;
+  }
+
+  [type='submit'] {
+    background-color: $color-form-white;
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    display: block;
+    font-size: $font-size-standard;
+    margin: 16px auto 0;
+    padding: 5px;
+    width: 250px;
+  }
+
+  label {
+    color: $font-color-dark;
+    display: block;
+    font-size: $font-size-standard;
+    height: 100%;
+    line-height: 30px;
+    margin: 0 auto;
+    padding: 0 5px;
+    text-align: center;
+  }
+
+  div.datetime-picker-container {
+    width: 308px;
+    margin: 0 auto;
+  }
+}
+
+.assignment-info-wrapper {
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+.assignment-info {
+  margin: 10px;
+  text-align: left;
+}

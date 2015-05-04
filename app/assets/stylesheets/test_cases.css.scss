@@ -1,0 +1,44 @@
+@import 'variables';
+
+.manage-test-case {
+  text-align: center;
+}
+
+.testcase-actions,
+.makefile-actions {
+  text-align: center;
+
+  :after {
+    clear: both;
+    content: '';
+    display: block; 
+    height: 0; 
+  }
+
+  ul {
+    display: inline-block;
+  }
+
+  li {
+    background-color: $color-form-white;
+    border: 1px solid $color-border-light;
+    border-radius: 0;
+    clear: right;
+    float: left;
+    margin: 0 10px;
+
+    div {
+      padding: 10px;
+      text-align: center;
+    }
+
+    a {
+      color: $font-color-dark;
+    }
+
+  }
+
+  li:hover {
+    box-shadow: 1px 1px 3px $color-action-shadow;
+  }
+}

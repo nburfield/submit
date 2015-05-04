@@ -1,0 +1,38 @@
+@import 'variables';
+
+.actions {
+  text-align: center;
+
+  :after {
+    clear: both;
+    content: '';
+    display: block; 
+    height: 0; 
+  }
+
+  ul {
+    display: inline-block;
+  }
+
+  li {
+    background-color: $color-form-white;
+    border-radius: 0;
+    border: 1px solid $color-border-light;
+    clear: right;
+    float: left;
+    margin: 0 10px;
+  }
+
+  a {
+    color: $font-color-dark;
+
+    div {
+      padding: 10px;
+      text-align: center;
+    }
+  }
+
+  li:hover {
+    box-shadow: 1px 1px 3px $color-action-shadow;
+  }
+}

@@ -1,0 +1,29 @@
+@import 'variables';
+
+.course-info {
+  margin: 10px;
+}
+
+.description {
+  border: 1px solid $color-border-light;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: left;
+  width: 50%;
+}
+
+.course-visible {
+  color: $color-green;
+  font-weight: bold;
+}
+
+.course-hidden {
+  color: $color-red;
+  font-weight: bold;
+}
+
+.course-grade-list {
+  overflow-x: scroll;
+  width: 100%;
+}

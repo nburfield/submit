@@ -1,0 +1,32 @@
+<% breadcrumb :user_list, @user %>
+<% content_for :title, "User List" %>
+
+<header>
+  <h1>User List</h1>
+</header>
+
+<div class="content-group">
+  <table class="users-list">
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Modify</th>
+      <th>Delete</th>
+    </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.name %></td>
+      <td>
+      <% user.roles.each do |role| %>
+        <%= role.name %>&nbsp;<%= role.resource_type %>&nbsp;<%= role.resource_id %><br>
+      <% end %>
+      </td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>

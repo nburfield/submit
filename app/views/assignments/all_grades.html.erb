@@ -1,0 +1,34 @@
+<% breadcrumb :assignment_grades, @assignment %>
+<% content_for :title, 'All Grades for ' + @assignment.name %>
+
+<header>
+  <h1>All Grades for <%= @assignment.name %></h1>
+</header>
+<div class="content-group">
+  <div class="actions">
+    <ul>
+      <li>
+        <%= link_to view_all_grades_assignments_url(@assignment), method: :post do %>
+          <div>
+            <%= image_tag('icon_download.png', size: "64x64", alt: "Download Grades", title: "Download Grades") %><br>
+            Download Grades
+          </div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <table>
+    <tr>
+      <th>Student Name</th>
+      <th>Grade</th>
+      <th>Notes</th>
+    </tr>
+    <% @assignment.submissions.each do |submission| %>
+      <tr>
+        <td><%= submission.user.name %></td>
+        <td><%= submission.grade %></td>
+        <td><%= simple_format(submission.note) %></td>
+      </tr>
+    <% end %>
+  </table>

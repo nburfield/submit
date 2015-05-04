@@ -1,0 +1,97 @@
+<div class="comment-form">
+  <h1>Create New Comment</h1>
+
+  <%= form_for :comment, url: create_comment_url(@upload_datum), method: :post, remote: true do |f| %>
+    <div id="form-error"></div>
+    <%= f.label "Line Number" %><br>
+    <%= f.text_field :line, :placeholder => "Line Number" %> <br>
+    <%= f.label "Comment" %><br>
+    <%= f.text_area :contents, :placeholder => "Comment" %><br>
+    <%= f.submit "Post" %>
+  <% end %>
+
+  <div class="comment-pool">
+    <table id="comment-favorites">
+      <thead>
+        <tr>
+          <th>Favorites</th>
+        </tr>
+      </thead>
+      <tbody id="comment-favorites-body">
+      </tbody>
+    </table> 
+
+    <table id="comment-suggestions">
+      <thead>
+        <tr>
+          <th>Suggested Comments</th>
+        </tr>
+      </thead>
+      <tbody id="comment-suggestions-body">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  $("#comment-suggestions").hide()
+  all_comments = [];
+
+  <% @all_comments.each do |c| %>
+    all_comments.push("<%= c[0].gsub(/\r\n/, '\r\n').gsub('\'', '\\′' ) %>");
+  <% end %>
+
+  $("#comment_contents").attr("onkeyup", "search_comments();");
+
+  search_comments = function () {
+    var string = $("#comment_contents").val();
+    string = string.toLowerCase();
+    var words = string.split(' ');
+    var isFound = false
+    var foundIndex = [];
+
+    for (i = 0; i < all_comments.length; i++) {
+      isFound = false;
+      for (j = 0; (j < words.length && j < 30); j++) {
+        var temp = all_comments[i].toLowerCase().trim();
+        var index = temp.match(new RegExp(words[j].trim(),'g'));
+        if (words[j].search(/\w\s*|\s*\w/) != -1 && index != null && index.length != 0) {  
+          isFound = true; 
+          foundIndex[i] = {'key': i.toString(), 'val': 0};
+          foundIndex[i].val += index.length;
+        }
+      }
+    }
+
+    foundIndex.sort(function(a, b) {
+      return all_comments[a.key].toLowerCase() > all_comments[b.key].toLowerCase() ? -1 : 1;
+    });
+
+    if (foundIndex.length == 0) {
+      $("#comment-suggestions").hide()
+      $("#comment-favorites").show()
+    } else {
+      $("#comment-suggestions").show()
+      $("#comment-favorites").hide()
+      $("#comment-suggestions-body").html("");
+
+      while (foundIndex.length != 0) {
+        var newComment = foundIndex.pop()
+        if (typeof newComment !== "undefined") {
+          $("#comment-suggestions-body").append(
+            '<tr>' + 
+              '<td>' +
+                '<a href="#" onclick="add_favorites(\'' + all_comments[newComment.key].replace(/\r\n/g, '\\r\\n') + '\')">'+ all_comments[newComment.key] + '</a>' +
+              '</td>' + 
+            '</tr>');
+        }
+      }
+    }
+  }
+
+  add_favorites = function(v) {
+    v = v.replace(new RegExp('′', 'g'), '\'');
+    $("#comment_contents").val(v);
+  }
+
+</script>

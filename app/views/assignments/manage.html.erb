@@ -1,0 +1,94 @@
+<% breadcrumb :assignment, @assignment, @course %>
+<% content_for :title, @course.name + ' assignment ' + @assignment.name %>
+
+<header>
+  <h1><%= @course.name %></h1>
+  <h2><%= @assignment.name %></h2>
+</header>
+<div class="content-group">
+  <div class="center-wrapper">
+    <p class="description"><%= @assignment.description.gsub(/\n/, '<br>').html_safe %></p>
+    <div class="assignment-info-wrapper">
+      <p class="assignment-info">Total Points: <%= @assignment.total_grade.to_s %></p>
+      <p class="assignment-info">Start Date: <span data-time><%= @assignment.start_date.to_i %></span></p>
+      <p class="assignment-info">Due Date: <span data-time><%= @assignment.due_date.to_i %></span></p>
+    </div>
+  </div>
+</div>
+
+<header>
+  <h1>Instructor Actions</h1>
+</header>
+<div class="content-group">
+  <div class="actions">
+    <ul>
+      <li>
+        <%= link_to test_case_url(@test_case) do %>
+          <div>
+            <%= image_tag('icon_edit.png', size: "64x64", alt: "Edit Test Case", title: "Edit Test Case") %><br>
+            Edit Test Case
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to grade_all_assignment_url(@assignment) do %>
+          <div>
+            <%= image_tag('icon_test.png', size: "64x64", alt: "Grade All Submissions", title: "Grade All Submissions") %><br>
+            Grade All Submissions
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to view_all_grades_assignments_url(@assignment) do %>
+          <div>
+            <%= image_tag('icon_grade.png', size: "64x64", alt: "View All Grades", title: "View All Grades") %><br>
+            View All Grades
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to unsubmit_all_assignments_url(@assignment) do %>
+          <div>
+            <%= image_tag('icon_submit.png', size: "64x64", alt: "Unsubmit All Assignments", title: "Unsubmit All Assignments") %><br>
+            Unsubmit All Assignments
+          </div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<header>
+  <h1>Submissions</h1>
+</header>
+<div class="content-group">
+  <table>
+    <tr>
+      <th>Student Name</th>
+      <th>View Submission</th>
+      <th>Submitted</th>
+      <th>Output Grade</th>
+    </tr>
+    <% @submissions.each do |submission| %>
+      <tr>
+        <td><%= submission.user.name %></td>
+        <td><%= link_to 'View', submission_url(submission) %></td>
+        <td>
+          <% if submission.submitted %>
+            Submitted - <%= link_to "Unsubmit", unsubmit_submission_path(submission), :method => :post, :data => { :confirm => 'Would you like to unsubmit this assignment for the student?' } %>
+          <% else %>
+            Not Submitted
+          <% end %>
+        </td>
+        <% correct = {} %>
+        <% correct[:correct] = submission.run_saves.select { |s| s.pass }.count %>
+        <% correct[:total] = submission.run_saves.count %>
+        <% if correct[:total] %>
+          <td><%= correct[:correct].to_s + " out of " + correct[:total].to_s %></td>
+        <% else %>
+          <td>Does Not Run</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>

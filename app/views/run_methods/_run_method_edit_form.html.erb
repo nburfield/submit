@@ -1,0 +1,14 @@
+<header>
+  <h1>Edit Run Method</h1>
+</header>
+<div class="content-group">
+  <%= form_for run_method, url: run_method_url(run_method), method: :patch, remote: true do |f| %>
+    <%= f.text_field :name, :placeholder => 'Run Name' %><br>
+    <%= f.text_field :run_command, :placeholder => 'Run Command' %><br>
+    <%= f.text_area :description, :placeholder => 'Run Description' %><br>
+    <%= f.submit "Update", :onclick => '$(".modal-curtain").hide();' %>
+  <% end %>
+</div>
+
+<%= render :file => "inputs/_inputs_edit_form", :locals => { :@run_method => run_method } %>
+<%= render :file => "inputs/_inputs_form", :locals => { :@run_method => run_method, :@input => run_method.inputs.new() } %>

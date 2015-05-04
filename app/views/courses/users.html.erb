@@ -1,0 +1,38 @@
+<% breadcrumb :course_users, @course %>
+<% content_for :title, "Course Users" %>
+
+<header>
+  <h1><%= @course.name %></h1>
+  <h2>Enrolled Users</h2>
+</header>
+<div class="content-group">
+  <table class="users-list" id="users-list">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Roles</th>
+      <th>Kick From Course</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, course_user_edit_path(@course, user) %></td>
+        <td><%= user.roles.where(resource_type: "Course", resource_id: @course).map(&:name).join(",") %></td>
+        <td><%= link_to 'Kick', course_user_kick_path(@course, user), data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).on("page:change", function() {
+    $('#users-list').tablesorter({
+      sortList: [[1,0],[0,0]],
+      headers: {
+        2: { sorter: false }
+      }
+    });
+  });
+</script>

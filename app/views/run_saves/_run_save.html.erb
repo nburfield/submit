@@ -1,0 +1,35 @@
+<table class="<%= run_save.pass ? 'run-save-pass' : 'run-save-fail' %>" id="run_input_<%= run_save.id %>">
+  <thead>
+    <tr>
+      <th colspan=2>
+        <%= run_save.input.name %>
+        <span class="return-to-top"><a href="#run-method-list">Back To Top</a></span>
+      </th>
+    </tr>
+    <tr>
+      <td colspan=2><%= run_save.input.description %><%= raw "<br>Hidden To Students" if not run_save.input.student_visible %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th colspan=2>Input Data</th>
+    </tr>
+    <tr>
+      <td colspan=2><%= run_save.input.data.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
+    </tr>
+    <tr>
+      <th>Your Output</th>
+      <th>Expected Output</th>
+    </tr>
+    <tr>
+      <td><%= run_save.output.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
+      <td><%= run_save.input.output.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
+    </tr>
+    <tr>
+      <th colspan=2>Difference</th>
+    </tr>
+    <tr>
+      <td colspan=2><%= run_save.difference.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
+    </tr>
+  </tbody>
+</table>

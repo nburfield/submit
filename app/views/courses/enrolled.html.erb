@@ -1,0 +1,20 @@
+<% breadcrumb :courses %>
+<% content_for :title, "Your Courses" %>
+
+<header>
+  <h1>Join a New Course</h1>
+</header>
+
+<div class="content-group enroll-form">
+  <%= render :partial => "enroll_form" %>
+</div>
+
+<header>
+  <h1>Your Enrolled Courses</h1>
+</header>
+
+<div class="content-group">
+  <% @courses.each do |course| %>
+    <p><%= link_to course.name, course_path(course) %></p>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<tr>
+  <td><a id=<%= "run_method_" + run_method.id.to_s %> href="#"><%= run_method.name %></a></td>
+  <td><%= link_to 'X', run_method, method: :delete, remote: true, data: { confirm: "Are You Sure?" } %></td>
+</tr>
+
+<script>
+  $("#<%= j 'run_method_' + run_method.id.to_s %>").click(function() {
+    $("#run-methods").html('<%= j(render(:file => "run_methods/_run_method_edit_form", :locals => { :run_method => run_method })) %>');
+    $("input[id='run_method_name']").val("<%= j (run_method.name) %>");
+    $("input[id='run_method_run_command']").val("<%= j (run_method.run_command) %>");
+    $("input[id='run_method_description']").val("<%= j (run_method.description) %>");
+    $('#edit-run-method-modal').show();
+  });
+</script>

@@ -1,0 +1,18 @@
+<% breadcrumb :input_new, @run_method %>
+<% content_for :title, "Add Input to " + @run_method.name %>
+
+<header>
+  <h1>Creat Input on </h1>
+  <h1><%= @run_method.name %></h1>
+</header>
+
+<div class="content-group">
+  <%= form_for @input, url: new_input_url(@run_method), method: :post do |f| %>
+    <%= f.text_field :name, :placeholder => 'Run Name' %><br>
+    <%= f.text_area :description, :placeholder => 'Input Description' %><br>
+    <%= f.text_area :data, :placeholder => 'Add Input Text' %><br>
+    <%= f.label :student_visible, "Make Visible for Student Runs " %>
+    <%= f.check_box :student_visible, { :checked => true } %><br>
+    <%= f.submit "Create" %>
+  <% end %>
+</div>

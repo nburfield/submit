@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= yield(:title) %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class="application">
+  <div class="container">
+    <%= render :partial => "shared/sidebar", :locals => { :user => @user } %>
+    <%= render :partial => "shared/topbar", :locals => { :user => @user } %>
+    <div class="application-content">
+      <%= render :partial => "shared/breadcrumbs" %>
+      <%= render :partial => "shared/flash_messages" if not flash.empty? %>
+      <%= yield %>
+    </div>
+  </div>
+</body>
+
+</html>

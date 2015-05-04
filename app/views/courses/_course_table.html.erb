@@ -1,0 +1,47 @@
+<table class="courses-list" id="courses-list">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Term</th>
+    <th>Year</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @courses.each do |course| %>
+  <tr>
+    <td><%= link_to course.name, course_path(course) %></td>
+    <td><%= course.term.humanize %></td>
+    <td><%= course.year.to_s %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $.tablesorter.addParser({ 
+        // set a unique id 
+        id: 'terms', 
+        is: function(s) { 
+            // return false so this parser is not auto detected 
+            return false; 
+        }, 
+        format: function(s) { 
+            // format your data for normalization 
+            return s.toLowerCase().replace(/winter/,3).replace(/fall/,2).replace(/summer/,1).replace(/spring/,0); 
+        }, 
+        // set type, either numeric or text 
+        type: 'numeric' 
+    }); 
+
+  $(document).on("page:change", function() {
+    $('#courses-list').tablesorter({
+      sortList: [[2,0],[1,0],[0,0]],
+      headers: {
+        1: { sorter: 'terms' },
+        3: { sorter: false },
+        4: { sorter: false },
+        5: { sorter: false }
+      }
+    });
+  });
+</script>

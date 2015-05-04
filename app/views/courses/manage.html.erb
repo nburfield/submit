@@ -1,0 +1,97 @@
+<% breadcrumb :course, @course %>
+<% content_for :title, @course.name %>
+
+<header>
+  <h1><%= @course.name %></h1>
+  <h2><%= @course.term.humanize + " " + @course.year.to_s %></h2>
+</header>
+<div class="content-group">
+  <div class="center-wrapper">
+    <p class="description"><%= @course.description.gsub(/\n/, '<br>').html_safe %></p>
+    <p class="course-info">Join Token<br><%= @course.join_token %></p>
+    <p class="course-info">This course is <%= @course.open ? "<span class='course-visible'>visible</span>".html_safe : "<span class='course-hidden'>hidden</span>".html_safe %> to students</p>
+  </div>
+</div>
+
+<header>
+  <h1>Instructor Actions</h1>
+</header>
+<div class="content-group">
+  <div class="actions">
+    <ul>
+      <li>
+        <%= link_to courses_users_path(@course) do %>
+          <div>
+            <%= image_tag('icon_users_dark.png', size: "64x64", alt: "Enrolled Students", title: "Enrolled Students") %><br>
+            Enrolled Students
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to course_all_grades_url(@course) do %>
+          <div>
+            <%= image_tag('icon_grade.png', size: "64x64", alt: "View All Grades", title: "View All Grades") %><br>
+            View All Grades
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to edit_course_path(@course) do %>
+          <div>
+            <%= image_tag('icon_edit.png', size: "64x64", alt: "Edit Course", title: "Edit Course") %><br>
+            Edit Course
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to course_path(@course), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <div>
+            <%= image_tag('icon_delete.png', size: "64x64", alt: "Delete Course", title: "Delete Course") %><br>
+            Delete Course
+          </div>
+        <% end %>
+      </li>
+  </div>
+</div>
+
+<header>
+  <h1>Assignments</h1>
+</header>
+<div class="content-group">
+    <div class="actions">
+    <ul>
+      <li>
+        <%= link_to new_assignment_url(@course) do %>
+          <div>
+            <%= image_tag('icon_add.png', size: "64x64", alt: "Add Assignment", title: "Add Assignment") %><br>
+            New Assignment
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to select_assignment_url(@course) do %>
+          <div>
+            <%= image_tag('icon_copy.png', size: "64x64", alt: "Import Assignment", title: "Import Assignment") %><br>
+            Import Assignment
+          </div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  
+  <table class="assignment-list">
+    <tr>
+      <th>Assignment Name</th>
+      <th>Modify</th>
+      <th>Delete</th>
+    </tr>
+
+    <% @assignments.each do |assignment| %>
+      <tr>
+        <td><%= link_to assignment.name, assignment_path(assignment) %></td>
+        <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
+        <td><%= link_to 'Delete', assignment_path(assignment), method: :delete, data: { confirm: "Are You Sure?" } %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,5 @@
+<%= form_for :course, url: courses_enroll_path, html: { class: "enroll_form" } do |f| %>
+  <%= f.text_field :join_token, :placeholder => 'Join Token' %>
+  <%= f.label "Your professor should provide you with a token to join the class" %>
+  <%= f.submit "Join" %>
+<% end %>

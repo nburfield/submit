@@ -1,0 +1,105 @@
+<% breadcrumb :submission, @submission %>
+<% content_for :title, get_assignment.name + " Submission" %>
+
+<%= render :partial => 'compiler_output' %>
+
+<header>
+  <h1><%= @submission.assignment.name %></h1>
+  <h2><%= @submission.user.name %></h2>
+</header>
+<div class="content-group">
+  <div class="column-wrapper">
+    <div class="left-column">
+      <div class="subgroup manage-submission">
+        <h1>Edit Submission</h1>
+        <%= render "shared/error_messages", :target => @submission %>
+        <%= form_for @submission, url: submission_url(@submission), method: :patch do |f| %>
+          <%= f.text_area :note, :placeholder => 'Grader Notes' %>
+          <center>
+            <%= f.label :student_grade, "Grade: " %>
+            <%= f.number_field :grade, :step => 0.1 %>
+            <%= f.label :out_of, " out of " + @submission.assignment.total_grade.to_s %><br>
+          </center>
+          <%= f.submit "Save" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="subgroup manage-submission">
+        <h1>Files</h1>
+        <%= render partial: "file_list", :locals => { :submission => @submission, :deletable => false } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if @submission.submitted %>
+  <header>
+    <h1>Submitted</h1>
+  </header>
+  <div class="content-group">
+    <div class="submitted" >
+      <p class="date">Submitted At: <span data-time><%= @submission.submit_time.to_i %></span></p>
+      <p>
+      <% if @submission.submit_time < @submission.assignment.due_date %>
+        <span class="submission-ontime">On Time</span>
+      <% else %>
+        <span class="submission-late">Late</span>
+      <% end %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<header>
+  <h1>Submission Actions</h1>
+</header>
+<div class="content-group">
+  <div class="actions">
+    <ul>
+      <li>
+        <%= link_to run_submission_url(@submission), :remote => true do %>
+          <div>
+            <%= image_tag('icon_test.png', id: "run", size: "64x64", alt: "Run Submission", title: "Run Submission") %><br>
+            <span id="run-title">Run Tests</span>
+          </div>
+        <% end %>
+      </li>
+      <% if @submission.submitted %>
+        <li>
+          <%= link_to unsubmit_submission_path(@submission), :method => :post do %>
+            <div>
+              <%= image_tag('icon_submit.png', size: "64x64", alt: "Unusbmit Submission", title: "Unusbmit Submission") %><br>
+              Unsubmit Submission
+            </div>
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to submit_submission_path(@submission), :method => :post do %>
+            <div>
+              <%= image_tag('icon_submitted.png', size: "64x64", alt: "Submit Submission", title: "Submit Submission") %><br>
+              Submit Submission
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="program-output-holder">
+  <%= render :partial => 'output_comparison', :locals => { :submission => @submission } %>
+</div>
+
+<script>
+  $("#run").click(function() {
+    $(this).attr("src", '/assets/loading_spinner.gif');
+    changeTitle();
+  });
+
+  function changeTitle(){
+    var element = document.getElementById("run-title")
+    element.innerHTML = "Running..."
+  }
+</script>

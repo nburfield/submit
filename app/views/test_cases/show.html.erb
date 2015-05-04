@@ -1,0 +1,103 @@
+<% breadcrumb :test_case, @test_case %>
+<% content_for :title, get_assignment.name + " Test Case" %>
+
+<header>
+  <h1><%= get_assignment.name %></h1>
+  <h2>Test Case</h2>
+</header>
+<div class="content-group manage-test-case">
+  <%= render partial: "file_list", :locals => { :test_case => @test_case } %>
+  <br>
+
+  <%= render "shared/file_uploader", :target => @test_case, :blank_file => @blank_file %>
+</div>
+
+<header>
+  <h1>Test Case Run Methods</h1>
+</header>
+<div class="content-group">
+  <table>
+    <thead>
+      <tr>
+        <th>Run Methods</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="run_methods_list">
+    </tbody>
+  </table>
+  <br>
+
+  <div class="actions">
+    <ul>
+      <li>
+        <%= link_to :method => :get, :action => :create_output, :remote => true do %>
+          <div>
+            <%= image_tag('icon_output.png', :id => "run-outputs", size: "64x64", alt: "Create Outputs", title: "Create Outputs") %><br>
+            <span id="run-title">Create Outputs</span>
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <a href="#" onclick="$('#run-method-modal').show();">
+          <div>
+            <%= image_tag('icon_add.png', size: "64x64", alt: "Add Run Method", title: "Add Run Method") %><br>
+            Add Run Method
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<header>
+  <h1>Assignment Run Variables</h1>
+</header>
+<div class="content-group">
+  <%= form_for @test_case, url: test_case_url(@test_case), method: :patch, remote: :true do |f| %>
+    <table>
+      <tr>
+        <td><%= f.label "CPU Max Run Time" %></td>
+        <td><%= f.number_field :cpu_time, :step => 1 %></td>
+      </tr>
+      <tr>
+        <td><%= f.label "Max Core Dump Size" %></td>
+        <td><%= f.number_field :core_size, :step => 1 %></td>
+      </tr>
+    </table>
+    <%= f.submit "Save", :onclick => '$("#test_case_variable").val("Saving...")', id: "test_case_variable" %>
+  <% end %>
+</div>
+
+<div id="run-method-modal" class="modal-curtain">
+  <div class="modal-popup">
+    <%= render :file => "run_methods/_run_method_form", :locals => { :test_case => @test_case, :run_method => @run_method } %>
+  </div>
+</div>
+
+<div id="edit-run-method-modal" class="modal-curtain">
+  <div id="run-methods" class="modal-popup">
+  </div>
+</div>
+
+<script>
+  <%= render(:file => 'run_methods/refresh.js.erb', :handlers => [:erb], :formats => [:js]) %>
+
+  $("#test_case_cpu_time").change(function(){
+    $("#test_case_variable").val("Save")
+  });
+
+  $("#test_case_core_size").change(function(){
+    $("#test_case_variable").val("Save")
+  });
+
+  $("#run-outputs").click(function() {
+    $(this).attr("src", '/assets/loading_spinner.gif');
+    changeTitle();
+  });
+
+  function changeTitle(){
+    var element = document.getElementById("run-title")
+    element.innerHTML = "Running..."
+  }
+</script>

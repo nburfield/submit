@@ -1,0 +1,29 @@
+<table class="files-display">
+  <thead>
+    <tr>
+      <th>File Name</th>
+      <th>Updated At</th>
+      <th>Shared</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% test_case.upload_data.each do |upload_datum| %>
+      <tr>
+        <td><%= link_to upload_datum.name, upload_datum_path(upload_datum) %></td>
+        <td><span data-time><%= upload_datum.updated_at.to_i %></span></td>
+        <td><%= link_to (upload_datum.shared ? "Yes" : "No"), upload_datum_path(upload_datum, :upload_datum => { :shared => !upload_datum.shared }), method: :patch, remote: true, "data-type" => "json" %></td>
+        <td><%= link_to 'Delete', upload_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+$(document).on("page:change", function() {
+    $('.files-display a[data-type=json]').on('ajax:success', function(event, data, status, xhr) {
+        $(this).text(data.shared ? "Yes" : "No");
+        $(this).attr("href", "/upload_data/" + data.id + "?upload_datum%5Bshared%5D=" + !data.shared);
+    });
+});
+</script>

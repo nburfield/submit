@@ -1,0 +1,25 @@
+<div class="sidebar">
+  <%= link_to dashboard_url do %>
+    <div>
+      <%= image_tag('icon_dashboard.png', size: "32x32", alt: "Dashboard", title: "Dashboard") %><br>
+      Dashboard
+    </div>
+  <% end %>
+
+  <%= link_to courses_url do %>
+    <div>
+      <%= image_tag('icon_courses.png', size: "32x32", alt: "Courses", title: "Courses") %><br>
+      Courses
+    </div>
+  <% end %>
+
+  <% if current_user.has_role? :admin %>
+    <%= link_to users_url do %>
+      <div>
+        <%= image_tag('icon_users.png', size: "32x32", alt: "Edit Users", title: "Edit Users") %><br>
+        Edit Users
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

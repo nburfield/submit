@@ -1,0 +1,6 @@
+<% breadcrumb :upload_datum, @upload_datum %>
+<% content_for :title, @upload_datum.name + " - Edit" %>
+
+<div class="upload-data-wrapper">
+  <%= render :partial => "editor", :locals => { :upload_datum => @upload_datum } %>
+</div>

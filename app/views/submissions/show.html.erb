@@ -1,0 +1,94 @@
+<% breadcrumb :submission, @submission %>
+<% content_for :title, @assignment.name + " Submission" %>
+
+<%= render :partial => 'compiler_output' %>
+
+<header>
+  <h1>Manage Your Submission</h1>
+  <h2><%= @assignment.name %></h2>
+</header>
+<div class="content-group">
+  <div class="column-wrapper">
+    <div class="left-column">
+      <div class="subgroup manage-submission">
+        <h1>Assignment Details</h1>
+        <p class="assignment-description"><%= @assignment.description.gsub(/\n/, '<br>').html_safe %></p>
+        <div class="assignment-info-wrapper">
+          <p class="assignment-info">Total Points: <%= @assignment.total_grade.to_s %></p>
+          <p class="assignment-info">Start Date: <span data-time><%= @assignment.start_date.to_i %></span></p>
+          <p class="assignment-info">Due Date: <span data-time><%= @assignment.due_date.to_i %></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="subgroup manage-submission">
+        <h1>Files</h1>
+        <% if not @submission.submitted %>
+          <%= render "shared/file_uploader", :target => @submission, :blank_file => @blank_file %>
+        <% end %>
+        <%= render partial: "file_list", :locals => { :submission => @submission, :deletable => @submission.submitted == false } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <h1>Submission Actions</h1>
+</header>
+<div class="content-group">
+  <div class="actions">
+    <ul>
+      <li>
+        <%= link_to compile_submission_url(@submission), :remote => true do %>
+          <div>
+            <%= image_tag('icon_test.png', size: "64x64", alt: "Test Compile", title: "Test Compile") %><br>
+            Test Compile
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to run_submission_url(@submission), :remote => true do %>
+          <div>
+            <%= image_tag('icon_test.png', id: "run", size: "64x64", alt: "Run Tests", title: "Run Tests") %><br>
+            <span id="run-title">Run Tests</span>
+          </div>
+        <% end %>
+      </li>
+      <% if @submission.submitted %>
+        <li>
+          <%= link_to :action => :show do %>
+            <div>
+              <%= image_tag('icon_submitted.png', size: "64x64", alt: "Assignment Submitted", title: "Assignment Submitted") %><br>
+              Assignment Submitted
+            </div>
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to submit_submission_path(@submission), :method => :post, :data => { :confirm => 'Are you sure? Once the assignment is submitted you may not edit your files.' } do %>
+            <div>
+              <%= image_tag('icon_submit.png', size: "64x64", alt: "Submit Assignment", title: "Submit Assignment") %><br>
+              Submit Assignment
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="program-output-holder">
+  <%= render :partial => 'output_comparison', :locals => { :submission => @submission } %>
+</div>
+
+<script>
+  $("#run").click(function() {
+    $(this).attr("src", '/assets/loading_spinner.gif');
+    changeTitle();
+  });
+
+  function changeTitle(){
+    var element = document.getElementById("run-title")
+    element.innerHTML = "Running..."
+  }
+</script>

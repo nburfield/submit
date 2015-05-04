@@ -1,0 +1,11 @@
+<% breadcrumb :assignment_edit, @assignment %>
+<% content_for :title, "Edit Assignment " + @assignment.name %>
+
+<header>
+  <h1>Editing Assignment</h1>
+  <h2><%= @course.name %></h2>
+</header>
+
+<div class="content-group">
+  <%= render :partial => "edit_form", :locals => { :course => @assignment } %>
+</div>

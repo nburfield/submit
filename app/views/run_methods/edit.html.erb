@@ -1,0 +1,19 @@
+<% breadcrumb :run_method, @run_method %>
+<% content_for :title, "Update Run Method " + @run_method.name %>
+
+<header>
+  <h1>Update Run Method</h1>
+  <h2><%= @run_method.name %></h2>
+</header>
+<div class="content-group">
+  <%= form_for @run_method, url: run_method_url(@run_method), method: :patch do |f| %>
+    <%= f.text_field :name, :placeholder => 'Run Name' %><br>
+    <%= f.text_field :run_command, :placeholder => 'Run Command' %><br>
+    <%= f.text_area :description, :placeholder => 'Run Description' %><br>
+    <%= f.submit "Update" %>
+  <% end %>
+
+  <%= button_to 'Delete', run_method_url(@run_method), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+
+<%= render :file => "inputs/_inputs_edit_form", :locals => { :@run_method => @run_method } %>

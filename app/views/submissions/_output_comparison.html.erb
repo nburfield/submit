@@ -1,0 +1,33 @@
+<header>
+  <h1>Program Output</h1>
+  <% passed = submission.visible_run_saves(current_user).select { |s| s.pass }.count %>
+  <% total = submission.visible_run_saves(current_user).count %>
+  <h3><%= passed %> Tests Out Of <%= total %> Passed</h3>
+</header>
+<div class="content-group">
+  <div class="subgroup" id="run-method-list">
+    <h1>Quick Links</h1>
+    <% submission.assignment.test_case.run_methods.each do |run_method| %>
+      <div class="test-case">
+        <div class="run-method"><a class="run-method-anchor" href="#run_method_<%= run_method.id %>"><%= run_method.name %></a></div>
+        <div class="run-input-list">
+          <% submission.visible_run_saves(current_user).select { |run_save| run_save.input.run_method == run_method }.each do |run_save| %>
+            <div class="<%= run_save.pass ? 'run-input-pass' : 'run-input-fail' %>"><a href="#run_input_<%= run_save.id %>"><%= run_save.input.name %></a></div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% submission.assignment.test_case.run_methods.each do |run_method| %>
+    <div class="subgroup" id="run_method_<%= run_method.id %>">
+      <h1><%= run_method.name %></h1>
+      <h2><%= run_method.description %></h2>
+      <h2><%= run_method.run_command %></h2>
+
+      <% submission.visible_run_saves(current_user).select { |run_save| run_save.input.run_method == run_method }.each do |run_save| %>
+        <%= render run_save %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

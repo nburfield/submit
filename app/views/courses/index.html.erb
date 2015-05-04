@@ -1,0 +1,18 @@
+<% breadcrumb :courses %>
+<% content_for :title, "Course List" %>
+
+<header>
+  <h1>Create a new course</h1>
+</header>
+
+<div class="content-group">
+  <%= link_to 'Create a new course', new_course_url %>
+</div>
+
+<header>
+  <h1>All Courses</h1>
+</header>
+
+<div class="content-group">
+  <%= render :partial => "course_table", :locals => { :courses => @courses } %>
+</div>

@@ -1,0 +1,51 @@
+<% breadcrumb :user_settings, @user %>
+<% content_for :title, "Account Edit" %>
+
+<%= render "shared/error_messages", :target => @user %>
+
+<header>
+  <h1>Settings</h1>
+</header>
+<div class="content-group">
+  <h2>Account Info</h2>
+  <div class="settings-container">
+    <%= form_for :user, url: setting_path, method: :patch do |f| %>
+      <%= f.label :email %>
+      <%= f.text_field :email %><br><br>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %><br><br>
+
+      <% if current_user.has_role? :admin %>
+        <table>
+          <th colspan=2>Roles</th>
+          <% User::ROLES.each do |role| %>
+          <tr>
+            <td><%= f.check_box(:roles,
+            { :multiple => true,
+              :checked => (@user.has_role? role)
+            },
+            role, nil)
+          %></td>
+          <td><%= role %></td></tr>
+        <% end %>
+        </table>
+      <% end %>
+     
+      <br>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
+
+<div class="content-group">
+  <h2>Password</h2>
+  <div class="settings-container">
+    <%= form_for :user, url: setting_path, method: :patch do |f| %>
+      <%= f.password_field :old_password, :placeholder => 'old password' %><br><br>
+      <%= f.password_field :password, :placeholder => 'password' %><br>
+      <%= f.password_field :password_confirmation, :placeholder => 'confirm' %><br>
+      <%= f.submit "Change" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<% content_for :title, "Submit Login" %>
+<h1>Submit</h1>
+
+<div class="login-prompt">
+  <h2>Please log in</h2>
+
+  <%= form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f| %>
+    <%= render "shared/error_messages", :target => @user_session %>
+    <%= f.email_field :email, :placeholder => 'email@example.com' %>
+    <%= f.password_field :password, :placeholder => 'password' %>
+    <%= f.submit "Login" %>
+  <% end %>
+
+  <div class="login-footer">
+    <%= link_to 'Register', signup_path %> &bull;
+    <%= link_to 'Forgot Password', signup_path %>
+  </div>
+</div>
+

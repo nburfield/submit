@@ -1,0 +1,39 @@
+<% breadcrumb :course, @course %>
+<% content_for :title, "Modify Enrolled User" %>
+
+<header>
+  <h1><%= @course.name %></h1>
+  <h2>Editing user <%= @user.name %></h2>
+</header>
+<div class="content-group">
+  <%= render "shared/error_messages", :target => @user %>
+  <%= form_for @user, url: course_user_edit_path(@course, @user), method: :patch do |f| %>
+    <table>
+      <thead>
+        <tr>
+          <td></td>
+          <td><b>Roles</b></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% User::ROLES.each do |role| %>
+          <% if role != "admin" %>
+            <tr>
+              <td>
+                <%= f.check_box(:roles,
+                  { :multiple => true,
+                    :checked => (@user.has_local_role? role, @course)
+                  },
+                  role, nil)
+                %>
+              </td>
+              <td><%= f.label role %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+   
+    <%= f.submit "Save" %>
+  <% end %>
+</div>

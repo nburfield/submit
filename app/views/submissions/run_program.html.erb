@@ -1,0 +1,23 @@
+<% breadcrumb :submission_run, @submission %>
+<% content_for :title, "Test Case Run" %>
+
+<header>
+  <h1>Program Output</h1>
+  <h2><%= @assignment.name %></h2>
+</header>
+<div class="content-group">
+  <% correct = {} %>
+  <% correct[:correct] = @submission.run_saves.select {|s| s.pass}.count %>
+  <% correct[:total] = @submission.run_saves.count %>
+  <%= correct[:correct].to_s + " out of " + correct[:total].to_s %> test cases succeeded<br>
+  <% @submission.assignment.test_case.run_methods.each do |run| %>
+    <%= raw "<a href=#" + run.id.to_s + ">" + run.name + "</a>" %>
+  <% end %>
+</div>
+
+<header>
+  <h1>Output Comparison</h1>
+</header>
+<div class="content-group manage-submission">
+  <%= render :partial => 'output_comparison' %>
+</div>

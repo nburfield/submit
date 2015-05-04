@@ -1,0 +1,16 @@
+<% if not @submission.grade.nil? or not @submission.note.nil? %>
+  <div class="grade-display">
+    <% if not @submission.grade.nil? %>
+      <center>
+        <p class="grade">Grade</p>
+        <p class="grade-value"><%= @submission.grade %></p>
+      </center>
+      <br>
+    <% end %>
+
+    <% if not @submission.note.empty? %>
+      <center><p class="note">Note</p></center>
+      <%= @submission.note %>
+    <% end %>
+  </div>
+<% end %>

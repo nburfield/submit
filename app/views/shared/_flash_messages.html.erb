@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#compile-error-button").click(function(){
+      $(".compile-messages").hide();
+    });
+    $(".flash-messages").delay(2500).fadeOut(2500);
+  });
+</script>
+
+<% flash.each do |key, value| %>
+  <% if key == 'notice' %>
+    <div class="flash-messages">
+      <%= content_tag(:div, value, :class => "flash #{key}") %>
+    </div>
+  <% elsif key == 'comperr' %>
+    <div class="compile-messages">
+      <center><b>Problem with Program</b></center><br>
+      <%= (value.gsub! "\n", "<br>").html_safe %>
+      <center><button class="compile-error-button" id="compile-error-button">Close</button></center>
+    </div>
+  <% end %>
+<% end %>

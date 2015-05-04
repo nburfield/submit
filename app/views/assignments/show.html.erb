@@ -1,0 +1,20 @@
+<% breadcrumb :assignment, @assignment %>
+<% content_for :title, @course.name + ' assignment ' + @assignment.name %>
+
+<header>
+  <h1><%= @course.name %> assignment <%= @assignment.name %></h1>
+</header>
+<div class="content-group">
+  <%= @assignment.name %><br>
+  <%= @assignment.description %><br>
+  <%= "Total Points " + @assignment.total_grade.to_s %><br>
+  <%= @assignment.start_date %><br>
+  <%= @assignment.due_date %><br>
+</div>
+
+<header>
+  <h1>Your Submission</h1>
+</header>
+<div class="content-group">
+  <%= @submission.user.name %> - <%= link_to 'Edit',  submission_url(@submission) %><br>
+</div>

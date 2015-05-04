@@ -1,0 +1,24 @@
+<div class="topbar">
+  <div class="user-info">
+    <p><%= current_user.name %></p>
+
+    <div class="expand">
+      <div>.&nbsp;.&nbsp;.</div>
+    </div>
+
+    <div class="account-actions">
+      <ul>
+        <li>
+          <%= link_to logout_url do %>
+            <%= image_tag('icon_logout.png', alt: "Log Out", title: "Log Out") %>Logout
+          <% end %>
+        </li>
+        <li>
+          <%= link_to settings_url do %>
+            <%= image_tag('icon_settings.png', alt: "Settings", title: "Settings") %>Settings
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="comment-table">
+  <table id="file-comment-table">
+    <thead>
+      <tr>
+        <th>Line</th>
+        <th>Comment</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="comment-list">
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).on("page:change", function() {
+    <%= render(:file => 'comments/refresh.js.erb', :handlers => [:erb], :formats => [:js]) %>
+
+    $('#file-comment-table').tablesorter({
+      sortList: [[0,0]],
+      headers: {
+        1: { sorter: false }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,42 @@
+$('#comment-list').html("<%= j (render @file_comments) %>");
+$('#file-comment-table').trigger("update");
+
+annots = [
+  <% @file_comments.each do |c| %>
+    <% comment = raw '{row: ' + (c.line - 1).to_s + ', text: "'%>
+    <% comment = comment + c.contents.gsub(/(?:\n\r?|\r\n?)/, '\n').html_safe %>
+    <% comment = comment + raw( '", type: "error" , id:' + c.id.to_s + '}' )%>
+    <%= comment %>
+    <% if c != @file_comments.last %>
+      <%= ',' %>
+    <% end %> 
+  <% end %>
+];
+editor = ace.edit("editor");
+editor.session.setAnnotations(annots);
+
+// Build comment favorites list
+$('#comment-favorites-body').html("")
+<% @all_comments.each do |c| %>
+  $('#comment-favorites-body').append(
+    '<tr>' + 
+      '<td>' +
+        '<a href-"#" onclick="add_favorites(\'<%= c[0].gsub(/\r\n/, '\r\n').gsub('\'', '\\′' ) %>\')">' +
+          '<%= truncate(c[0], length: 45).gsub(/\r\n/, '\r\n').gsub('\'', '\\′' ) %>' +
+        '</a>' +
+      '</td>' +
+    '</tr>'
+  );
+<% end %>
+
+// Populate all_comments array for suggested comments
+all_comments = [];
+<% @all_comments.each do |c| %>
+  all_comments.push("<%= c[0].gsub(/\r\n/, '\r\n').gsub('\'', '\\′' ) %>");
+<% end %>
+
+// Clear form on success
+$("#form-error").html("");
+$('#comment_line').val("");
+$('#comment_contents').val("");
+$('.modal-curtain').hide();

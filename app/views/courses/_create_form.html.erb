@@ -1,0 +1,13 @@
+<%= render "shared/error_messages", :target => @course %>
+
+<%= form_for @course do |f| %>
+  <%= f.text_field :name, :placeholder => 'Course Name' %><br>
+  <%= f.text_area :description, :placeholder => 'Class Description' %><br>
+  <%= f.collection_select :term, Course::TERMS, :to_s, :humanize, :prompt => 'Term' %>
+  <%= f.select :year, options_for_select((Time.now.year-5..Time.now.year+5).to_a, Time.now.year) %>
+  <span>
+    <%= f.label :open %>
+    <%= f.check_box :open, { :checked => true } %>
+  </span>
+  <%= f.submit "Create" %>
+<% end %>

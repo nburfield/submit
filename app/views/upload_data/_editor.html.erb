@@ -1,0 +1,42 @@
+  <div class="editor-form" id="upload_data_container">
+    <%= form_for :upload_datum, url: upload_datum_url(@upload_datum), method: :patch, remote: true do |f| %>
+      <%= f.text_field :name, value: @upload_datum.name %>
+      <%= f.text_area :contents, style: 'display:none', value: @upload_datum.contents %>
+      <%= f.submit "Save", disabled: @can_edit == false, id: "save" %>
+      <%= link_to 'Download', download_file_url(@upload_datum) , method: :post %>
+      <span class="editor-save-status"></span>
+    <% end %>
+  </div>
+
+  <div id="editor" class="editor"><%= @upload_datum.contents %></div>
+
+<script>
+  editor = ace.edit("editor");
+  editor.focus();
+  editor.resize(true);
+  editor.setTheme("ace/theme/monokai");
+  editor.setShowPrintMargin(false);
+  session = editor.getSession();
+  session.setMode("ace/mode/c_cpp"); 
+  editor.setReadOnly(<%= not @can_edit %>);
+  editor.on("change", function() {
+    $("textarea[name='upload_datum[contents]']").val(editor.getValue());
+    $(".editor-save-status").text("Edited");
+    $("#save").val("Save");
+  });
+
+  $("#save").click(function() {
+    $("#save").val("Saving...");
+  });
+
+  <% if @can_comment %>
+    editor.on("guttermousedown", function(e){ 
+      var target = e.domEvent.target; 
+      var row = e.getDocumentPosition().row;
+      $("input[id='comment_line']").val(row+1);
+      $(".modal-curtain").show();
+      e.stop();
+    });
+  <% end %>
+
+</script>

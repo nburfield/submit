@@ -1,0 +1,14 @@
+<% content_for :title, "Submit Home" %>
+
+<h1>Signup</h1>
+
+<div class="register-prompt">
+  <h2>Please Register</h2>
+  <%= render :partial => "form", :locals => { :user => @user } %>
+
+  <div class="register-footer">
+    <%= link_to 'Login', login_path %> &bull;
+    Reset Password &bull;
+    Help
+  </div>
+</div>

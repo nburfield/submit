@@ -1,0 +1,19 @@
+<%= render "shared/error_messages", :target => @assignment %>
+
+<%= form_for @assignment, url: new_assignment_url(@course), method: :post do |f| %>
+  <%= f.text_field :name, :placeholder => 'Assignment Name' %><br>
+  <%= f.number_field :total_grade, :class => 'text_field', :step => 0.5, :placeholder => 'Points Possible' %><br>
+  <%= f.text_area :description, :placeholder => 'Assignment Description' %><br>
+  <%= f.label "Assignment Available Date: " %>
+  <div class="datetime-picker-container"><%= f.text_field :start_date %></div><br>
+  <%= f.label "Assignment Due Date: " %>
+  <div class="datetime-picker-container"><%= f.text_field :due_date %></div><br>
+  <%= f.submit "Create" %>
+<% end %>
+
+<script>
+  $(document).on("page:change", function() {
+    $('#assignment_start_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime()/1000)});
+    $('#assignment_due_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime()/1000) + 604800});
+  });
+</script>

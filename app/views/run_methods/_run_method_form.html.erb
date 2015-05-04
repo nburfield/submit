@@ -1,0 +1,11 @@
+<header>
+  <h1>Create Run Method</h1>
+</header>
+<div class="content-group">
+  <%= form_for @run_method, url: new_run_method_url(@test_case), method: :post, remote: true do |f| %>
+    <%= f.text_field :name, :placeholder => 'Run Name' %><br>
+    <%= f.text_field :run_command, :placeholder => 'Run Command' %><br>
+    <%= f.text_area :description, :placeholder => 'Run Description' %><br>
+    <%= f.submit "Create", :onclick => '$(".modal-curtain").hide();' %>
+  <% end %>
+</div>

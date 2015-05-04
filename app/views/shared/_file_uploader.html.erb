@@ -1,0 +1,26 @@
+<div class="file-uploader">
+  <div class="drag-drop">
+    <% type = target.class.name == "TestCase" ? "test_case" : "submission" %>
+    <%= form_tag create_file_url(type, target), class: "dropzone", id: "dropzoneUploader", multipart: true do %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= file_field_tag 'file', class: "file-selector" %>
+    <% end %>
+  </div>
+  <div class="create-new-file" onclick="$('#create-new-file-modal').show();">
+    <%= image_tag('icon_new_file.png', size: "64x64", alt: "Create New File", title: "Create New File") %>
+  </div>
+</div>
+
+<div id="create-new-file-modal" class="modal-curtain">
+  <div class="modal-popup" style="text-align: center;">
+    <% type = target.class.name == "TestCase" ? "test_case" : "submission" %>
+    <%= render "shared/error_messages", :target => blank_file %>
+    <%= form_for blank_file, url: create_blank_file_url(type, target) do |f| %>
+      <%= f.label "File Name" %><br>
+      <%= f.text_field :name, :placeholder => "File Name" %>
+      <%= f.hidden_field :file_type, :value => "text/plain" %>
+      <%= f.hidden_field :shared, :value => false %>
+      <%= f.submit "Create" %>
+    <% end %>
+  </div>
+</div>

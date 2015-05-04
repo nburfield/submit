@@ -1,0 +1,32 @@
+<% breadcrumb :assignment_copy, @course %>
+<% content_for :title, "Copy Old Assignment for " + @course.name %>
+
+<header>
+  <h1>Copy Old Assignment for</h1>
+  <h2><%= @course.name %></h2>
+</header>
+
+<header>
+  <h1>Select Assignment</h1>
+</header>
+<div class="content-group">
+  <table class="assignment-list">
+    <tr>
+      <th>Assignment Name</th>
+      <th>Details</th>
+      <th>Term</th>
+    </tr>
+
+    <% @current_user.courses.each do |c| %>
+      <% if c != @course %>
+        <% c.assignments.each do |assignment| %>
+          <tr>
+            <td><%= link_to assignment.name, copy_assignment_path(@course, assignment), method: :post %></td>
+            <td><%= assignment.description %></td>
+            <td><%= c.term + " " + c.year.to_s %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+</div>

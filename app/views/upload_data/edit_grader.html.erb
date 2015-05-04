@@ -1,0 +1,18 @@
+<% breadcrumb :upload_datum, @upload_datum %>
+<% content_for :title, @upload_datum.name + " - Edit" %>
+
+<div class="upload-data-wrapper">
+  <div class="editor-left-col">
+    <%= render :partial => "editor", :locals => { :upload_datum => @upload_datum } %>
+  </div>
+
+  <div class="editor-right-col">
+    <%= render :partial => "comment_annotations", :locals => { :upload_datum => @upload_datum } %>
+  </div>
+</div>
+
+<div class="modal-curtain">
+  <div class="modal-popup">
+    <%= render :partial => "comment_form", :locals => { :upload_datum => @upload_datum } %>
+  </div>
+</div>

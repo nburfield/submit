@@ -1,0 +1,41 @@
+<% breadcrumb :course_grades, @course %>
+<% content_for :title, 'All Grades for ' + @course.name %>
+
+<header>
+  <h1>All Grades for <%= @course.name %></h1>
+</header>
+<div class="content-group">
+  <div class="actions">
+    <ul>
+      <li>
+        <%= link_to course_all_grades_url(@course), method: :post do %>
+          <div>
+            <%= image_tag('icon_download.png', size: "64x64", alt: "Download All Grades", title: "Download All Grades") %><br>
+            Download All Grades
+          </div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="course-grade-list">
+    <table>
+      <tr>
+        <th>Student Name</th>
+        <% @course.assignments.each do |assignment| %>
+          <th><%= assignment.name %></th>
+        <% end %>
+      </tr>
+      <% @course.users.each do |user| %>
+        <% if not user.has_local_role? :instructor, @course %>
+          <tr>
+            <td><%= user.name %></td>
+            <% @course.assignments.each do |assignment| %>
+              <% submission = assignment.submissions.select { |s| s.user == user } %>
+              <td><%= submission.first.grade %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>

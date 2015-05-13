@@ -41,3 +41,24 @@ rake db:migrate
 - Create new CSS for screens past login and registration
 - Test uploading of files to database
 - Start working on various views within the app
+
+- nginx Configuration
+```
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+
+        server_name submit.cse.unr.edu;
+        passenger_enabled on;
+        rails_env    development;
+        root         /srv/submit/app;
+
+        # redirect server error pages to the static page /50x.html
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+        
+}
+
+```

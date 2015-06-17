@@ -35,17 +35,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # Nolan home computer and lab computer
-  config.compile_directory = '/Users/nolanburfield/Documents/submitTest/tempDirectory/'
-  # config.compile_directory = '/home/nolan/Documents/submitTest/tempDirectory/'
-
-  # Hardy Macbook
-  # config.compile_directory = '/Users/hardythrower/Documents/submitTest/tempDirectory/'
-
-  # Brandon home computer and lab computer
-  # config.compile_directory = '/home/brandon/Documents/submitTest/tempDirectory/'
-  # config.compile_directory = '/home/bworl/Documents/submitTest/tempDirectory/'
-
   # Webserver
-  # config.compile_directory = '/home/submit_temp/'
+  config.compile_directory = '/tmp/'
 end

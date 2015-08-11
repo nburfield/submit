@@ -50,7 +50,7 @@ class TestCase < ActiveRecord::Base
 
   private
     def create_run_script(directory, command, file)
-      run = directory + command + " < " + file
+      run = "sudo chroot " + directory + command + " < " + file
       shell = "#!/bin/bash\n"
       shell = shell + "ulimit -t " + cpu_time.to_s
       shell = shell + "\n" 

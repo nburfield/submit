@@ -70,7 +70,9 @@ class Submission < ActiveRecord::Base
 	f = File.open(directory + "script", "w")
 	f.write(shell)
 	f.close
-        stdin, stdout, stderr = Open3.popen3(shell)
+	run_data = 'sudo chroot /var/chroot /bin/bash -c "sh /tmp/' 
+	run_data = run_data + user.name.tr(' ', '_') + '_' + id.to_s + '/' + 'script"'
+        stdin, stdout, stderr = Open3.popen3(run_data)
         stream[:stdout] = stdout.read
         stream[:stderr] = stderr.read 
         save = run_saves.new(input: input)
@@ -127,9 +129,9 @@ class Submission < ActiveRecord::Base
   private
     # Creates a script to run on
     def create_run_script(directory, command, file)
+      file = "/tmp/" +  file.gsub(Rails.configuration.compile_directory, "")
       run = "/tmp/" + user.name.tr(" ", "_") + '_' + id.to_s + '/' + command + " < " + file + "\n"
       shell = "#!/bin/bash\n"
-      shell = shell + "sudo chroot /var/chroot sudo -u submit bash\n"
       shell = shell + "ulimit -t " + assignment.test_case.cpu_time.to_s
       shell = shell + "\n" 
       shell = shell + "ulimit -c " + assignment.test_case.core_size.to_s

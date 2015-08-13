@@ -50,13 +50,15 @@ class TestCase < ActiveRecord::Base
 
   private
     def create_run_script(directory, command, file)
-      run = "sudo chroot " + directory + command + " < " + file
+      run_path = directory.gsub(Rails.configuration.compile_directory, "")
+      run = "/tmp/" + run_path + command + " < " + file + "\n"
       shell = "#!/bin/bash\n"
       shell = shell + "ulimit -t " + cpu_time.to_s
       shell = shell + "\n" 
       shell = shell + "ulimit -c " + core_size.to_s
       shell = shell + "\n"
       shell = shell + run
+      shell = shell + "exit\n"
       return shell
     end
 end

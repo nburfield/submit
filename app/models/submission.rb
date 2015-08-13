@@ -124,13 +124,15 @@ class Submission < ActiveRecord::Base
   private
     # Creates a script to run on
     def create_run_script(directory, command, file)
-      run = "sudo chroot " + directory + command + " < " + file
+      run = "/tmp/" + user.name.tr(" ", "_") + '_' + id.to_s + '/' + command + " < " + file + "\n"
       shell = "#!/bin/bash\n"
+      shell = shell + "sudo chroot /var/chroot sudo -u submit bash"
       shell = shell + "ulimit -t " + assignment.test_case.cpu_time.to_s
       shell = shell + "\n" 
       shell = shell + "ulimit -c " + assignment.test_case.core_size.to_s
       shell = shell + "\n"
       shell = shell + run
+      shell = shell + "exit\n"
       return shell
     end
 end

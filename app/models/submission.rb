@@ -67,7 +67,7 @@ class Submission < ActiveRecord::Base
         f.write(input.data)
         f.close
         shell = create_run_script(directory, run.run_command, input_file)
-	f = File.open(directory + "script")
+	f = File.open(directory + "script", "w")
 	f.write(shell)
 	f.close
         stdin, stdout, stderr = Open3.popen3(shell)

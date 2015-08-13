@@ -53,6 +53,7 @@ class TestCase < ActiveRecord::Base
       run_path = directory.gsub(Rails.configuration.compile_directory, "")
       run = "/tmp/" + run_path + command + " < " + file + "\n"
       shell = "#!/bin/bash\n"
+      shell = shell + "sudo chroot /var/chroot sudo -u submit bash"
       shell = shell + "ulimit -t " + cpu_time.to_s
       shell = shell + "\n" 
       shell = shell + "ulimit -c " + core_size.to_s

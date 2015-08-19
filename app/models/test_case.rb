@@ -29,8 +29,22 @@ class TestCase < ActiveRecord::Base
         f = File.open(output, "w" )
         f.write(file.data)
         f.close
+
+        # Get the shell script and write to file 'script'
         shell = create_run_script(path, run.run_command, output)
-        stdin, stdout, stderr = Open3.popen3(shell)
+        f = File.open(path + "script", "w")
+        #f.chmod(0777)
+        f.write(shell)
+        f.close
+
+        # Build the command that will run the script
+        run_data = 'sudo chroot /var/chroot /bin/bash -c "sh /tmp/' 
+        run_data = run_data + path.gsub(Rails.configuration.compile_directory, "") + 'script"'
+        #run_data = Rails.configuration.compile_directory
+        #run_data = run_data + path.gsub(Rails.configuration.compile_directory, "") + 'script'
+
+        # Call the script, and capture putput
+        stdin, stdout, stderr = Open3.popen3(run_data)
         stream = stderr.read
         if not stream.empty?
           stream.gsub! path, ""
@@ -50,13 +64,18 @@ class TestCase < ActiveRecord::Base
 
   private
     def create_run_script(directory, command, file)
-      run_path = directory.gsub(Rails.configuration.compile_directory, "")
-      run = "/tmp/" + run_path + command + " < " + file + "\n"
+      # Fix the directory path
+      file = "/tmp/" +  file.gsub(Rails.configuration.compile_directory, "")
+      directory = "/tmp/" + directory.gsub(Rails.configuration.compile_directory, "")
+
+      # Build the run script
+      run = directory + command + " < " + file + "\n"
+
+      # Build the shell script
       shell = "#!/bin/bash\n"
-      shell = shell + "sudo chroot /var/chroot sudo -u submit bash\n"
-      shell = shell + "ulimit -t " + cpu_time.to_s
+      shell = shell + "ulimit -t " + assignment.test_case.cpu_time.to_s
       shell = shell + "\n" 
-      shell = shell + "ulimit -c " + core_size.to_s
+      shell = shell + "ulimit -c " + assignment.test_case.core_size.to_s
       shell = shell + "\n"
       shell = shell + run
       shell = shell + "exit\n"

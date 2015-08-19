@@ -66,12 +66,21 @@ class Submission < ActiveRecord::Base
         f = File.open(input_file, "w")
         f.write(input.data)
         f.close
+
+        # Get the shell script and write to file 'script'
         shell = create_run_script(directory, run.run_command, input_file)
-	f = File.open(directory + "script", "w")
-	f.write(shell)
-	f.close
-	run_data = 'sudo chroot /var/chroot /bin/bash -c "sh /tmp/' 
-	run_data = run_data + user.name.tr(' ', '_') + '_' + id.to_s + '/' + 'script"'
+        f = File.open(directory + "script", "w")
+        f.chmod(0777)
+        f.write(shell)
+        f.close
+
+        # Build the command that will run the script
+        run_data = 'sudo chroot /var/chroot /bin/bash -c "sh /tmp/'
+        run_data = run_data + directory.gsub(Rails.configuration.compile_directory, "") + 'script"'
+        #run_data = Rails.configuration.compile_directory
+        #run_data = run_data + directory.gsub(Rails.configuration.compile_directory, "") + 'script'
+
+        # Call the script, and capture putput
         stdin, stdout, stderr = Open3.popen3(run_data)
         stream[:stdout] = stdout.read
         stream[:stderr] = stderr.read 
@@ -129,8 +138,14 @@ class Submission < ActiveRecord::Base
   private
     # Creates a script to run on
     def create_run_script(directory, command, file)
+      # Fix the directory path
       file = "/tmp/" +  file.gsub(Rails.configuration.compile_directory, "")
-      run = "/tmp/" + user.name.tr(" ", "_") + '_' + id.to_s + '/' + command + " < " + file + "\n"
+      directory = "/tmp/" + directory.gsub(Rails.configuration.compile_directory, "")
+
+      # Build the run script
+      run = directory + command + " < " + file + "\n"
+
+      # Build the shell script
       shell = "#!/bin/bash\n"
       shell = shell + "ulimit -t " + assignment.test_case.cpu_time.to_s
       shell = shell + "\n" 

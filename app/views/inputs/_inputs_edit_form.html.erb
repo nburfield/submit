@@ -2,7 +2,7 @@
   <h1>Manage Inputs</h1>
 </header>
 <div class="content-group">
-  <table>
+  <table class="inputs-table">
     <thead>
       <tr>
         <th>Inputs</th>
@@ -12,13 +12,13 @@
       <% @run_method.inputs.each do |i| %>
         <tr>
           <td>
-          <div class="content-group">
+          <div class="content-group manage-inputs">
             <%= form_for i, url: input_url(i), method: :patch, :remote => true do |f| %>
               <%= f.text_field :name, :placeholder => 'Run Name' %><br>
               <%= f.text_area :description, :placeholder => 'Input Description' %><br>
               <%= f.text_area :data, :placeholder => 'Add Input Text' %><br><br>
               <%= f.label :output_data, "Output of the input data." %><br>
-              <%= f.text_area :output, :readonly => true %><br><br>
+              <%= f.text_area :output, :readonly => true, cols: "300", rows: "20" %><br><br>
               <%= f.label :student_visible, "Make Visible for Student Runs " %>
               <%= f.check_box :student_visible, { :checked => i.student_visible } %><br>
               <%= f.submit "Update" %>

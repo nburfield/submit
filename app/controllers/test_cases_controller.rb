@@ -1,4 +1,5 @@
 class TestCasesController < ApplicationController
+  before_filter :require_grader, :only => [:show, :update, :create_output]
 
   # Shows a test case
   def show
@@ -51,6 +52,14 @@ class TestCasesController < ApplicationController
   private
     def test_case_params
       params.require(:test_case).permit(:cpu_time, :core_size)
+    end
+
+    def require_grader
+      test_case = TestCase.find(params[:id])
+      if not current_user.has_local_role? :grader, test_case.assignment.course
+        flash[:notice] = "Only the course instructor may edit test cases"
+        redirect_to dashboard_url
+      end
     end
 
     # Gets the course this test case belongs to

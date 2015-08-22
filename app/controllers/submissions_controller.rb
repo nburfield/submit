@@ -20,6 +20,11 @@ class SubmissionsController < ApplicationController
   def update
     submission = Submission.find(params[:id])
 
+    if submission.run_saves.select { |s| s.input_id == input.id }.first == nil
+      flash[:notice] = "Run the students program before grading."
+      redirect_to :back and return
+    end
+
     if submission.update_attributes(submission_params)
       make_pdf
       flash[:notice] = "Submission updated!"

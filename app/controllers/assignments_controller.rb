@@ -114,14 +114,14 @@ class AssignmentsController < ApplicationController
 
   # Unsubmit all the submitted assignments
   def unsubmit_all_assignments
-    assignment = Assignment.find(params[:id])
+    @assignment = Assignment.find(params[:id])
     submissions = @assignment.submissions
     submissions.each do |submission|
       submission.submitted = false
       submission.save
       submission.remove_saved_runs
     end
-    redirect_to manage_assignment_url(assignment)
+    redirect_to @assignment
   end
 
   # Creates the form to modify an assignment

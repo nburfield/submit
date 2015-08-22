@@ -5,7 +5,7 @@ class UploadDatum < ActiveRecord::Base
 
   validates :name, presence: true
   validate :name_is_available
-  validate :name_is_unique
+  #validate :name_is_unique
   
   before_save :overwrite_existing_file
 
@@ -30,7 +30,6 @@ class UploadDatum < ActiveRecord::Base
   private
   def overwrite_existing_file
     return if contents.nil?
-
     source.upload_data.each do |file|
       file.destroy if file.name == name and file != self
     end
@@ -46,6 +45,7 @@ class UploadDatum < ActiveRecord::Base
   def name_is_unique
     source.upload_data.each do |upload_datum|
       if upload_datum.id != id and upload_datum.name == name
+        puts "This incident hit ======================================================="
         errors.add(:name, "is already taken as a file name")
         return
       end

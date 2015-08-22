@@ -9,6 +9,10 @@ class SubmissionsController < ApplicationController
     @assignment = @submission.assignment
     @blank_file = UploadDatum.new
 
+    if current_user == @submission.user
+      render and return
+    end
+
     if current_user.has_local_role? :grader, get_course
       render :action => :edit and return
     else
@@ -20,7 +24,8 @@ class SubmissionsController < ApplicationController
   def update
     submission = Submission.find(params[:id])
 
-    if submission.run_saves.select { |s| s.input_id == input.id }.first == nil
+    saves = submission.run_saves.each
+    if not saves.count > 0
       flash[:notice] = "Run the students program before grading."
       redirect_to :back and return
     end
@@ -117,7 +122,7 @@ class SubmissionsController < ApplicationController
     # Checks that the user is the owner of the submission, the course instructor, or an admin
     def require_owner
       submission = Submission.find(params[:id])
-      return if current_user.has_role? :admin or current_user.has_local_role? :instructor, get_course
+      return if current_user.has_role? :admin or current_user.has_local_role? :grader, get_course
 
       if submission.user != current_user
         flash[:notice] = "You may only view your own submissions"

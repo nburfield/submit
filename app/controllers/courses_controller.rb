@@ -44,7 +44,7 @@ class CoursesController < ApplicationController
       @assignments = @course.assignments
     end
 
-    render "courses/manage" if current_user.has_local_role? :instructor, @course
+    render "courses/manage" if current_user.has_local_role? :grader, @course
   end
 
   # Displays a list of all courses in the application.
@@ -230,7 +230,7 @@ class CoursesController < ApplicationController
     return if current_user.has_role? :admin
 
     course = Course.find(params[:id])
-    if not current_user.has_role? :instructor, course
+    if not current_user.has_role? :grader, course
       flash[:notice] = "That action is only available to the instructor of the course"
       redirect_to dashboard_url
     end

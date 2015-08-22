@@ -53,7 +53,7 @@ class AssignmentsController < ApplicationController
   def show
     @assignment = Assignment.find(params[:id])
     @course = @assignment.course
-    if current_user.has_local_role? :instructor, @course or current_user.has_role? :admin
+    if current_user.has_local_role? :grader, @course or current_user.has_role? :admin
       @submissions = @assignment.submissions
       @test_case = @assignment.test_case 
       render "assignments/manage"

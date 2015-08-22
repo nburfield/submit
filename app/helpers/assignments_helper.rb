@@ -34,7 +34,7 @@ module AssignmentsHelper
       course = assignment.course
     end
     
-    if not current_user.has_role? :instructor, course
+    if not current_user.has_role? :grader, course
       flash[:notice] = "You must be an instructor of the course to view that page"
       redirect_to dashboard_url
     end

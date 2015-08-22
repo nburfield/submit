@@ -1,2 +1,5 @@
-$(".modal-curtain").show();
+$("#compiler-output").show();
 $(".compiler-output").html("<%= j (message.gsub(/\n/, '<br>').html_safe) %>");
+$("#run").attr("src", '/assets/icon_test.png');
+var element = document.getElementById("run-title")
+element.innerHTML = "Run Tests"

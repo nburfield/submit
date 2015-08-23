@@ -44,7 +44,9 @@ class CoursesController < ApplicationController
       @assignments = @course.assignments
     end
 
-    render "courses/manage" if current_user.has_local_role? :grader, @course
+    if current_user.has_local_role? :grader, @course or current_user.has_role? :admin
+      render "courses/manage" 
+    end
   end
 
   # Displays a list of all courses in the application.

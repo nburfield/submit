@@ -18,7 +18,7 @@ function formatTimeString(time) {
   var minutes = time.getMinutes();
   var ampm = (hours >= 12) ? "pm" : "am";
   if (hours < 10)
-    hours = "0" + hour;
+    hours = "0" + hours;
   if (hours > 12)
     hours -= 12;
 

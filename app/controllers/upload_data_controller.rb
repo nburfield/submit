@@ -74,7 +74,7 @@ class UploadDataController < ApplicationController
       if current_user.has_local_role? :grader, course
         @new_comment = Comment.new
         render "upload_data/edit_grader" and return
-      elsif current_user.has_local_role? :student, course
+      elsif current_user.has_local_role? :student, course or current_user.has_role? :admin
         render "upload_data/edit_student" and return
       end
     else

@@ -124,7 +124,7 @@ class CoursesController < ApplicationController
 
     row = 4
     @course.users.each do |name|
-      if not name.has_local_role? :instructor, @course
+      if not name.has_local_role? :grader, @course
         sheet.row(row).push name.name, name.name
         row += 1
       end
@@ -135,9 +135,12 @@ class CoursesController < ApplicationController
       sheet.row(3).push assignment.name
       sheet.column(col).width = 15
       row = 4
-      assignment.submissions.each do |submission|
-        sheet.row(row).push submission.grade
-        row += 1
+      @course.users.each do |name|
+        if not name.has_local_role? :grader, @course
+          submission = assignment.submissions.select { |s| s.user == name }.first
+          sheet.row(row).push submission.grade
+          row += 1
+        end
       end
       col += 1
     end

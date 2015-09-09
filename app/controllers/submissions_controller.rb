@@ -245,7 +245,9 @@ class SubmissionsController < ApplicationController
                       <div class="top">
                         <h2>NOTES</h2>
                         <p>'
-      html_note = submission.note
+      
+      html_note = submission.note.gsub("\n", '<br>')
+
       html_center3 = '</p>
                     </div>
                     <table>

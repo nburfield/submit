@@ -26,8 +26,23 @@ class SubmissionsController < ApplicationController
 
     saves = submission.run_saves.each
     if not saves.count > 0
-      flash[:notice] = "Run the students program before grading."
-      redirect_to :back and return
+      directory = submission.create_directory
+      comp_message = submission.compile(directory)
+      FileUtils.rm_rf(directory)
+      if comp_message[:compile]
+        flash[:notice] = "Run the students program before grading."
+        redirect_to :back and return
+      else
+        submission.assignment.test_case.run_methods.each do |run|
+          run.inputs.each do |input|
+            save = submission.run_saves.new(input: input)
+            save.difference = "ERROR"
+            save.output = "Does Not Compile"
+            save.pass = false;
+            save.save
+          end
+        end
+      end
     end
 
     if submission.update_attributes(submission_params)
@@ -245,7 +260,9 @@ class SubmissionsController < ApplicationController
                       <div class="top">
                         <h2>NOTES</h2>
                         <p>'
-      html_note = submission.note
+      
+      html_note = submission.note.gsub("\n", '<br>')
+
       html_center3 = '</p>
                     </div>
                     <table>

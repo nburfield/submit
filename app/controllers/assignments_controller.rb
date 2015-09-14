@@ -55,6 +55,11 @@ class AssignmentsController < ApplicationController
     @course = @assignment.course
     if current_user.has_local_role? :grader, @course or current_user.has_role? :admin
       @submissions = @assignment.submissions
+      @submissions.each do |s|
+        if s.user == nil
+          s.destroy
+        end
+      end
       @test_case = @assignment.test_case 
       render "assignments/manage"
     else

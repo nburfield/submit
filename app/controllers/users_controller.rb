@@ -64,14 +64,18 @@ class UsersController < ApplicationController
   def update
     if params.has_key? :id
       @user = User.find(params[:id])
+      puts @user.name + " THIS ================================================================================================"
     else
       @user = current_user
+      puts @user.name + " OTHER ================================================================================================"
     end
 
-    if params[:user].has_key? :password
-      if not current_user.valid_password? params[:user][:old_password]
-        @user.errors.add(:old_password, 'was incorrect')
-        render :action => :settings and return
+    if not current_user.has_role? :admin
+      if params[:user].has_key? :password
+        if not current_user.valid_password? params[:user][:old_password]
+          @user.errors.add(:old_password, 'was incorrect')
+          render :action => :settings and return
+        end
       end
     end
 

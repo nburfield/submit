@@ -4,3 +4,6 @@ config/environments/development.rb
 config/database.yml
 log/development.log
 tmp/
+.DS_Store
+*.*~
+Gemfile.lock

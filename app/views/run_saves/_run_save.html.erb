@@ -22,8 +22,12 @@
       <th>Expected Output</th>
     </tr>
     <tr>
-      <td><%= run_save.output.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
-      <td><%= run_save.input.output.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
+      <% left = run_save.output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
+      <% left = left.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
+      <td><%= left.html_safe %></td>
+      <% right = run_save.input.output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
+      <% right = right.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
+      <td><%= right.html_safe %></td>
     </tr>
     <tr>
       <th colspan=2>Difference</th>

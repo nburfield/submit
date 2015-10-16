@@ -5,6 +5,8 @@ class UploadDataController < ApplicationController
   before_filter :require_instructor_owner, :only => [:show, :download_file]
   before_filter :require_not_submitted, :only => [:update]
 
+  require 'zip'
+
   # Creates a new upload data
   def create
     if (params[:type] == "submission")
@@ -105,8 +107,8 @@ class UploadDataController < ApplicationController
   # Removes the file
   def destroy
     @upload_data = UploadDatum.find(params[:id])
-    @upload_data.destroy
     source = @upload_data.source
+    @upload_data.destroy
     if source.class.name == "Submission"
       redirect_to upload_datum_url(@upload_data) if @upload_data.submission.submitted
       source.remove_saved_runs
@@ -118,6 +120,40 @@ class UploadDataController < ApplicationController
   def download_file
     @upload_data = UploadDatum.find(params[:id])
     send_data @upload_data.contents, :type => @upload_data.file_type , :filename => @upload_data.name
+  end
+
+  def download_zip
+    if (params[:type] == "submission")
+      destination = Submission.find(params[:destination_id])
+    elsif (params[:type] == "test_case")
+      destination = TestCase.find(params[:destination_id])
+    end
+
+    # Creates a temporary directory for the student files
+    tempDirectory = Rails.configuration.compile_directory + current_user.name.tr(" ", "_") + '_' + destination.id.to_s + '/'
+    if not Dir.exists?(tempDirectory)
+      Dir.mkdir(tempDirectory)
+    end
+
+    Zip::OutputStream.open(tempDirectory + 'exampleout.zip') do |zos|
+      # Adds in all the student files 
+      destination.upload_data.each do |upload_datum|
+        zos.put_next_entry(upload_datum.name)
+        zos.puts(upload_datum.contents.force_encoding("UTF-8"))
+      end
+      if params[:type] == "submission"
+        destination.assignment.test_case.upload_data.each do |upload_datum|
+          if upload_datum.shared
+            zos.put_next_entry(upload_datum.name)
+            zos.puts(upload_datum.contents.force_encoding("UTF-8"))
+          end
+        end
+      end
+    end
+
+    zip_data = File.read(tempDirectory + 'exampleout.zip')
+    FileUtils.rm_rf(tempDirectory)
+    send_data zip_data, :type => 'application/zip', :disposition => 'attachment', :filename => destination.assignment.name + ".zip"
   end
 
   private

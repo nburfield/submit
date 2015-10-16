@@ -4,9 +4,14 @@
       <%= f.text_area :contents, style: 'display:none', value: @upload_datum.contents %>
       <%= f.submit "Save", disabled: @can_edit == false, id: "save" %>
       <%= link_to 'Download', download_file_url(@upload_datum) , method: :post %>
+      <button type="button" id="switch" class="dark-select">
+        Dark
+      </button>
       <span class="editor-save-status"></span>
     <% end %>
   </div>
+
+
 
   <div id="editor" class="editor"><%= @upload_datum.contents %></div>
 
@@ -17,7 +22,15 @@
   editor.setTheme("ace/theme/monokai");
   editor.setShowPrintMargin(false);
   session = editor.getSession();
-  session.setMode("ace/mode/c_cpp"); 
+  var dark = true;
+
+  if("<%= @upload_datum.name.downcase %>" == "makefile") {
+    session.setMode("ace/mode/makefile"); 
+  }
+  else {
+    session.setMode("ace/mode/c_cpp"); 
+  }
+  
   editor.setReadOnly(<%= not @can_edit %>);
   editor.on("change", function() {
     $("textarea[name='upload_datum[contents]']").val(editor.getValue());
@@ -27,6 +40,22 @@
 
   $("#save").click(function() {
     $("#save").val("Saving...");
+  });
+
+  $("#switch").click(function() {
+    if(dark) {
+      editor.setTheme("ace/theme/eclipse");
+      $("#switch").html("Light");
+      $("#switch").removeClass("dark-select");
+      $("#switch").addClass("light-select");
+    }
+    else {
+      editor.setTheme("ace/theme/monokai");
+      $("#switch").html("Dark");
+      $("#switch").removeClass("light-select");
+      $("#switch").addClass("dark-select");
+    }
+    dark = !dark;
   });
 
   <% if @can_comment %>

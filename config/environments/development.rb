@@ -36,6 +36,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Webserver
+  config.OnServer = true
   config.compile_directory = '/var/chroot/tmp/'
-  #config.compile_directory = '/Users/nolanburfield/Documents/submitTest/tmp/'
+  # config.compile_directory = '/Users/nolanburfield/Documents/submitTest/tmp/'
 end

@@ -9,6 +9,13 @@
   <div class="create-new-file" onclick="$('#create-new-file-modal').show();">
     <%= image_tag('icon_new_file.png', size: "64x64", alt: "Create New File", title: "Create New File") %>
   </div>
+
+  <%= link_to download_zip_url(type, target), method: :post do %>
+    <div class="download-zip">
+      <%= image_tag('icon_download.png', size: "64x64", alt: "Download Project", title: "Download Project") %>
+    </div>
+  <% end %>
+  
 </div>
 
 <div id="create-new-file-modal" class="modal-curtain">

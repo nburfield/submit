@@ -22,14 +22,23 @@
       <th>Expected Output</th>
     </tr>
     <tr>
-      <td><%= run_save.output.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
-      <td><%= run_save.input.output.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
+      <% left = run_save.output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
+      <% left = left.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
+      <% left = left.gsub(" ", '&nbsp;') %>
+      <td><%= left.html_safe %></td>
+      <% right = run_save.input.output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
+      <% right = right.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
+      <% right = right.gsub(" ", '&nbsp;') %>
+      <td><%= right.html_safe %></td>
     </tr>
     <tr>
       <th colspan=2>Difference</th>
     </tr>
     <tr>
-      <td colspan=2><%= run_save.difference.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %></td>
+      <% diff = run_save.difference.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
+      <% diff = diff.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
+      <% diff = diff.gsub(" ", '&nbsp;') %>
+      <td colspan=2><%= diff.html_safe %></td>
     </tr>
   </tbody>
 </table>

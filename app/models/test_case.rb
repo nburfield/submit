@@ -33,15 +33,18 @@ class TestCase < ActiveRecord::Base
         # Get the shell script and write to file 'script'
         shell = create_run_script(path, run.run_command, output)
         f = File.open(path + "script", "w")
-        #f.chmod(0777)
+        f.chmod(0777)
         f.write(shell)
         f.close
 
         # Build the command that will run the script
-        run_data = 'sudo chroot /var/chroot /bin/bash -c "sh /tmp/' 
-        run_data = run_data + path.gsub(Rails.configuration.compile_directory, "") + 'script"'
-        #run_data = Rails.configuration.compile_directory
-        #run_data = run_data + path.gsub(Rails.configuration.compile_directory, "") + 'script'
+        if Rails.configuration.OnServer
+          run_data = 'sudo chroot /var/chroot /bin/bash -c "sh /tmp/' 
+          run_data = run_data + path.gsub(Rails.configuration.compile_directory, "") + 'script"'
+        else
+          run_data = Rails.configuration.compile_directory
+          run_data = run_data + path.gsub(Rails.configuration.compile_directory, "") + 'script'
+        end
 
         # Call the script, and capture putput
         stdin, stdout, stderr = Open3.popen3(run_data)
@@ -52,6 +55,9 @@ class TestCase < ActiveRecord::Base
             error_hold = error_hold + "There was an error running input: " + file.name + "\n" + "Error: " + stream + "Process Exceeded Max CPU Time of: " + self.cpu_time.to_s + " seconds.\n\n"
           else
             error_hold = error_hold + "There was an error running input: " + file.name + "\n" + "Error: " + stream + "\n\n"
+          end
+          if not stream[:stdout].empty?
+            stream[:stderr] = stream[:stdout] + "\n" + stream[:stderr]
           end
         end
         stream = stdout.read
@@ -65,8 +71,10 @@ class TestCase < ActiveRecord::Base
   private
     def create_run_script(directory, command, file)
       # Fix the directory path
-      file = "/tmp/" +  file.gsub(Rails.configuration.compile_directory, "")
-      directory = "/tmp/" + directory.gsub(Rails.configuration.compile_directory, "")
+      if Rails.configuration.OnServer
+        file = "/tmp/" +  file.gsub(Rails.configuration.compile_directory, "")
+        directory = "/tmp/" + directory.gsub(Rails.configuration.compile_directory, "")
+      end
 
       # Build the run script
       run = directory + command + " < " + file + "\n"

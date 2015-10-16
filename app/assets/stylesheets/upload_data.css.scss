@@ -68,8 +68,8 @@
       position: absolute;
       color: $font-color-dark;
       top: 0;
-      left: 31%;
-      width: 69%;
+      left: 47%;
+      width: 44%;
     }
 
     a {
@@ -83,6 +83,26 @@
       width: 15%;
       text-align: center;
       color: buttontext;
+    }
+
+    #switch {
+      display: inline-block;
+      border-radius: 0;
+      border: 1px solid $color-border-light;
+      font-size: $font-size-standard;
+      padding: 5px 0;
+      cursor: pointer;
+      width: 15%;
+      text-align: center;
+      color: buttontext;
+    }
+
+    .dark-select {
+      background-color: #DDDDDD;
+    }
+
+    .light-select {
+      background-color: #FDFDFD;
     }
 
     [type=submit] {
@@ -138,12 +158,19 @@
   position: relative;
 
   .drag-drop {
-    width: -moz-calc(100% - 84px);
-    width: -webkit-calc(100% - 84px);
-    width: calc(100% - 84px);
+    width: -moz-calc(100% - 168px);
+    width: -webkit-calc(100% - 168px);
+    width: calc(100% - 168px);
   }
 
   .create-new-file {
+    cursor: pointer;
+    position: absolute;
+    right: 84px;
+    top: 0;
+    width: 64px;
+  }
+  .download-zip {
     cursor: pointer;
     position: absolute;
     right: 10px;

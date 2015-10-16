@@ -63,3 +63,6 @@ gem 'ace-rails-ap'
 
 # Navigation Breadcrumbs
 gem "gretel"
+
+# Building zip files
+gem 'rubyzip'

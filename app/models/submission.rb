@@ -75,10 +75,13 @@ class Submission < ActiveRecord::Base
         f.close
 
         # Build the command that will run the script
-        run_data = 'sudo chroot /var/chroot /bin/bash -c "sh /tmp/'
-        run_data = run_data + directory.gsub(Rails.configuration.compile_directory, "") + 'script"'
-        #run_data = Rails.configuration.compile_directory
-        #run_data = run_data + directory.gsub(Rails.configuration.compile_directory, "") + 'script'
+        if Rails.configuration.OnServer  
+          run_data = 'sudo chroot /var/chroot /bin/bash -c "sh /tmp/'
+          run_data = run_data + directory.gsub(Rails.configuration.compile_directory, "") + 'script"'
+        else
+          run_data = Rails.configuration.compile_directory
+          run_data = run_data + directory.gsub(Rails.configuration.compile_directory, "") + 'script'
+        end
 
         # Call the script, and capture putput
         stdin, stdout, stderr = Open3.popen3(run_data)
@@ -91,6 +94,9 @@ class Submission < ActiveRecord::Base
         if not stream[:stderr].empty?
           stream[:stderr].gsub! directory, ""
           stream[:stderr] += "\nProcess Exceeded Max CPU Time of: " + assignment.test_case.cpu_time.to_s + " seconds." if stream[:stderr].include? "Kill" or stream[:stderr].include? "Cputime"
+          if not stream[:stdout].empty?
+            stream[:stderr] = stream[:stdout] + "\n" + stream[:stderr]
+          end
           f.write(stream[:stderr])
           f.close
           save.difference = "ERROR"
@@ -139,8 +145,10 @@ class Submission < ActiveRecord::Base
     # Creates a script to run on
     def create_run_script(directory, command, file)
       # Fix the directory path
-      file = "/tmp/" +  file.gsub(Rails.configuration.compile_directory, "")
-      directory = "/tmp/" + directory.gsub(Rails.configuration.compile_directory, "")
+      if Rails.configuration.OnServer
+        file = "/tmp/" +  file.gsub(Rails.configuration.compile_directory, "")
+        directory = "/tmp/" + directory.gsub(Rails.configuration.compile_directory, "")
+      end
 
       # Build the run script
       run = directory + command + " < " + file + "\n"

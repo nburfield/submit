@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   post '/upload_data/:type/:destination_id' => 'upload_data#create', :as => :create_file
   post '/upload_data/blank/:type/:destination_id' => 'upload_data#create_blank', :as => :create_blank_file
   post '/upload_data/:id/' => 'upload_data#download_file', :as => :download_file
+  post '/upload_data/zip/:type/:destination_id' => 'upload_data#download_zip', :as => :download_zip
   resources :upload_data
 
   get 'test_cases/create_output/:id' => 'test_cases#create_output'

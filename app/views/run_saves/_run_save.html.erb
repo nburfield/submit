@@ -24,17 +24,14 @@
     <tr>
       <% left = run_save.output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
       <% left = left.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
-<<<<<<< HEAD
       <% left = left.gsub(" ", '&nbsp;') %>
       <td><%= left.html_safe %></td>
       <% right = run_save.input.output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
       <% right = right.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
       <% right = right.gsub(" ", '&nbsp;') %>
-=======
       <td><%= left.html_safe %></td>
       <% right = run_save.input.output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
       <% right = right.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
->>>>>>> 22742605e84bbb29e96cce3893b5103be7450472
       <td><%= right.html_safe %></td>
     </tr>
     <tr>

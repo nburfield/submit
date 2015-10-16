@@ -7,7 +7,7 @@ class TestCase < ActiveRecord::Base
     upload_data.each do |upload_data|
       output = path + upload_data.name
       f = File.open(output, "w" )
-      f.write(upload_data.contents)
+      f.write(upload_data.contents.force_encoding("UTF-8"))
       f.close
     end
   end

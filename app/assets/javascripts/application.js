@@ -17,6 +17,7 @@
 //= require jquery.tablesorter
 //= require dropzone.js
 //= require ace/ace
-//= require ace/theme-twilight
 //= require ace/mode-c_cpp.js
+//= require ace/theme-eclipse
+//= require ace/theme-monokai
 //= require_tree .

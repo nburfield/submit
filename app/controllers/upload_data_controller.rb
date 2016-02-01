@@ -55,6 +55,8 @@ class UploadDataController < ApplicationController
     course = @upload_datum.source.assignment.course
     file_type = @upload_datum.file_type
 
+    @upload_datum.contents = @upload_datum.contents.force_encoding("UTF-8")
+
     if source.class.name == "TestCase"
       @can_edit = current_user.has_local_role? :grader, course
       send_data @upload_datum.contents, type: 'application/pdf', filename: @upload_datum.name, disposition: 'inline' and return if file_type == 'application/pdf'

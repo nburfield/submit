@@ -27,12 +27,16 @@
         <% end %>
       </tr>
       <% @course.users.each do |user| %>
-        <% if not user.has_local_role? :instructor, @course %>
+        <% if not user.has_local_role? :grader, @course %>
           <tr>
             <td><%= user.name %></td>
             <% @course.assignments.each do |assignment| %>
               <% submission = assignment.submissions.select { |s| s.user == user } %>
-              <td><%= submission.first.grade %></td>
+              <% if submission.first %>
+                <td><%= submission.first.grade %></td>
+              <% else %>
+                <td>None</td>
+              <% end %>
             <% end %>
           </tr>
         <% end %>

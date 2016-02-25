@@ -84,7 +84,7 @@ class UploadDataController < ApplicationController
         render "upload_data/edit_student" and return
       end
     else
-      flash[:notice] = "Cannot display that file type."
+      flash[:notice] = "Cannot display a file of type" + file_type + "."
       redirect_to :back and return
     end
   end

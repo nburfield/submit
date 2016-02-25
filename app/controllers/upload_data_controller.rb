@@ -76,7 +76,7 @@ class UploadDataController < ApplicationController
       send_data @upload_datum.contents, type: 'application/pdf', filename: @upload_datum.name, disposition: 'inline' and return
     elsif file_type.include? "image"
       send_data @upload_datum.contents, type: @upload_datum.file_type, filename: @upload_datum.name, disposition: 'inline' and return
-    elsif file_type.include? "text" or file_type.include? "application"
+    elsif file_type.include? "text" or file_type.include? "application" or file_type.include? "octet"
       if current_user.has_local_role? :grader, course
         @new_comment = Comment.new
         render "upload_data/edit_grader" and return
@@ -85,8 +85,7 @@ class UploadDataController < ApplicationController
       end
     else
       flash[:notice] = "Cannot display a file of type " + file_type + "."
-      send_data @upload_datum.contents, :type => @upload_datum.file_type , :filename => @upload_datum.name
-      #redirect_to :back and return
+      redirect_to :back and return
     end
   end
 

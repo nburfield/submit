@@ -6,6 +6,17 @@ $(document).on("page:change", function() {
 
     $(this).text(formatTimeString(localTime));
   });
+
+  $("span[datetimepicker-start-date]").each(function(index) {
+    $('#assignment_start_date').datetimepicker({format: 'unixtime', inline: true, value: $(this).text()});
+    $(this).text("");
+  });
+
+  $("span[datetimepicker-end-date]").each(function(index) {
+    $('#assignment_due_date').datetimepicker({format: 'unixtime', inline: true, value: $(this).text()});
+    $(this).text("");
+  });
+
 });
 
 function formatTimeString(time) {
@@ -16,7 +27,9 @@ function formatTimeString(time) {
 
   var hours = time.getHours();
   var minutes = time.getMinutes();
+
   var ampm = (hours >= 12) ? "pm" : "am";
+
   if (hours < 10)
     hours = "0" + hours;
   if (hours > 12)
@@ -25,5 +38,5 @@ function formatTimeString(time) {
   if (minutes < 10)
     minutes = "0" + minutes;
 
-  return months[time.getMonth()] + " " + time.getUTCDate() + ", " + time.getFullYear() + " at " + hours + ":" + minutes + " " + ampm;
+  return months[time.getMonth()] + " " + time.getDate() + ", " + time.getFullYear() + " at " + hours + ":" + minutes + " " + ampm;
 }

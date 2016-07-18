@@ -4,17 +4,23 @@
 <%= render "shared/error_messages", :target => @user %>
 
 <header>
-  <h1>Settings</h1>
+  <h1>Account Information</h1>
 </header>
 <div class="content-group">
-  <h2>Account Info</h2>
   <div class="settings-container">
     <%= form_for :user, url: setting_path, method: :patch do |f| %>
-      <%= f.label :email %>
-      <%= f.text_field :email %><br><br>
+      <% editable = current_user.has_role? :admin %>
+      <%= f.label :netid %>
+      <%= f.text_field :netid, :disabled => editable == false %><br><br>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %><br><br>
+      <%= f.label :email %>
+      <%= f.text_field :email, :disabled => editable %><br><br>
+
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, :disabled => editable == false %><br><br>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, :disabled => editable == false %><br><br>
 
       <% if current_user.has_role? :admin %>
         <table>
@@ -33,19 +39,11 @@
       <% end %>
      
       <br>
-      <%= f.submit %>
-    <% end %>
-  </div>
-</div>
-
-<div class="content-group">
-  <h2>Password</h2>
-  <div class="settings-container">
-    <%= form_for :user, url: setting_path, method: :patch do |f| %>
-      <%= f.password_field :old_password, :placeholder => 'old password' %><br><br>
-      <%= f.password_field :password, :placeholder => 'password' %><br>
-      <%= f.password_field :password_confirmation, :placeholder => 'confirm' %><br>
-      <%= f.submit "Change" %>
-    <% end %>
+      <% if editable %>
+        <%= f.submit %>
+      <% else %>
+        <h2>If there is an issue with any setting please inform your instructor.</h2>
+      <% end %>
+    <% end %>    
   </div>
 </div>

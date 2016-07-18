@@ -23,7 +23,24 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Login successful!"
       redirect_back_or_default dashboard_url(@current_user)
     else
-      render :layout => "authentication", :action => :new
+      if Ldap.valid?(params[:user_session][:netid], params[:user_session][:password])
+        user_cred = Ldap.getuser(params[:user_session][:netid], params[:user_session][:password])
+        @user = User.new(user_cred)
+        @user.add_role :student
+
+        if @user.save
+          @user_session = UserSession.new(params[:user_session])
+          if @user_session.save
+            redirect_to setting_url(@user) and return
+          else
+            flash[:notice] = "There was a problem logging you in."
+            render :layout => "authentication", :action => :new
+          end
+        else
+          flash[:notice] = "There was a problem creating your account."
+          render :layout => "authentication", :action => :new    
+        end
+      end      
     end
   end
 

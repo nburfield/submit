@@ -1,0 +1,2 @@
+module BaseApiControllerHelper
+end

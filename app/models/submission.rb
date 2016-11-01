@@ -83,7 +83,7 @@ class Submission < ActiveRecord::Base
           run_data = run_data + directory.gsub(Rails.configuration.compile_directory, "") + 'script'
         end
 
-        # Call the script, and capture putput
+        # Call the script, and capture output
         stdin, stdout, stderr = Open3.popen3(run_data)
 
         # Run this check to prevent loading a large file

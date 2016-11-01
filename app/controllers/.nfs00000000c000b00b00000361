@@ -1,11 +1,7 @@
 class SubmissionsController < ApplicationController
-  #skip_before_filter :require_user, :only => [:data]
-  before_filter :require_user, :except => [:data]
+  before_filter :require_user
   before_filter :require_owner, :only => [:show, :run, :submit]
   before_filter :require_instructor_owner, :only => [:index, :unsubmit]
-  require 'json'
-  require "uri"
-  require "net/http"
 
   # Shows a submission
   def show
@@ -82,61 +78,20 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find(params[:id])
     assignment = @submission.assignment
     directory = @submission.create_directory
-   
-    # # Begin Old Way
-    # # Compiles and runs the program
-    # @comp_message = @submission.compile(directory)
 
-    # if @comp_message[:compile]
-    #   @submission.run_test_cases(true)
-    #   respond_to do |format|
-
-    #     format.js { render :action => "run" }
-
-    #   end
-    # else
-    #   #flash.now[:comperr] = comp_message[:comperr]
-    #   respond_to do |format|
-    #     format.js { render :action => "compile_error", :locals => { :message => @comp_message[:comperr] } }
-    #   end
-    # end
-    # # End Old Way
-
-    @details = { :course => get_course.name, :assignmentname => @submission.assignment.name, :id => assignment.id, :sid => @submission.id, :username => current_user.name, :userid =>current_user.id, :cputime => assignment.test_case.cpu_time, :coresize => assignment.test_case.core_size }
-    @RunMethods = assignment.test_case.run_methods.map do |run|
-      run.inputs.map do |input|
-        {:Method => run.name, :command =>run.run_command, :input_id => input.id, :name => input.name, :content => input.data, :output => input.output}
+    # Compiles and runs the program
+    comp_message = @submission.compile(directory)
+    if comp_message[:compile]
+      @submission.run_test_cases(true)
+      respond_to do |format|
+        format.js { render :action => "run" }
+      end
+    else
+      #flash.now[:comperr] = comp_message[:comperr]
+      respond_to do |format|
+        format.js { render :action => "compile_error", :locals => { :message => comp_message[:comperr] } }
       end
     end
-
-    @studentfiles = @submission.upload_data.map do |upload_datum|
-      if upload_datum.file_type != 'application/pdf'
-        if !upload_datum.shared
-          { :name => upload_datum.name, :content => upload_datum.contents}
-        end
-      end
-    end
-
-    assignment.test_case.upload_data.map do |upload_datum|
-      if upload_datum.shared
-        @sharedfiles = { :name => upload_datum.name,  :content => upload_datum.contents}
-      end
-    end
-
-    json = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
-
-
-    uri = URI('http://localhost:5000/json')
-    http = Net::HTTP.new(uri.host, uri.port)
-    req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
-    req.body = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
-
-    res = http.request(req)
-    puts "response #{res.body}"
-    @submission.key = res.body
-    @submission.save
-    puts @submission.key
-    puts ">>>>>>>>>>>>>>>>>>>>>>>END<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
   end
 
   # Submit the assignment
@@ -344,5 +299,5 @@ class SubmissionsController < ApplicationController
       # Add File to the student, and delete
       upload = submission.upload_data.new()
       upload.create_file('Grade File', data, 'application/pdf')
-      end
+    end
 end

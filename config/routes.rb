@@ -55,5 +55,8 @@ Rails.application.routes.draw do
   
   post '/comments/new/:upload_id' => 'comments#create', :as => :create_comment
   resources :comments
+
+  post 'api_submission/run_program/:id' => 'api_submission#data'
+
   root :to => 'user_sessions#new'
 end

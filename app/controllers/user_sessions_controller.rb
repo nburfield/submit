@@ -42,6 +42,9 @@ class UserSessionsController < ApplicationController
           flash[:notice] = "There was a problem creating your account."
           render :layout => "authentication", :action => :new    
         end
+      else
+        flash[:notice] = "There was a problem validating your netID."
+        render :layout => "authentication", :action => :new 
       end      
     end
   end

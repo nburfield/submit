@@ -66,3 +66,6 @@ gem "gretel"
 
 # Building zip files
 gem 'rubyzip'
+
+# LDAP related for Authlogic
+gem 'net-ldap', '0.14.0'

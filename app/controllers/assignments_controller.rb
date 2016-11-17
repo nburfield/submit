@@ -104,7 +104,7 @@ class AssignmentsController < ApplicationController
 
     row = 4
     @assignment.submissions.each do |submission|
-      sheet.row(row).push submission.user.name, submission.user.name, submission.grade
+      sheet.row(row).push submission.user.first_name, submission.user.last_name, submission.grade
       row += 1
     end
 

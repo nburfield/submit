@@ -125,7 +125,7 @@ class CoursesController < ApplicationController
     row = 4
     @course.users.each do |name|
       if not name.has_local_role? :grader, @course
-        sheet.row(row).push name.name, name.name
+        sheet.row(row).push name.first_name, name.last_name
         row += 1
       end
     end

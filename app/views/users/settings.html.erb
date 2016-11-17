@@ -37,11 +37,10 @@
         <% end %>
         </table>
       <% end %>
-     
+      
+      <%= f.submit %> 
       <br>
-      <% if editable %>
-        <%= f.submit %>
-      <% else %>
+      <% if not editable %>
         <h2>If there is an issue with any setting please inform your instructor.</h2>
       <% end %>
     <% end %>    

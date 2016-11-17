@@ -160,9 +160,6 @@ ActiveRecord::Schema.define(version: 20161025004617) do
   add_index "user_sessions", ["updated_at"], name: "index_user_sessions_on_updated_at", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "name",                default: "", null: false
-    t.string   "crypted_password",                 null: false
-    t.string   "password_salt",                    null: false
     t.string   "email",                            null: false
     t.string   "persistence_token",                null: false
     t.string   "single_access_token",              null: false
@@ -176,6 +173,9 @@ ActiveRecord::Schema.define(version: 20161025004617) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name",          default: ""
+    t.string   "last_name",           default: ""
+    t.string   "netid",               default: ""
   end
 
   create_table "users_roles", id: false, force: true do |t|

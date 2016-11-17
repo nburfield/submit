@@ -9,7 +9,7 @@ from flask import Response
 import httplib
 import hashlib
 
-static_directory = "/cse/home/aswathim/Documents/submit/FlaskApp/"
+static_directory = "/cse/home/kandersen/tempDirectory/"
 
 app = Flask(__name__)
 

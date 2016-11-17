@@ -74,6 +74,7 @@ class SubmissionsController < ApplicationController
     end
 
     # Cleans up the files
+
     FileUtils.rm_rf(directory)
   end
 
@@ -135,7 +136,7 @@ class SubmissionsController < ApplicationController
     puts "response #{res.body}"
     @submission.key = res.body
     @submission.save
-    puts @submission.key
+   
     puts ">>>>>>>>>>>>>>>>>>>>>>>END<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
   end
 

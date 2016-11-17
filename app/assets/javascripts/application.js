@@ -20,4 +20,5 @@
 //= require ace/mode-c_cpp.js
 //= require ace/theme-eclipse
 //= require ace/theme-monokai
+//= require socket.io
 //= require_tree .

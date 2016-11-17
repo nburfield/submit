@@ -27,7 +27,7 @@ class ApiSubmissionController < BaseApiController
       end
 
       @json['Run'].each do |key, value|
-        puts "sample : #{key} => #{value}"
+        #puts "sample : #{key} => #{value}"
         unless value.has_key?('Result')
           render nothing: true, status: :bad_request
         end
@@ -56,5 +56,12 @@ class ApiSubmissionController < BaseApiController
     end
     render nothing: true and return
   end
+
+  def poll
+    puts " +++++++++++++++++++++++++++++++++++++++++++++++++++++++="
+    puts " ++++++++++++++++++calling polls controller+++++++++++++++++++++++++++++++++++++="
+    puts " +++++++++++++++++++++++++++++++++++++++++++++++++++++++="
+  end
+
 
 end

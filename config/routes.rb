@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   resources :comments
 
   post 'api_submission/run_program/:id' => 'api_submission#data'
-
+  get 'api_submission/poll/:id' => 'api_submission#poll'
+  
   root :to => 'user_sessions#new'
 end

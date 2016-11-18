@@ -15,7 +15,7 @@ class Submission < ActiveRecord::Base
   # Sets up the directory
   def create_directory
     # Creates a temporary directory for the student files
-    tempDirectory = Rails.configuration.compile_directory + user.name.tr(" ", "_") + '_' + id.to_s + '/'
+    tempDirectory = Rails.configuration.compile_directory + user.first_name.tr(" ", "_") + '_' + id.to_s + '/'
     if not Dir.exists?(tempDirectory) 
       Dir.mkdir(tempDirectory)
     end

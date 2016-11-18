@@ -1,9 +1,9 @@
 crumb :submission do |submission|
   if current_user.has_local_role? :student, submission.assignment.course
-    link submission.user.name, submission
+    link submission.user.first_name, submission
     parent :course, submission.assignment.course
   else
-    link submission.user.name, submission
+    link submission.user.first_name, submission
     parent :assignment, submission.assignment
   end
 end

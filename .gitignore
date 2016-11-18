@@ -5,6 +5,6 @@ tmp/
 .DS_Store
 *.*~
 Gemfile.lock
-out.json
+FlaskApp/out.json
 send_test.rb
-
+*.nfs*

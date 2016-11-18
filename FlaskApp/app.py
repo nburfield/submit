@@ -9,7 +9,7 @@ from flask import Response
 import httplib
 import hashlib
 
-static_directory = "/cse/home/kandersen/tempDirectory/"
+static_directory = os.environ["SUBMIT_COMPILE_PATH"]
 
 app = Flask(__name__)
 

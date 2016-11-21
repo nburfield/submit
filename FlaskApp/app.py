@@ -24,10 +24,10 @@ def json():
   
 
   # Generate Key and place that in return
-  #key = "Something"
+ 
   m =  hashlib.sha256(request.json['details']['username']).hexdigest()
   
-  print len(m)
+ 
   g.json_item = request.json
   g.key = m
 
@@ -40,20 +40,22 @@ def run_program(response):
   json = g.get('json_item')
   key = g.get('key')
 
+  directory = static_directory + "/" + json['details']['username']
+
   # mk directory
-  if not os.path.exists(json['details']['username']):
-    os.mkdir(json['details']['username'], 0777)
+  if not os.path.exists(directory):
+    os.mkdir(directory, 0777)
 
   for x in json['studentfiles']:
     if x != None :
-      filepath = os.path.join(json['details']['username'], x['name'])
+      filepath = directory + '/' + x['name']
       with open(filepath, 'w') as f :
         os.chmod(filepath, 0777)
         f.write(str(x['content']))
         f.close
     
   for x in json['sharedfiles'].keys():
-    filepath = os.path.join(json['details']['username'], json['sharedfiles']['name'])
+    filepath = directory + '/' + json['sharedfiles']['name']
     if  json['sharedfiles'][x] != json['sharedfiles']['name'] :
       with open(filepath, 'w') as f:
         f.write(json['sharedfiles'][x])
@@ -63,7 +65,7 @@ def run_program(response):
   submission = {"id" : json['details']["sid"]}
 
   # Compiles file
-  make = subprocess.Popen("make -C " + json['details']['username'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)   
+  make = subprocess.Popen("make -C " + static_directory + "/" + json['details']['username'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)   
   out, err = make.communicate()
   if not err or "warning" in err.lower():
     print "Compiled"
@@ -73,13 +75,13 @@ def run_program(response):
     for rm in json['RunMethods']:
       Output = {}
       for input in rm:
-        filepath = os.path.join(json['details']['username'], input['name'])
+        filepath = directory + '/' + input['name']
         with open(filepath, 'w') as f:
           f.write(str(input['content']))
         
        
         shell = run_script(static_directory, json['details']['username'], input['command'], filepath, json['details']["cputime"], json['details']['coresize'])
-        mypath = os.path.join(json['details']['username'], "stderr.txt")
+        mypath = directory + '/'+ "stderr.txt"
         with open(mypath, 'w') as err:
          proc = subprocess.Popen(shell, shell = True, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr=err)
          proc.communicate()
@@ -124,8 +126,8 @@ def run_program(response):
     f.close()
 
   #rm -rf directory
-  if os.path.exists(json['details']['username']):
-    shutil.rmtree(json['details']['username'])
+  if os.path.exists(directory):
+   shutil.rmtree(directory)
 
   headers ={'Content-Type' : 'application/json'}
   h = httplib.HTTPConnection('localhost:3000')
@@ -135,7 +137,7 @@ def run_program(response):
 
 #Creats a script to run 
 def run_script(directory, dir_name, run_command, file, cpu_time, core_size):
-  run = directory + dir_name + '/' + run_command + " < " + file + " > " +  file + "_output" + "\n"
+  run = directory + '/' + dir_name + '/' + run_command + " < " + file + " > " +  file + "_output" + "\n"
   shell = "#!/bin/bash\n"
   shell = shell + "ulimit -t " + str(cpu_time)
   shell = shell + "\n" 

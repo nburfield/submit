@@ -103,7 +103,7 @@ class SubmissionsController < ApplicationController
     # end
     # # End Old Way
 
-    @details = { :course => get_course.name, :assignmentname => @submission.assignment.name, :id => assignment.id, :sid => @submission.id, :username => current_user.email, :userid =>current_user.id, :cputime => assignment.test_case.cpu_time, :coresize => assignment.test_case.core_size }
+    @details = { :course => get_course.name, :assignmentname => @submission.assignment.name, :id => assignment.id, :sid => @submission.id, :username => current_user.netid, :userid =>current_user.id, :cputime => assignment.test_case.cpu_time, :coresize => assignment.test_case.core_size }
     @RunMethods = assignment.test_case.run_methods.map do |run|
       run.inputs.map do |input|
         {:Method => run.name, :command =>run.run_command, :input_id => input.id, :name => input.name, :content => input.data, :output => input.output}

@@ -4,6 +4,8 @@ class BaseApiController < ApplicationController
 
   private
     def parse_request
-      @json = JSON.parse(request.body.read)
+    	if not request.body.read.empty?
+      		@json = JSON.parse(request.body.read)
+      	end
     end
 end

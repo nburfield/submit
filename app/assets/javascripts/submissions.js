@@ -1,6 +1,4 @@
 $(document).on("click", "#run_submission", function(){
-	//console.log("Clicked button");
-	//alert("You Clicked me");
 	doPoll();
 	
 	
@@ -14,12 +12,14 @@ function doPoll(){
 			//alert("success");
 		//});
 		$.ajax({
-			url: "http://localhost:3000/api_submission/poll",
+			url: "http://localhost:3000/api_submission/poll/1",
 			type: "GET",
+			datatype: "json",
+
 			success: function(data) {
 				console.log("POLLING");
 			},
-			datatype: "json",
+			
 			//complete : setTimeout(function() {doPoll()}, 5000),
 		});
 

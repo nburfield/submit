@@ -61,6 +61,8 @@ class ApiSubmissionController < BaseApiController
     puts " +++++++++++++++++++++++++++++++++++++++++++++++++++++++="
     puts " ++++++++++++++++++calling polls controller+++++++++++++++++++++++++++++++++++++="
     puts " +++++++++++++++++++++++++++++++++++++++++++++++++++++++="
+    render nothing: true and return
+
   end
 
 

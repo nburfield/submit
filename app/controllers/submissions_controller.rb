@@ -58,31 +58,27 @@ class SubmissionsController < ApplicationController
 
   # Compiles but does not run a user's submission
   def compile
-    submission = Submission.find(params[:id])
-    directory = submission.create_directory
+    @submission = Submission.find(params[:id])
+    @submission.remove_saved_runs
 
-    # Check if program compiled
-    comp_message = submission.compile(directory)
-    if comp_message[:compile]
-      respond_to do |format|
-        format.js { render :action => "compile" }
-      end
-    else
-      respond_to do |format|
-        format.js { render :action => "compile_error", :locals => { :message => comp_message[:comperr] } }
-      end
+    respond_to do |format|
+      format.js { render :action => "run" }
     end
+  end
 
-    # Cleans up the files
+  # Compiles but does not run a user's submission
+  def get_data
+    @submission = Submission.find(params[:id])
 
-    FileUtils.rm_rf(directory)
+    respond_to do |format|
+      format.js { render :action => "run" }
+    end
   end
 
   # Compiles, runs the code, and creates the output files
   def run
     @submission = Submission.find(params[:id])
     assignment = @submission.assignment
-    directory = @submission.create_directory
    
     # # Begin Old Way
     # # Compiles and runs the program
@@ -126,18 +122,16 @@ class SubmissionsController < ApplicationController
 
     json = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
 
-
+    # Run the call to the Flask App
     uri = URI('http://localhost:5000/json')
     http = Net::HTTP.new(uri.host, uri.port)
     req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
     req.body = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
-
     res = http.request(req)
-    puts "response #{res.body}"
+
+    # Update the submission to have the new key (UUID)
     @submission.key = res.body
     @submission.save
-   
-    puts ">>>>>>>>>>>>>>>>>>>>>>>END<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
   end
 
   # Submit the assignment

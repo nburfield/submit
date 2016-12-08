@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
   protected
 
   def valid_ldap_credentials?(password)
-    if self.netid == "admin@test.com" or self.netid =="instruct@test.com" or self.netid == "student@test.com"
+    puts "================================================"
+    puts self.netid
+    if self.netid == "admin@test.com" or self.netid =="instructor@test.com" or self.netid == "student@test.com"
       return true
     end
     Ldap.valid?(self.netid, password)

@@ -9,7 +9,8 @@
   <table class="users-list" id="users-list">
     <thead>
     <tr>
-      <th>Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
       <th>Email</th>
       <th>Roles</th>
       <th>Kick From Course</th>
@@ -18,7 +19,8 @@
     <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.name, course_user_edit_path(@course, user) %></td>
+        <td><%= link_to user.first_name, course_user_edit_path(@course, user) %></td>
+        <td><%= link_to user.last_name, course_user_edit_path(@course, user) %></td>
         <td><%= link_to user.email, course_user_edit_path(@course, user) %></td>
         <td><%= user.roles.where(resource_type: "Course", resource_id: @course).map(&:name).join(",") %></td>
         <td><%= link_to 'Kick', course_user_kick_path(@course, user), data: { confirm: 'Are you sure?' } %></td>

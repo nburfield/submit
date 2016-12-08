@@ -39,20 +39,26 @@
   <div class="actions">
     <ul>
       <li>
-        <%= link_to compile_submission_url(@submission), :remote => true do %>
-          <div>
-            <%= image_tag('icon_test.png', size: "64x64", alt: "Test Compile", title: "Test Compile") %><br>
-            Test Compile
-          </div>
-        <% end %>
-      </li>
-      <li>
         <%= link_to run_submission_url(@submission), :remote => true do %>
           <div id="run_submission">
             <%= image_tag('icon_test.png', id: "run", size: "64x64", alt: "Run Tests", title: "Run Tests") %><br>
             <span id="run-title">Run Tests</span>
           </div>
         <% end %>
+      </li>
+      <li>
+        <%= link_to compile_submission_url(@submission), :remote => true do %>
+          <div>
+            <%= image_tag('icon_delete.png', size: "64x64", alt: "Delete Output", title: "Delete Output") %><br>
+            Delete Output
+          </div>
+        <% end %>
+      </li>
+      <li>
+          <div id="delete_outputs">
+            <%= image_tag('icon_delete.png', size: "64x64", alt: "Delete Output", title: "Delete Output") %><br>
+            Test Button
+          </div>
       </li>
       <% if @submission.submitted %>
         <li>

@@ -24,7 +24,7 @@ class TestCasesController < ApplicationController
   # Create the output files
   def create_output
     test_case = TestCase.find(params[:id])
-    tempDirectory = Rails.configuration.compile_directory + current_user.name.tr(" ", "_") + '_' + test_case.id.to_s + '/'
+    tempDirectory = Rails.configuration.compile_directory + current_user.netid.tr(" ", "_") + '_' + test_case.id.to_s + '/'
     if not Dir.exists?(tempDirectory) 
       Dir.mkdir(tempDirectory)
     end

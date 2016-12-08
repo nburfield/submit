@@ -71,7 +71,7 @@
     </tr>
     <% @submissions.each do |submission| %>
       <tr>
-        <td><%= submission.user.name %></td>
+        <td><%= submission.user.last_name %>, <%= submission.user.first_name %></td>
         <td><%= link_to 'View', submission_url(submission) %></td>
         <td>
           <% if submission.submitted %>

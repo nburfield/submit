@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :assignments
 
   get 'submissions/compile/:id' => 'submissions#compile', :as => :compile_submission
+  get 'submissions/data/:id' => 'submissions#data', :as => :get_data
   get 'submissions/run_program/:id' => 'submissions#run', :as => :run_submission
   post 'submissions/submit_submission/:id' => 'submissions#submit', :as => :submit_submission
   post 'submissions/unsubmit_submission/:id' => 'submissions#unsubmit', :as => :unsubmit_submission

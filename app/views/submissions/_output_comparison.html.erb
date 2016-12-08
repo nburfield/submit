@@ -1,5 +1,7 @@
 <header>
   <h1>Program Output</h1>
+  <%= content_tag "div", id: "submission", data: { submission: @submission.assignment.test_case.run_methods.each } do %>
+  <% end %>
   <% passed = submission.visible_run_saves(current_user).select { |s| s.pass }.count %>
   <% total = submission.visible_run_saves(current_user).count %>
   <h3><%= passed %> Tests Out Of <%= total %> Passed</h3>

@@ -3,7 +3,7 @@
 
 <header>
   <h1><%= @course.name %></h1>
-  <h2>Editing user <%= @user.name %></h2>
+  <h2>Editing user <%= @user.first_name %> <%= @user.last_name %></h2>
 </header>
 <div class="content-group">
   <%= render "shared/error_messages", :target => @user %>

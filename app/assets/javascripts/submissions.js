@@ -1,27 +1,22 @@
 $(document).on("click", "#run_submission", function(){
 	doPoll();
-	
-	
 });
 
+$(document).on("click", "#delete_outputs", function(){
+	doTestPoll();
+});
+
+
 function doPoll(){
-		//$.get('http://localhost:3000', function(poll){
-			
-			//setTimeout(doPoll, 10000);
-			//alert(poll);
-			//alert("success");
-		//});
-		$.ajax({
-			url: "http://localhost:3000/api_submission/poll/1",
-			type: "GET",
-			datatype: "json",
+	var v = $('#submission').data("submission")
+	console.log("Running the Poll")
+	console.log(v)
 
-			success: function(data) {
-				console.log("POLLING");
-			},
-			
-			//complete : setTimeout(function() {doPoll()}, 5000),
-		});
-
-		
+	$.get('data/1')
 }
+
+function doTestPoll(){
+	console.log("Running Test Poll")
+	$.get('compile/1')
+}
+

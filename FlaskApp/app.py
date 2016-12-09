@@ -67,6 +67,7 @@ def run_program(response):
   # Compiles file
   make = subprocess.Popen("make -C " + static_directory + "/" + json['details']['username'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)   
   out, err = make.communicate()
+
   if not err or "warning" in err.lower():
     Compile = {"Status" : True, "Error" : None}
   # Run testcases

@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   post 'assignments/all_grades/:id' => 'assignments#download_grades'
   resources :assignments
 
-  get 'submissions/outputs/:id' => 'submissions#delete_outputs', :as => :delete_outputs
+  delete 'submissions/outputs/:id' => 'submissions#delete_outputs', :as => :delete_outputs
+  get 'submissions/outputs/:id' => 'submissions#run_save_update', :as => :run_save_update
   get 'submissions/data/:id' => 'submissions#get_data', :as => :get_data
   get 'submissions/run_program/:id' => 'submissions#run', :as => :run_submission
   post 'submissions/submit_submission/:id' => 'submissions#submit', :as => :submit_submission

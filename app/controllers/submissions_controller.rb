@@ -60,7 +60,15 @@ class SubmissionsController < ApplicationController
   def delete_outputs
     @submission = Submission.find(params[:id])
     @submission.remove_saved_runs
-    @total = @submission.visible_run_saves(current_user).count
+
+    respond_to do |format|
+      format.js { render :action => "run" }
+    end
+  end
+
+  # Compiles but does not run a user's submission
+  def run_save_update
+    @submission = Submission.find(params[:id])
 
     respond_to do |format|
       format.js { render :action => "run" }
@@ -69,26 +77,26 @@ class SubmissionsController < ApplicationController
 
   # Compiles but does not run a user's submission
   def get_data
-    @submission = Submission.find(params[:id])
+    submission = Submission.find(params[:id])
 
-    @total = @submission.visible_run_saves(current_user).count
-    @trc = 0
-    if current_user.has_local_role? :student, @submission.assignment.course
-      @submission.assignment.test_case.run_methods.each do |run_method|
+    total = submission.visible_run_saves(current_user).count
+    trc = 0
+    if current_user.has_local_role? :student, submission.assignment.course
+      submission.assignment.test_case.run_methods.each do |run_method|
         run_method.inputs.each do |input|
           if input.student_visible
-            @trc += run_method.inputs.count
+            trc += 1
           end
         end
       end
     else
-      @submission.assignment.test_case.run_methods.each do |run_method|
-        @trc += run_method.inputs.count
+      submission.assignment.test_case.run_methods.each do |run_method|
+        trc += run_method.inputs.count
       end
     end
 
     respond_to do |format|
-      format.json { render :json => { :submission => @submission, :total => @total, :trc => @trc } }
+      format.json { render :json => { :total => total, :trc => trc } }
     end
   end
 

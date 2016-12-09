@@ -47,7 +47,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to delete_outputs_url(@submission), :remote => true do %>
+        <%= link_to delete_outputs_url(@submission), method: :delete, :remote => true do %>
           <div>
             <%= image_tag('icon_delete.png', size: "64x64", alt: "Delete Output", title: "Delete Output") %><br>
             Delete Output

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_user, :only => [:show, :dashboard, :index, :edit, :update, :settings, :change_password]
+  before_filter :require_user, :only => [:show, :dashboard, :index, :update, :settings, :change_password]
   before_filter :require_admin, :only => [:edit, :destroy]
 
   def require_admin
@@ -66,15 +66,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     else
       @user = current_user
-    end
-
-    if not current_user.has_role? :admin
-      if params[:user].has_key? :password
-        if not current_user.valid_password? params[:user][:old_password]
-          @user.errors.add(:old_password, 'was incorrect')
-          render :action => :settings and return
-        end
-      end
     end
 
     if params[:user].has_key? :roles

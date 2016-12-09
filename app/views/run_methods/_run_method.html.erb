@@ -1,5 +1,5 @@
 <tr>
-  <td><a id=<%= "run_method_" + run_method.id.to_s %> href="#"><%= run_method.name %></a></td>
+  <td><span id=<%= "run_method_" + run_method.id.to_s %>><%= run_method.name %></span></td>
   <td><%= link_to 'X', run_method, method: :delete, remote: true, data: { confirm: "Are You Sure?" } %></td>
 </tr>
 

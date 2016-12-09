@@ -6,7 +6,7 @@ import subprocess
 import difflib
 from json import JSONEncoder
 from flask import Response
-import httplib
+import http
 import hashlib
 
 static_directory = os.environ["SUBMIT_COMPILE_PATH"]
@@ -20,12 +20,12 @@ def json():
   app.logger.debug(request.json)
 
   print(request.json)
-  print request.json['details']['username']
+  print(request.json['details']['username'])
   
 
   # Generate Key and place that in return
  
-  m =  hashlib.sha256(request.json['details']['username']).hexdigest()
+  m =  hashlib.sha256(request.json['details']['username'].encode('utf-8')).hexdigest()
   
  
   g.json_item = request.json
@@ -44,13 +44,13 @@ def run_program(response):
 
   # mk directory
   if not os.path.exists(directory):
-    os.mkdir(directory, 0777)
+    os.mkdir(directory, mode=0o777)
 
   for x in json['studentfiles']:
     if x != None :
       filepath = directory + '/' + x['name']
       with open(filepath, 'w') as f :
-        os.chmod(filepath, 0777)
+        os.chmod(filepath, mode=0o777)
         f.write(str(x['content']))
         f.close
     
@@ -68,7 +68,6 @@ def run_program(response):
   make = subprocess.Popen("make -C " + static_directory + "/" + json['details']['username'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)   
   out, err = make.communicate()
   if not err or "warning" in err.lower():
-    print "Compiled"
     Compile = {"Status" : True, "Error" : None}
   # Run testcases
     output = {}
@@ -99,11 +98,9 @@ def run_program(response):
           diff = list(difflib.ndiff(outputFileContents.splitlines(1), input['output'].splitlines(1)))
           for x in diff:
             if x.startswith('-'):
-              print "".join(diff)
               difference = "".join(diff)
             else:
               if x.startswith(" "):
-                print "None"
                 difference = None
          
           Output[input['input_id']]= {"Output" : outputFileContents, "Difference" : difference, "Error" : None }
@@ -117,7 +114,6 @@ def run_program(response):
     f.close()
     
   else :
-    print "Compile Error : ", err
     Compile = {"Status" : False, "Error" : err}
     data1 = {"key" : key , "submission": submission, "Assignment_name" : json['details']['assignmentname'], "Assignment_id" : json['details']['id'], "Student_ID" : json['details']['username'],"Compile" : Compile}
     string = JSONEncoder().encode(data1)
@@ -130,7 +126,7 @@ def run_program(response):
    shutil.rmtree(directory)
 
   headers ={'Content-Type' : 'application/json'}
-  h = httplib.HTTPConnection('localhost:3000')
+  h = http.client.HTTPConnection('localhost:3000')
   h.request('POST','/api_submission/run_program/' + str(json['details']["sid"]) , string, headers )
 
   return response

@@ -43,15 +43,3 @@
     <% end %>
   </div>
 </div>
-
-<div class="content-group">
-  <h2>Password</h2>
-  <div class="settings-container">
-    <%= form_for :user, url: user_path(@user), method: :patch do |f| %>
-      <%= f.password_field :old_password, :placeholder => 'old password' %><br><br>
-      <%= f.password_field :password, :placeholder => 'password' %><br>
-      <%= f.password_field :password_confirmation, :placeholder => 'confirm' %><br>
-      <%= f.submit "Change" %>
-    <% end %>
-  </div>
-</div>

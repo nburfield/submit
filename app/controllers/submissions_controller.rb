@@ -1,7 +1,6 @@
 class SubmissionsController < ApplicationController
   #skip_before_filter :require_user, :only => [:data]
-  before_filter :require_user, :except => [:data]
-  before_filter :require_owner, :only => [:show, :run, :submit]
+  before_filter :require_owner, :only => [:show, :run, :submit, :delete_outputs, :get_data]
   before_filter :require_instructor_owner, :only => [:index, :unsubmit]
   require 'json'
   require "uri"
@@ -10,6 +9,7 @@ class SubmissionsController < ApplicationController
   # Shows a submission
   def show
     @submission = Submission.find(params[:id])
+    @total = @submission.visible_run_saves(current_user).count
     @assignment = @submission.assignment
     @blank_file = UploadDatum.new
 
@@ -57,9 +57,10 @@ class SubmissionsController < ApplicationController
   end
 
   # Compiles but does not run a user's submission
-  def compile
+  def delete_outputs
     @submission = Submission.find(params[:id])
     @submission.remove_saved_runs
+    @total = @submission.visible_run_saves(current_user).count
 
     respond_to do |format|
       format.js { render :action => "run" }
@@ -70,14 +71,31 @@ class SubmissionsController < ApplicationController
   def get_data
     @submission = Submission.find(params[:id])
 
+    @total = @submission.visible_run_saves(current_user).count
+    @trc = 0
+    if current_user.has_local_role? :student, @submission.assignment.course
+      @submission.assignment.test_case.run_methods.each do |run_method|
+        run_method.inputs.each do |input|
+          if input.student_visible
+            @trc += run_method.inputs.count
+          end
+        end
+      end
+    else
+      @submission.assignment.test_case.run_methods.each do |run_method|
+        @trc += run_method.inputs.count
+      end
+    end
+
     respond_to do |format|
-      format.js { render :action => "run" }
+      format.json { render :json => { :submission => @submission, :total => @total, :trc => @trc } }
     end
   end
 
   # Compiles, runs the code, and creates the output files
   def run
     @submission = Submission.find(params[:id])
+    @total = @submission.visible_run_saves(current_user).count
     assignment = @submission.assignment
    
     # # Begin Old Way

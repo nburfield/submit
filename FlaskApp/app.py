@@ -87,12 +87,26 @@ def run_program(response):
          proc.communicate()
         
 
-        errorFile = open(mypath, 'r')
-        outputFile = open(filepath + "_output", 'r')
-        errorFileContents = errorFile.read()
-        outputFileContents = outputFile.read()
-        errorFile.close()
-        outputFile.close()
+        
+        
+        
+        fileSize = os.stat(mypath)
+        
+        if fileSize.st_size < 25000:
+          errorFile = open(mypath, 'r')
+          errorFileContents = errorFile.read() 
+          errorFile.close()
+        else:
+          errorFileContents = "File too big to read"
+
+        fileSize = os.stat(filepath + "_output")
+        if fileSize.st_size < 25000:
+          outputFile = open(filepath + "_output", 'r')
+          outputFileContents = outputFile.read()
+          outputFile.close()
+        else:
+          outputFileContents = "File too big to read"
+
         if errorFileContents:
           Output[input['input_id']]= {"Output" : outputFileContents, "Difference" : None, "Error" : errorFileContents }
         else:
@@ -115,6 +129,7 @@ def run_program(response):
     f.close()
     
   else :
+    print ("error")
     Compile = {"Status" : False, "Error" : err}
     data1 = {"key" : key , "submission": submission, "Assignment_name" : json['details']['assignmentname'], "Assignment_id" : json['details']['id'], "Student_ID" : json['details']['username'],"Compile" : Compile}
     string = JSONEncoder().encode(data1)

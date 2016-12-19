@@ -78,7 +78,9 @@
 </div>
 
 <div class="program-output-holder">
-  <%= render :partial => 'output_comparison', :locals => { :submission => @submission, :trc => @trc } %>
+
+  <%= render :partial => 'output_comparison', :locals => { :submission => @submission, :cpuTime => @assignment.test_case.cpu_time } %>
+
 </div>
 
 <script>

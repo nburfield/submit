@@ -1,4 +1,4 @@
-$(".program-output-holder").html("<%= j render :partial => 'output_comparison', :locals => { :submission => @submission, :trc => @trc } %>");
+$(".program-output-holder").html("<%= j render :partial => 'output_comparison', :locals => { :submission => @submission, :cpuTime => @assignment.test_case.cpu_time  } %>");
 $("#run").attr("src", '/assets/icon_test.png');
 var element = document.getElementById("run-title")
 element.innerHTML = "Run Tests"

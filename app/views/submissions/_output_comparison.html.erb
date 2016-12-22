@@ -5,6 +5,7 @@
   <% passed = submission.visible_run_saves(current_user).select { |s| s.pass }.count %>
   <% total = submission.visible_run_saves(current_user).count %>
   <%= content_tag "div", id: "submission", data: { submission: submission} do %><% end %>
+  <%= content_tag "div", id: "cpu", data: { submission: cpuTime} do %><% end %>
   <h3><%= passed %> Tests Out Of <%= total %> Passed</h3>
 </header>
 <div class="content-group">

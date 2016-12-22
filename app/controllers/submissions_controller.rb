@@ -60,6 +60,7 @@ class SubmissionsController < ApplicationController
   def delete_outputs
     @submission = Submission.find(params[:id])
     @submission.remove_saved_runs
+    @assignment = @submission.assignment
 
     respond_to do |format|
       format.js { render :action => "run" }
@@ -69,6 +70,7 @@ class SubmissionsController < ApplicationController
   # Compiles but does not run a user's submission
   def run_save_update
     @submission = Submission.find(params[:id])
+    @assignment = @submission.assignment
 
     respond_to do |format|
       format.js { render :action => "run" }
@@ -104,7 +106,7 @@ class SubmissionsController < ApplicationController
   def run
     @submission = Submission.find(params[:id])
     @total = @submission.visible_run_saves(current_user).count
-    assignment = @submission.assignment
+    @assignment = @submission.assignment
    
     # # Begin Old Way
     # # Compiles and runs the program
@@ -125,8 +127,8 @@ class SubmissionsController < ApplicationController
     # end
     # # End Old Way
 
-    @details = { :course => get_course.name, :assignmentname => @submission.assignment.name, :id => assignment.id, :sid => @submission.id, :username => current_user.netid, :userid =>current_user.id, :cputime => assignment.test_case.cpu_time, :coresize => assignment.test_case.core_size }
-    @RunMethods = assignment.test_case.run_methods.map do |run|
+    @details = { :course => get_course.name, :assignmentname => @submission.assignment.name, :id => @assignment.id, :sid => @submission.id, :username => current_user.netid, :userid =>current_user.id, :cputime => @assignment.test_case.cpu_time, :coresize => @assignment.test_case.core_size }
+    @RunMethods = @assignment.test_case.run_methods.map do |run|
       run.inputs.map do |input|
         {:Method => run.name, :command =>run.run_command, :input_id => input.id, :name => input.name, :content => input.data, :output => input.output}
       end
@@ -140,7 +142,7 @@ class SubmissionsController < ApplicationController
       end
     end
 
-    assignment.test_case.upload_data.map do |upload_datum|
+    @assignment.test_case.upload_data.map do |upload_datum|
       if upload_datum.shared
         @sharedfiles = { :name => upload_datum.name,  :content => upload_datum.contents}
       end

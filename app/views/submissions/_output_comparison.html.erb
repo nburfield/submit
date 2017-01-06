@@ -29,8 +29,12 @@
       <h2><%= run_method.description %></h2>
       <h2><%= run_method.run_command %></h2>
 
-      <% submission.visible_run_saves(current_user).select { |run_save| run_save.input.run_method == run_method }.each do |run_save| %>
-        <%= render run_save %>
+      <% if submission.compile_saves.count > 0 %>
+        <%= submission.compile_saves[0].output %>
+      <% else %>
+        <% submission.visible_run_saves(current_user).select { |run_save| run_save.input.run_method == run_method }.each do |run_save| %>
+          <%= render run_save %>
+        <% end %>
       <% end %>
     </div>
   <% end %>

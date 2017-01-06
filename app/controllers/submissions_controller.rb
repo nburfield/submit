@@ -83,6 +83,7 @@ class SubmissionsController < ApplicationController
 
     total = submission.visible_run_saves(current_user).count
     trc = 0
+
     if current_user.has_local_role? :student, submission.assignment.course
       submission.assignment.test_case.run_methods.each do |run_method|
         run_method.inputs.each do |input|
@@ -95,6 +96,11 @@ class SubmissionsController < ApplicationController
       submission.assignment.test_case.run_methods.each do |run_method|
         trc += run_method.inputs.count
       end
+    end
+
+    if submission.compile_saves.count > 0
+      total = trc
+      puts "*******************************************************************************************"
     end
 
     respond_to do |format|

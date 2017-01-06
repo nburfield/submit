@@ -9,20 +9,18 @@ from flask import Response
 import http
 import hashlib
 
+
 static_directory = os.environ["SUBMIT_COMPILE_PATH"]
 
 app = Flask(__name__)
-
 
 @app.route("/json", methods=['POST','PATCH'])
 def json():
   app.logger.debug("JSON received...")
   app.logger.debug(request.json)
 
-  print(request.json)
-  print(request.json['details']['username'])
-  
-
+  #print(request.json)
+ 
   # Generate Key and place that in return
  
   m =  hashlib.sha256(request.json['details']['username'].encode('utf-8')).hexdigest()
@@ -67,8 +65,11 @@ def run_program(response):
   # Compiles file
   make = subprocess.Popen("make -C " + static_directory + "/" + json['details']['username'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)   
   out, err = make.communicate()
-
-  if not err or "warning" in err.lower():
+  error = err.decode()
+  #print (error)
+  
+  if not error  or "warning" in error.lower():
+  
     Compile = {"Status" : True, "Error" : None}
   # Run testcases
     output = {}
@@ -127,10 +128,10 @@ def run_program(response):
     f = open ("out.json", 'w')
     f.write(string)
     f.close()
-    
+      
   else :
     print ("error")
-    Compile = {"Status" : False, "Error" : err}
+    Compile = {"Status" : False, "Error" : error}
     data1 = {"key" : key , "submission": submission, "Assignment_name" : json['details']['assignmentname'], "Assignment_id" : json['details']['id'], "Student_ID" : json['details']['username'],"Compile" : Compile}
     string = JSONEncoder().encode(data1)
     f = open ("out.json", 'w')

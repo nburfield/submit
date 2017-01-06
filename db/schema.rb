@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025004617) do
+ActiveRecord::Schema.define(version: 20170105232903) do
 
   create_table "assignments", force: true do |t|
     t.boolean  "lock"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 20161025004617) do
   end
 
   add_index "comments", ["upload_datum_id"], name: "index_comments_on_upload_datum_id", using: :btree
+
+  create_table "compile_saves", force: true do |t|
+    t.integer "submission_id"
+    t.text    "output"
+    t.string  "run_method_name"
+  end
+
+  add_index "compile_saves", ["submission_id"], name: "index_compile_saves_on_submission_id", using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "name"

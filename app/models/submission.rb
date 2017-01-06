@@ -3,6 +3,7 @@ class Submission < ActiveRecord::Base
   belongs_to :user
   has_many :upload_data, dependent: :destroy
   has_many :run_saves, dependent: :destroy
+  has_many :compile_saves, dependent: :destroy
 
   after_create :set_note_empty
 
@@ -143,6 +144,9 @@ class Submission < ActiveRecord::Base
 
   def remove_saved_runs
     run_saves.each do |rs|
+      rs.destroy
+    end
+    compile_saves.each do |rs|
       rs.destroy
     end
   end

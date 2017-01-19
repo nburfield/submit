@@ -1,15 +1,16 @@
 class ApiSubmissionController < BaseApiController
   
   #Test method to receive data
+  #skip_before_filter :require_user, :only => [:output]
 
-  before_filter only: :create do
-    unless @json.has_key?('submission') && @json['submission'].responds_to?(:[]) && @json['submission']['id']
+  before_filter only: :data do 
+    unless @json.has_key?('submission') 
       render nothing: true, status: :bad_request
     end
   end
 
-  before_filter only: :data do 
-    unless @json.has_key?('submission') 
+  before_filter only: :output do 
+    unless @json.has_key?('testcase') 
       render nothing: true, status: :bad_request
     end
   end
@@ -20,8 +21,7 @@ class ApiSubmissionController < BaseApiController
     submission = Submission.find(@json['submission']['id'])
     verify_key = @json['key']
     if submission.key == verify_key
-      submission.remove_saved_runs
-      puts @json['Compile']['Status']
+      submission.remove_saved_runs      
       
       if not @json['Compile']['Status']
         save = CompileSave.new
@@ -36,7 +36,6 @@ class ApiSubmissionController < BaseApiController
         @json['Run'].each do |key, value|
           #puts "sample : #{key} => #{value}"
           unless value.has_key?('Result')
-
             render nothing: true, status: :bad_request
           end
           
@@ -67,10 +66,40 @@ class ApiSubmissionController < BaseApiController
     render nothing: true and return
   end
 
-  def poll
-    puts " +++++++++++++++++++++++++++++++++++++++++++++++++++++++="
-    puts " ++++++++++++++++++calling polls controller+++++++++++++++++++++++++++++++++++++="
-    puts " +++++++++++++++++++++++++++++++++++++++++++++++++++++++="
+  def output   
+    test_case = TestCase.find(@json['testcase']['id'])
+    verify_key = @json['key']
+    if test_case.key == verify_key
+       test_case.assignment.remove_saved_runs
+      unless @json.has_key?('Run')
+        render nothing: true, status: :bad_request
+      end
+      @json['Run'].each do |key, value|
+        puts "sample : #{key} => #{value}"
+
+        unless value.has_key?('Result')
+          render nothing: true, status: :bad_request
+        end
+
+        value['Result'].each do |key, value|
+          puts "inputs : #{key} => #{value}"
+          #input = Input.find(key)
+         # save = Input.new
+          #file = Input.new
+
+          #if value["Error"]
+         #   save.output = value['Error']
+          #else
+
+          #  save.output = value['Output']
+           # puts "Output : #{save.output}"
+           # save.save
+         # end
+        end
+      end
+
+    end
+    
     render nothing: true and return
 
   end

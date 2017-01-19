@@ -1,4 +1,5 @@
 class TestCasesController < ApplicationController
+  skip_before_filter :require_user, :only => [:data_output]
   before_filter :require_grader, :only => [:show, :update, :create_output]
   require 'json'
   require "uri"
@@ -30,11 +31,11 @@ class TestCasesController < ApplicationController
     if not Dir.exists?(tempDirectory) 
       Dir.mkdir(tempDirectory)
     end
-
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#
     # Adds in the test case files
     test_case.create_directory(tempDirectory)
 
-    # Compiles and runs the program
+    #Compiles and runs the program
     comp_status = test_case.compile_code(tempDirectory)
 
     if comp_status.nil?
@@ -54,12 +55,12 @@ class TestCasesController < ApplicationController
 
     puts "**********************test_case****************************"
 
-    @details = {:username => current_user.netid, :userid =>current_user.id, :course => get_course.name, :assignmentname => get_assignment.name, :assignmentid => test_case.assignment_id, :cputime => test_case.cpu_time, :coresize => test_case.core_size }
+    @details = {:username => current_user.netid, :userid =>current_user.id, :course => get_course.name, :assignmentname => get_assignment.name, :assignmentid => test_case.assignment_id, :cputime => test_case.cpu_time, :coresize => test_case.core_size, :test_case_id => test_case.id }
     puts @details
 
     @RunMethods = test_case.run_methods.map do |run|
       run.inputs.map do |input|
-        {:Method => run.name, :command =>run.run_command, :input_id => input.id, :name => input.name, :content => input.data}
+        {:Method => run.name, :Id => input.run_method_id, :command =>run.run_command, :input_id => input.id, :name => input.name, :content => input.data}
       end
     end
     puts @RunMethods
@@ -81,15 +82,20 @@ class TestCasesController < ApplicationController
     json = {:details => @details, :RunMethods => @RunMethods, :sourcefiles => @sourcefiles, :sharedfiles => @makefile}.to_json
     puts json
 
-    uri = URI('http://localhost:5000/test')
+    uri = URI('http://localhost:5000/testcase')
     http = Net::HTTP.new(uri.host, uri.port)
     req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
     req.body = {:details => @details, :RunMethods => @RunMethods, :sourcefiles => @sourcefiles, :sharedfiles => @makefile}.to_json
     res = http.request(req)
 
-    puts res
+    puts "Response#{res.body}"
+    test_case.key = res.body
+    puts "TestCase_key#{test_case.key}"
+    test_case.save
     #***************************************************************************#
   end
+
+  
   
   private
     def test_case_params

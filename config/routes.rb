@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   post '/upload_data/zip/:type/:destination_id' => 'upload_data#download_zip', :as => :download_zip
   resources :upload_data
 
-  get 'test_cases/create_output/:id' => 'test_cases#create_output'
+  get 'test_cases/create_output/:id' => 'test_cases#create_output'  
   resources :test_cases
 
   get '/inputs/new/:run_method_id' => 'inputs#new', :as => :new_input
@@ -59,7 +59,8 @@ Rails.application.routes.draw do
   resources :comments
 
   post 'api_submission/run_program/:id' => 'api_submission#data'
-  get 'api_submission/poll/:id' => 'api_submission#poll'
+  post 'api_submission/create_output/:id' => 'api_submission#output'
+  
   
   root :to => 'user_sessions#new'
 end

@@ -8,6 +8,7 @@
   <%= content_tag "div", id: "cpu", data: { submission: cpuTime} do %><% end %>
   <h3><%= passed %> Tests Out Of <%= total %> Passed</h3>
 </header>
+
 <div class="content-group">
   <div class="subgroup" id="run-method-list">
     <h1>Quick Links</h1>
@@ -22,18 +23,41 @@
       </div>
     <% end %>
   </div>
+  <% if submission.compile_saves.count > 0 %>
+  <style>
+  table{
+    width: 100%;
+  }
 
-  <% submission.assignment.test_case.run_methods.each do |run_method| %>
-    <div class="subgroup" id="run_method_<%= run_method.id %>">
-      <h1><%= run_method.name %></h1>
-      <h2><%= run_method.description %></h2>
-      <h2><%= run_method.run_command %></h2>
+  th {
+    text-align: center;
+  }
 
-      <% if submission.compile_saves.count > 0 %>
-        <%= submission.compile_saves[0].output %>
-      <% else %>
+  td {
+    text-align: left;
+  }
+</style>
+    <div class="subgroup">
+      <table>
+        <tr>
+          <th height = 30px><font size = "6">Compile Error</font></th>
+          <tr>
+            <% compile_output = submission.compile_saves[0].output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
+            <% compile_output = compile_output.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
+            <% compile_output = compile_output.gsub(" ", '&nbsp;') %>
+            <td> <%= compile_output.html_safe %> </td>
+          </tr>
+        </tr>
+      </table>
+  <% else %>
+    <% submission.assignment.test_case.run_methods.each do |run_method| %>
+      <div class="subgroup" id="run_method_<%= run_method.id %>">
+        <h1><%= run_method.name %></h1>
+        <h2><%= run_method.description %></h2>
+        <h2><%= run_method.run_command %></h2>
+
         <% submission.visible_run_saves(current_user).select { |run_save| run_save.input.run_method == run_method }.each do |run_save| %>
-          <%= render run_save %>
+            <%= render run_save %>
         <% end %>
       <% end %>
     </div>

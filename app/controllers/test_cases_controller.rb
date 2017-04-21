@@ -33,17 +33,17 @@ class TestCasesController < ApplicationController
     end
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#
     # Adds in the test case files
-    test_case.create_directory(tempDirectory)
+    #test_case.create_directory(tempDirectory)
 
     #Compiles and runs the program
-    comp_status = test_case.compile_code(tempDirectory)
+    #comp_status = test_case.compile_code(tempDirectory)
 
-    if comp_status.nil?
-      flash[:notice] = "Outputs Made"
-    else
-      flash[:notice] = "No Outputs Made"
-      flash[:comperr] = comp_status
-    end
+    #if comp_status.nil?
+     # flash[:notice] = "Outputs Made"
+    #else
+      #flash[:notice] = "No Outputs Made"
+      #flash[:comperr] = comp_status
+    #end
 
     FileUtils.rm_rf(tempDirectory)
 

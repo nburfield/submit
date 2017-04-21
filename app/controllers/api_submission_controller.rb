@@ -83,26 +83,22 @@ class ApiSubmissionController < BaseApiController
 
         value['Result'].each do |key, value|
           puts "inputs : #{key} => #{value}"
-          #input = Input.find(key)
+          input = Input.find(key)
          # save = Input.new
           #file = Input.new
 
-          #if value["Error"]
-         #   save.output = value['Error']
-          #else
+          if value["Error"]
+            input.output = value['Error']
+          else
 
-          #  save.output = value['Output']
-           # puts "Output : #{save.output}"
-           # save.save
-         # end
+            input.output = value['Output']
+            #puts "Output : #{save.output}"
+            input.save
+          end
         end
       end
-
     end
-    
     render nothing: true and return
-
   end
-
 
 end

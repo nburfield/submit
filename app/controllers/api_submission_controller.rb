@@ -21,7 +21,7 @@ class ApiSubmissionController < BaseApiController
     submission = Submission.find(@json['submission']['id'])
     verify_key = @json['key']
     if submission.key == verify_key
-      submission.remove_saved_runs      
+      #submission.remove_saved_runs      
       
       if not @json['Compile']['Status']
         save = CompileSave.new
@@ -71,29 +71,30 @@ class ApiSubmissionController < BaseApiController
     verify_key = @json['key']
     if test_case.key == verify_key
        test_case.assignment.remove_saved_runs
-      unless @json.has_key?('Run')
-        render nothing: true, status: :bad_request
-      end
-      @json['Run'].each do |key, value|
-        puts "sample : #{key} => #{value}"
 
-        unless value.has_key?('Result')
+      if not @json['Compile']['Status']
+        #test_case.compile_error
+        flash[:notice] = "No Outputs Made"
+      else 
+        unless @json.has_key?('Run')
           render nothing: true, status: :bad_request
         end
+        @json['Run'].each do |key, value|
+          puts "sample : #{key} => #{value}"
 
-        value['Result'].each do |key, value|
-          puts "inputs : #{key} => #{value}"
-          input = Input.find(key)
-         # save = Input.new
-          #file = Input.new
+          unless value.has_key?('Result')
+            render nothing: true, status: :bad_request
+          end
 
-          if value["Error"]
-            input.output = value['Error']
-          else
-
-            input.output = value['Output']
-            #puts "Output : #{save.output}"
-            input.save
+          value['Result'].each do |key, value|
+            puts "inputs : #{key} => #{value}"
+            input = Input.find(key)
+            if value["Error"]
+              input.output = value['Error']
+            else
+              input.output = value['Output']
+              input.save
+            end
           end
         end
       end

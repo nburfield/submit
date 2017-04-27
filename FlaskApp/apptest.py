@@ -10,13 +10,10 @@ import http
 import hashlib
 from celery import Celery 
 
+
 static_directory = os.environ["SUBMIT_COMPILE_PATH"]
 app = Flask(__name__)
 
-celery = Celery(app.name, backend='amqp://guest:guest@localhost:5672//', broker='amqp://guest:guest@localhost:5672//')
-celery.conf.update(
-    task_serializer='json',
-    result_serializer='json')
 
 def after_this_request(func):
 	print ("function", func)	
@@ -40,34 +37,6 @@ def submission():
 		return m
 	json = g.get('json_item')
 	key = g.get('key')
-	dataout = my_submissiontask.delay(json, key)
-	headers = {'Content-Type' : 'application/json'}
-	h = http.client.HTTPConnection('localhost:3000')
-	h.request('POST','/api_submission/run_program/' + str(json['details']["sid"]) , dataout.get(), headers )
-	return m
-
-@app.route("/testcase", methods=['POST','PATCH'])
-def test():
-	app.logger.debug("JSON received...")
-	app.logger.debug(request.json)
-	# Generate Key and place that in return 
-	m =  hashlib.sha256(request.json['details']['username'].encode('utf-8')).hexdigest()
-	g.json_item = request.json
-	g.key = m
-
-	@after_this_request		
-	def run_program(response):
-		return m
-	json = g.get('json_item')
-	key = g.get('key')
-	dataout = my_testcase.delay(json, key)
-	headers = {'Content-Type' : 'application/json'}
-	h = http.client.HTTPConnection('localhost:3000')
-	h.request('POST', '/api_submission/create_output/' + str(json['details']["test_case_id"]), dataout.get(), headers )
-	return m
-	
-@celery.task
-def my_submissiontask(json, key):
 	directory = static_directory + "/" + json['details']['username']
 
 	# mk directory
@@ -116,7 +85,10 @@ def my_submissiontask(json, key):
 				with open(mypath, 'w') as err:
 				 proc = subprocess.Popen(shell, shell = True, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr=err)
 				 proc.communicate()
-					
+				
+
+				
+				
 				
 				fileSize = os.stat(mypath)
 				
@@ -169,9 +141,26 @@ def my_submissiontask(json, key):
 	if os.path.exists(directory):
 	 shutil.rmtree(directory)
 
+	headers ={'Content-Type' : 'application/json'}
+	h = http.client.HTTPConnection('localhost:3000')
+	h.request('POST','/api_submission/run_program/' + str(json['details']["sid"]) , string, headers )
+
 	return string
-@celery.task
-def my_testcase(json, key):
+
+@app.route("/testcase", methods=['POST','PATCH'])
+def test():
+	app.logger.debug("JSON received...")
+	app.logger.debug(request.json)
+	# Generate Key and place that in return 
+	m =  hashlib.sha256(request.json['details']['username'].encode('utf-8')).hexdigest()
+	g.json_item = request.json
+	g.key = m
+
+	@after_this_request		
+	def run_program(response):
+		return m
+	json = g.get('json_item')
+	key = g.get('key')
 	directory = static_directory + "/" + json['details']['username']
 
 	# mk directory
@@ -199,12 +188,11 @@ def my_testcase(json, key):
 	error = err.decode()
 	if not error  or "warning" in error.lower():
 	# Run testcases
-		Compile = {"Status" : True, "Error" : None}
 		output = {}		
 		for rm in json['RunMethods']:
 			Output = {}
 			run_method = {}
-			for input in rm:			
+			for input in rm:				
 				filepath = directory + '/' + input['name']
 				with open(filepath, 'w') as f:
 					f.write(str(input['content']))
@@ -231,13 +219,13 @@ def my_testcase(json, key):
 					else:
 						outputFileContents = "File too big to read"
 					if errorFileContents:
-						Output[input['input_id']]= {"Output" : outputFileContents, "Error" : errorFileContents }
+						Output[input['input_id']]= {"Output" : outputFileContents, "Error" : errorFileContents, "Name" : input['name'] }
 					else:
-						Output[input['input_id']]= {"Output" : outputFileContents, "Error" : None}
+						Output[input['input_id']]= {"Output" : outputFileContents, "Error" : None, "Name" : input['name'] }
 
 			output[input['Method']] = {"Result" : Output} 
 
-		data1 = {"key" : key , "Username" : json['details']['username'], "User_id" : json['details']['userid'], "testcase" : testcase, "Compile" : Compile, "Run" : output, "RunMethod" : run_method }
+		data1 = {"key" : key , "Username" : json['details']['username'], "User_id" : json['details']['userid'], "testcase" : testcase, "Run" : output, "RunMethod" : run_method }
 		string = JSONEncoder().encode(data1)
 		f = open ("out.json", 'w')
 		f.write(string)
@@ -251,13 +239,16 @@ def my_testcase(json, key):
 		f = open ("out.json", 'w')
 		f.write(string)
 		f.close()
-
 	#rm -rf directory
 	if os.path.exists(directory):
 		shutil.rmtree(directory)
-	 
-	return string
 
+	headers ={'Content-Type' : 'application/json'}
+	h = http.client.HTTPConnection('localhost:3000')
+	h.request('POST', '/api_submission/create_output/' + str(json['details']["test_case_id"]) , string, headers )
+	
+	 
+	return m
 
 @app.after_request
 def call_after_requests(response):

@@ -71,7 +71,7 @@ class SubmissionsController < ApplicationController
   def run_save_update
     @submission = Submission.find(params[:id])
     @assignment = @submission.assignment
-
+    
     respond_to do |format|
       format.js { render :action => "run" }
     end

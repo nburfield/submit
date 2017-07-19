@@ -2,7 +2,23 @@
 <% content_for :title, @assignment.name + " Submission" %>
 
 <%= render :partial => 'compiler_output' %>
+<style>
+  button{
+    font-size: 14pt;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:10px;
+    right:30px;
 
+  }
+</style>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 <header>
   <h1>Manage Your Submission</h1>
   <h2><%= @assignment.name %></h2>
@@ -68,7 +84,7 @@
           <%= link_to submit_submission_path(@submission), :method => :post, :data => { :confirm => 'Are you sure? Once the assignment is submitted you may not edit your files.' } do %>
             <div>
               <%= image_tag('icon_submit.png', size: "64x64", alt: "Submit Assignment", title: "Submit Assignment") %><br>
-              Submit Assignment
+              Submit & Lock 
             </div>
           <% end %>
         </li>

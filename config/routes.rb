@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :assignments
 
   delete 'submissions/outputs/:id' => 'submissions#delete_outputs', :as => :delete_outputs
+  get 'submissions/delete/:id' => 'submissions#remove_outputs', :as => :remove_outputs
   get 'submissions/outputs/:id' => 'submissions#run_save_update', :as => :run_save_update
   get 'submissions/data/:id' => 'submissions#get_data', :as => :get_data
   get 'submissions/run_program/:id' => 'submissions#run', :as => :run_submission
@@ -44,6 +45,8 @@ Rails.application.routes.draw do
   post '/upload_data/zip/:type/:destination_id' => 'upload_data#download_zip', :as => :download_zip
   resources :upload_data
 
+  get 'test_cases/outputs/:id' => 'test_cases#run_method_update', :as => :run_method_update
+  get 'test_cases/data/:id' => 'test_cases#update_data', :as => :update_data
   get 'test_cases/create_output/:id' => 'test_cases#create_output'  
   resources :test_cases
 

@@ -67,11 +67,20 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def remove_outputs
+    @submission = Submission.find(params[:id])
+    @submission.remove_saved_runs
+    @assignment = @submission.assignment
+
+    respond_to do |format|
+      format.js { render :action => "run" }
+    end
+  end
+
   # Compiles but does not run a user's submission
   def run_save_update
     @submission = Submission.find(params[:id])
     @assignment = @submission.assignment
-    
     respond_to do |format|
       format.js { render :action => "run" }
     end
@@ -80,7 +89,6 @@ class SubmissionsController < ApplicationController
   # Compiles but does not run a user's submission
   def get_data
     submission = Submission.find(params[:id])
-
     total = submission.visible_run_saves(current_user).count
     trc = 0
 
@@ -101,7 +109,7 @@ class SubmissionsController < ApplicationController
     if submission.compile_saves.count > 0
       total = trc
     end
-
+  
     respond_to do |format|
       format.json { render :json => { :total => total, :trc => trc } }
     end
@@ -112,7 +120,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find(params[:id])
     @total = @submission.visible_run_saves(current_user).count
     @assignment = @submission.assignment
-   
+    #delete_outputs
     # # Begin Old Way
     # # Compiles and runs the program
     # @comp_message = @submission.compile(directory)
@@ -131,7 +139,7 @@ class SubmissionsController < ApplicationController
     #   end
     # end
     # # End Old Way
-
+    
     @details = { :course => get_course.name, :assignmentname => @submission.assignment.name, :assignment_id => @assignment.id, :sid => @submission.id, :username => current_user.netid, :userid =>current_user.id, :cputime => @assignment.test_case.cpu_time, :coresize => @assignment.test_case.core_size }
     @RunMethods = @assignment.test_case.run_methods.map do |run|
       run.inputs.map do |input|
@@ -156,15 +164,15 @@ class SubmissionsController < ApplicationController
     json = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
 
     # Run the call to the Flask App
-    uri = URI('http://localhost:5000/submission')
+    uri = URI('http://hpcvis6.cse.unr.edu:5000/submission')
     http = Net::HTTP.new(uri.host, uri.port)
     req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
     req.body = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
     res = http.request(req)
     puts "Response#{res.body}"
-    # Update the submission to have the new key (UUID)
     @submission.key = res.body
     @submission.save
+    
   end
 
   # Submit the assignment
@@ -214,7 +222,7 @@ class SubmissionsController < ApplicationController
 
       if submission.user != current_user
         flash[:notice] = "You may only view your own submissions"
-        redirect_to dashboard_url
+        redirect_to courses_url
       end
     end
 
@@ -225,7 +233,7 @@ class SubmissionsController < ApplicationController
       course = submission.assignment.course
       if not current_user.has_role? :instructor, course
         flash[:notice] = "That action is only available to the instructor of the course"
-        redirect_to dashboard_url
+        redirect_to courses_url
       end
     end
 
@@ -321,7 +329,7 @@ class SubmissionsController < ApplicationController
                       </style>
                     </head>
                     <body> '
-      html_name = '<h1>' + submission.user.name + '</h1>'
+      html_name = '<h1>' + submission.user.first_name + " " + submission.user.last_name + '</h1>'
       html_title = '<h2>Grade Report for ' + submission.assignment.name + '</h2>'
       html_center1 = '<br>
                     <hr>

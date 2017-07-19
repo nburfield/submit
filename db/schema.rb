@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117212826) do
+ActiveRecord::Schema.define(version: 20170503200544) do
 
   create_table "assignments", force: true do |t|
     t.boolean  "lock"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20170117212826) do
     t.integer "submission_id"
     t.text    "output"
     t.string  "run_method_name"
+    t.integer "test_case_id"
   end
 
   add_index "compile_saves", ["submission_id"], name: "index_compile_saves_on_submission_id", using: :btree

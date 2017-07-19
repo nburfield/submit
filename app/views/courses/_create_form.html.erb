@@ -1,5 +1,22 @@
 <%= render "shared/error_messages", :target => @course %>
 
+<style>
+  button{
+    font-size: 14pt;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:10px;
+    right:30px;
+
+  }
+</style>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 <%= form_for @course do |f| %>
   <%= f.text_field :name, :placeholder => 'Course Name' %><br>
   <%= f.text_area :description, :placeholder => 'Class Description' %><br>

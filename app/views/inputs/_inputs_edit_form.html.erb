@@ -1,7 +1,87 @@
 <header>
   <h1>Manage Inputs</h1>
 </header>
-<div class="content-group">
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd; 
+}
+
+div.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+}
+</style>
+</head>
+<body>
+
+<button class="accordion">Inputs</button>
+<div class="panel">
+  <tbody>
+      <% @run_method.inputs.each do |i| %>
+        <tr>
+          <td>
+          <button class="accordion"><%= i.name %></button>
+          <div class="panel">
+            <div class="content-group manage-inputs">
+              <%= form_for i, url: input_url(i), method: :patch, :remote => true do |f| %>
+                <%= f.text_field :name, :placeholder => 'Run Name' %><br>
+                <%= f.text_area :description, :placeholder => 'Input Description' %><br>
+                <%= f.text_area :data, :placeholder => 'Add Input Text' %><br><br>
+                <%= f.label :output_data, "Output of the input data." %><br>
+                <%= f.text_area :output, :readonly => true, cols: "300", rows: "20" %><br><br>
+                <%= f.label :student_visible, "Make Visible for Student Runs " %>
+                <%= f.check_box :student_visible, { :checked => i.student_visible } %><br>
+                <%= f.submit "Update" %>
+              <% end %>
+            </div>
+          </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+</div>
+
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
+
+<!--<div class="content-group">
   <table class="inputs-table">
     <thead>
       <tr>
@@ -29,4 +109,4 @@
       <% end %>
     </tbody>
   </table>
-</div>
+</div>-->

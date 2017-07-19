@@ -13,7 +13,8 @@ from celery import Celery
 static_directory = os.environ["SUBMIT_COMPILE_PATH"]
 app = Flask(__name__)
 
-celery = Celery(app.name, backend='amqp://guest:guest@localhost:5672//', broker='amqp://guest:guest@localhost:5672//')
+#celery = Celery(app.name, backend='amqp://guest:guest@localhost:5672//', broker='amqp://guest:guest@localhost:5672//')
+celery = Celery(app.name, backend='rpc://', broker='pyamqp://')
 celery.conf.update(
     task_serializer='json',
     result_serializer='json')
@@ -41,9 +42,6 @@ def submission():
 	json = g.get('json_item')
 	key = g.get('key')
 	dataout = my_submissiontask.delay(json, key)
-	headers = {'Content-Type' : 'application/json'}
-	h = http.client.HTTPConnection('localhost:3000')
-	h.request('POST','/api_submission/run_program/' + str(json['details']["sid"]) , dataout.get(), headers )
 	return m
 
 @app.route("/testcase", methods=['POST','PATCH'])
@@ -62,10 +60,11 @@ def test():
 	key = g.get('key')
 	dataout = my_testcase.delay(json, key)
 	headers = {'Content-Type' : 'application/json'}
-	h = http.client.HTTPConnection('localhost:3000')
+	h = http.client.HTTPConnection('hpcvis3.cse.unr.edu:3000')
 	h.request('POST', '/api_submission/create_output/' + str(json['details']["test_case_id"]), dataout.get(), headers )
 	return m
-	
+
+#Submissiom	
 @celery.task
 def my_submissiontask(json, key):
 	directory = static_directory + "/" + json['details']['username']
@@ -96,16 +95,14 @@ def my_submissiontask(json, key):
 	make = subprocess.Popen("make -C " + static_directory + "/" + json['details']['username'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)   
 	out, err = make.communicate()
 	error = err.decode()
-	#print (error)
 	
 	if not error  or "warning" in error.lower():
-	
 		Compile = {"Status" : True, "Error" : None}
 	# Run testcases
-		output = {}
 		for rm in json['RunMethods']:
-			Output = {}
 			for input in rm:
+				output = {}
+				Output = {}
 				filepath = directory + '/' + input['name']
 				with open(filepath, 'w') as f:
 					f.write(str(input['content']))
@@ -118,8 +115,7 @@ def my_submissiontask(json, key):
 				 proc.communicate()
 					
 				
-				fileSize = os.stat(mypath)
-				
+				fileSize = os.stat(mypath)				
 				if fileSize.st_size < 25000:
 					errorFile = open(mypath, 'r')
 					errorFileContents = errorFile.read() 
@@ -147,20 +143,23 @@ def my_submissiontask(json, key):
 								difference = None
 				 
 					Output[input['input_id']]= {"Output" : outputFileContents, "Difference" : difference, "Error" : None }
-			output[input['Method']] = {"Result" : Output} 
+					output[input['Method']] = {"Result" : Output} 
 			
 		
-		data1 = {"key" : key , "submission": submission, "Assignment_name" : json['details']['assignmentname'], "Assignment_id" : json['details']['assignment_id'] , "Student_ID" : json['details']['userid'], "Compile" : Compile, "Run" : output}
-		string = JSONEncoder().encode(data1)
-		f = open ("out.json", 'w')
-		f.write(string)
-		f.close()
-			
+					data1 = {"key" : key , "submission": submission, "Assignment_name" : json['details']['assignmentname'], "Assignment_id" : json['details']['assignment_id'] , "Student_ID" : json['details']['userid'], "Compile" : Compile, "Run" : output}
+					print(data1)
+					string = JSONEncoder().encode(data1)
+					send(string, json['details']["sid"])
+					f = open ("out.json", 'w')
+					f.write(string)
+					f.close()
+								
 	else :
 		print ("error")
 		Compile = {"Status" : False, "Error" : error}
 		data1 = {"key" : key , "submission": submission, "Assignment_name" : json['details']['assignmentname'], "Assignment_id" : json['details']['assignment_id'], "Student_ID" : json['details']['username'],"Compile" : Compile}
 		string = JSONEncoder().encode(data1)
+		send(string, json['details']["sid"])
 		f = open ("out.json", 'w')
 		f.write(string)
 		f.close()
@@ -170,6 +169,8 @@ def my_submissiontask(json, key):
 	 shutil.rmtree(directory)
 
 	return string
+
+#Creates Testcase
 @celery.task
 def my_testcase(json, key):
 	directory = static_directory + "/" + json['details']['username']
@@ -265,6 +266,12 @@ def call_after_requests(response):
 		callback(response)
 	return response
 
+def send(string, ID):
+	headers = {'Content-Type' : 'application/json'}
+	h = http.client.HTTPConnection('hpcvis3.cse.unr.edu:3000')
+	h.request('POST','/api_submission/run_program/' + str(ID) , string, headers)
+	return
+
 def run_script(directory, dir_name, run_command, file, cpu_time, core_size):
 	run = directory + '/' + dir_name + '/' + run_command + " < " + file + " > " +  file + "_output" + "\n"
 	shell = "#!/bin/bash\n"
@@ -277,4 +284,4 @@ def run_script(directory, dir_name, run_command, file, cpu_time, core_size):
 	return shell 
 
 if __name__ == "__main__":	
-	app.run()	  	
+	app.run(host='0.0.0.0')	  	

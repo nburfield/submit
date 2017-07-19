@@ -1,6 +1,5 @@
 <% breadcrumb :courses %>
 <% content_for :title, "Your Courses" %>
-
 <header>
   <h1>Instructor Actions</h1>
 </header>
@@ -10,7 +9,7 @@
       <li>
         <%= link_to new_course_url do %>
           <div>
-            <%= image_tag('icon_add.png', size: "64x64", alt: "New Course", title: "New Course") %><br>
+            <%= image_tag('icon_add.png', size: "64x64", alt: "New Course", title: "Create New Course") %><br>
             New Course
           </div>
         <% end %>
@@ -20,7 +19,7 @@
 </div>
 
 <header>
-  <h1>Your Taught Courses</h1>
+  <h1>Your Courses</h1>
 </header>
 <div class="content-group">
   <%= render :partial => "course_table", :locals => { :courses => @courses } %>

@@ -134,7 +134,7 @@ class UploadDataController < ApplicationController
     end
 
     # Creates a temporary directory for the student files
-    tempDirectory = Rails.configuration.compile_directory + current_user.name.tr(" ", "_") + '_' + destination.id.to_s + '/'
+    tempDirectory = Rails.configuration.compile_directory + current_user.netid.tr(" ", "_") + '_' + destination.id.to_s + '/'
     if not Dir.exists?(tempDirectory)
       Dir.mkdir(tempDirectory)
     end
@@ -172,11 +172,11 @@ class UploadDataController < ApplicationController
     if source.class.name == "TestCase"
       if not current_user.has_local_role? :grader, source.assignment.course
         flash[:notice] = "Only the course instructor may edit test cases"
-        redirect_to dashboard_url
+        redirect_to courses_url
       end
     elsif current_user != source.user
       flash[:notice] = "That action is only available to the file owner"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 
@@ -185,13 +185,13 @@ class UploadDataController < ApplicationController
       destination = Submission.find(params[:destination_id])
       if current_user != destination.user
         flash[:notice] = "That action is only available to the submission owner"
-        redirect_to dashboard_url
+        redirect_to courses_url
       end
     elsif (params[:type] == "test_case")
       destination = TestCase.find(params[:destination_id])
       if current_user.has_local_role? :instructor, destination.assignment
         flash[:notice] = "That action is only available to the course instructor"
-        redirect_to dashboard_url
+        redirect_to courses_url
       end
     end
   end
@@ -204,11 +204,11 @@ class UploadDataController < ApplicationController
     if upload_data.source.class.name == "TestCase"
      if (not current_user.has_local_role? :grader, course) and !upload_data.shared
         flash[:notice] = "Only graders and instructors may edit test cases"
-        redirect_to dashboard_url
+        redirect_to courses_url
       end
     elsif upload_data.source.class.name == "Submission" and (not (current_user.has_role? :grader, course) and current_user != upload_data.submission.user)
       flash[:notice] = "That action is only available to graders or the file owner"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 
@@ -218,7 +218,7 @@ class UploadDataController < ApplicationController
 
     if upload_data.source.submitted
       flash[:notice] = "You may not edit files after submitting your assignment"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 

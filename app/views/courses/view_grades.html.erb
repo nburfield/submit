@@ -1,6 +1,22 @@
 <% breadcrumb :course_grades, @course %>
 <% content_for :title, 'All Grades for ' + @course.name %>
+<style>
+  button{
+    font-size: 14pt;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:10px;
+    right:30px;
 
+  }
+</style>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 <header>
   <h1>All Grades for <%= @course.name %></h1>
 </header>
@@ -29,7 +45,7 @@
       <% @course.users.each do |user| %>
         <% if not user.has_local_role? :grader, @course %>
           <tr>
-            <td><%= user.name %></td>
+            <td><%= user.netid %></td>
             <% @course.assignments.each do |assignment| %>
               <% submission = assignment.submissions.select { |s| s.user == user } %>
               <% if submission.first %>

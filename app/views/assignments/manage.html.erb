@@ -1,6 +1,22 @@
 <% breadcrumb :assignment, @assignment, @course %>
 <% content_for :title, @course.name + ' assignment ' + @assignment.name %>
+<style>
+  button{
+    font-size: 14pt;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:10px;
+    right:30px;
 
+  }
+</style>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 <header>
   <h1><%= @course.name %></h1>
   <h2><%= @assignment.name %></h2>
@@ -33,8 +49,8 @@
       <li>
         <%= link_to grade_all_assignment_url(@assignment) do %>
           <div>
-            <%= image_tag('icon_test.png', size: "64x64", alt: "Grade All Submissions", title: "Grade All Submissions") %><br>
-            Grade All Submissions
+            <%= image_tag('icon_test.png', size: "64x64", alt: "Test All Submissions", title: "Test All Submissions") %><br>
+            Test All Submissions
           </div>
         <% end %>
       </li>
@@ -72,7 +88,7 @@
     <% @submissions.each do |submission| %>
       <tr>
         <td><%= submission.user.last_name %>, <%= submission.user.first_name %></td>
-        <td><%= link_to 'View', submission_url(submission) %></td>
+        <td><%= link_to 'View & Grade', submission_url(submission) %></td>
         <td>
           <% if submission.submitted %>
             Submitted - <%= link_to "Unsubmit", unsubmit_submission_path(submission), :method => :post, :data => { :confirm => 'Would you like to unsubmit this assignment for the student?' } %>

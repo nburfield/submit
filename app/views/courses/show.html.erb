@@ -1,4 +1,20 @@
-<% breadcrumb :course, @course %>
+<style>
+  button{
+    font-size: 14pt;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:10px;
+    right:30px;
+
+  }
+</style>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script><% breadcrumb :course, @course %>
 <% content_for :title, @course.name %>
 
 <header>

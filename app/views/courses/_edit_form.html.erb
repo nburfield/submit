@@ -9,5 +9,22 @@
     <%= f.label :open %>
     <%= f.check_box :open, { :checked => @course.open } %>
   </span>
-  <%= f.submit "Save" %>
+  <%= f.submit "Update & Return" %>
 <% end %>
+<style>
+  button{
+    font-size: 14pt;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:10px;
+    right:30px;
+
+  }
+</style>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>

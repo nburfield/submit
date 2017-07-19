@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def require_admin
     if not current_user.has_role? :admin
       flash[:notice] = "You may not edit other accounts."
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Your account has been created."
-      redirect_to dashboard_url
+      redirect_to courses_url
     else
       flash[:notice] = "There was a problem creating your account."
       render :action => :new, :layout => "authentication"
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   # Lists all users
   def index
-    redirect_to dashboard_url unless current_user.has_role? :admin
+    redirect_to courses_url unless current_user.has_role? :admin
     @users = User.all
   end
 
@@ -98,3 +98,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:netid, :first_name, :last_name, :email, :commit)
   end
 end
+

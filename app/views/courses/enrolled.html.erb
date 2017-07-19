@@ -10,11 +10,28 @@
 </div>
 
 <header>
-  <h1>Your Enrolled Courses</h1>
+  <h1>Courses You Are Enrolled In</h1>
 </header>
 
 <div class="content-group">
+<table class="courses-list" id="courses-list">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Term</th>
+    <th>Year</th>
+  </tr>
+  </thead>
+  <tbody>
   <% @courses.each do |course| %>
-    <p><%= link_to course.name, course_path(course) %></p>
+    <td><%= link_to course.name, course_path(course) %></td>
+    <td><%= course.term.humanize %></td>
+    <td><%= course.year.to_s %></td>
+  </tr>
   <% end %>
+  </tbody>
+</table>
+
 </div>
+
+

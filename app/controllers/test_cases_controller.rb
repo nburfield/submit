@@ -24,6 +24,27 @@ class TestCasesController < ApplicationController
     end
   end
 
+  def run_method_update
+    @test_case = TestCase.find(params[:id])
+    @test_case = @test_case.run_methods
+    respond_to do |format|
+      format.js { render :action => "create_output" }
+    end
+  end
+
+  def update_data
+    test_case = TestCase.find(params[:id])
+    trc = 0
+    test_case.run_methods.map do |run|
+      run.inputs.map do |input|
+        trc += 1
+      end
+    end
+  
+    respond_to do |format|
+      format.json { render :json => {:trc => trc } }
+    end
+  end
   # Create the output files
   def create_output
     test_case = TestCase.find(params[:id])
@@ -33,17 +54,17 @@ class TestCasesController < ApplicationController
     end
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#
     # Adds in the test case files
-    test_case.create_directory(tempDirectory)
+    #test_case.create_directory(tempDirectory)
 
     #Compiles and runs the program
-    comp_status = test_case.compile_code(tempDirectory)
+    #comp_status = test_case.compile_code(tempDirectory)
 
-    if comp_status.nil?
-      flash[:notice] = "Outputs Made"
-    else
-      flash[:notice] = "No Outputs Made"
-      flash[:comperr] = comp_status
-    end
+    #if comp_status.nil?
+     # flash[:notice] = "Outputs Made"
+    #else
+      #flash[:notice] = "No Outputs Made"
+      #flash[:comperr] = comp_status
+    #end
 
     FileUtils.rm_rf(tempDirectory)
 
@@ -82,17 +103,15 @@ class TestCasesController < ApplicationController
     json = {:details => @details, :RunMethods => @RunMethods, :sourcefiles => @sourcefiles, :sharedfiles => @makefile}.to_json
     puts json
 
-    uri = URI('http://localhost:5000/testcase')
+    # Test Case sending to Flask app
+    uri = URI('http://hpcvis6.cse.unr.edu:5000/testcase')
     http = Net::HTTP.new(uri.host, uri.port)
     req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
     req.body = {:details => @details, :RunMethods => @RunMethods, :sourcefiles => @sourcefiles, :sharedfiles => @makefile}.to_json
     res = http.request(req)
-
-    puts "Response#{res.body}"
     test_case.key = res.body
-    puts "TestCase_key#{test_case.key}"
     test_case.save
-    #***************************************************************************#
+
   end
 
   
@@ -106,7 +125,7 @@ class TestCasesController < ApplicationController
       test_case = TestCase.find(params[:id])
       if not current_user.has_local_role? :grader, test_case.assignment.course
         flash[:notice] = "Only the course instructor may edit test cases"
-        redirect_to dashboard_url
+        redirect_to courses_url
       end
     end
 
@@ -122,3 +141,4 @@ class TestCasesController < ApplicationController
     end
     helper_method :get_assignment
 end
+

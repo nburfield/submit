@@ -1,4 +1,21 @@
 <%= render "shared/error_messages", :target => @assignment %>
+<style>
+  button{
+    font-size: 14pt;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:10px;
+    right:30px;
+
+  }
+</style>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 <%= form_for @assignment, url: new_assignment_url(@course), method: :post do |f| %>
   <%= f.text_field :name, :placeholder => 'Assignment Name' %><br>
@@ -17,3 +34,4 @@
     $('#assignment_due_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime()/1000) + 604800});
   });
 </script>
+

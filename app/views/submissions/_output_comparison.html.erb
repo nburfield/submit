@@ -1,11 +1,9 @@
-
-
 <header>
   <h1>Program Output</h1>
   <% passed = submission.visible_run_saves(current_user).select { |s| s.pass }.count %>
   <% total = submission.visible_run_saves(current_user).count %>
   <%= content_tag "div", id: "submission", data: { submission: submission} do %><% end %>
-  <%= content_tag "div", id: "cpu", data: { submission: cpuTime} do %><% end %>
+ 
   <h3><%= passed %> Tests Out Of <%= total %> Passed</h3>
 </header>
 
@@ -24,7 +22,7 @@
     <% end %>
   </div>
   <% if submission.compile_saves.count > 0 %>
-  <style>
+ <style>
   table{
     width: 100%;
   }
@@ -36,18 +34,18 @@
   td {
     text-align: left;
   }
-</style>
+</style> 
     <div class="subgroup">
-      <table>
+      <table>  
         <tr>
-          <th height = 30px><font size = "6">Compile Error</font></th>
+          <th height = 30px><font size = "6"><font color="red">Compile Error</font></th>
           <tr>
             <% compile_output = submission.compile_saves[0].output.gsub(/(?:\n\r?|\r\n?)/, '<br>') %>
             <% compile_output = compile_output.gsub(/\t/, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') %>
             <% compile_output = compile_output.gsub(" ", '&nbsp;') %>
             <td> <%= compile_output.html_safe %> </td>
           </tr>
-        </tr>
+        </tr>    
       </table>
   <% else %>
     <% submission.assignment.test_case.run_methods.each do |run_method| %>
@@ -63,3 +61,4 @@
     </div>
   <% end %>
 </div>
+

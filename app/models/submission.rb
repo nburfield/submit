@@ -151,6 +151,7 @@ class Submission < ActiveRecord::Base
     end
   end
 
+  
   def visible_run_saves(current_user)
     return run_saves(0).select { |run_save| run_save.input.student_visible } if not (current_user.has_local_role? :grader, assignment.course)
     return run_saves(0)
@@ -179,3 +180,4 @@ class Submission < ActiveRecord::Base
       return shell
     end
 end
+

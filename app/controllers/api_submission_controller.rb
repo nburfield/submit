@@ -1,8 +1,4 @@
 class ApiSubmissionController < BaseApiController
-  
-  #Test method to receive data
-  #skip_before_filter :require_user, :only => [:output]
-
   before_filter only: :data do 
     unless @json.has_key?('submission') 
       render nothing: true, status: :bad_request
@@ -21,8 +17,6 @@ class ApiSubmissionController < BaseApiController
     submission = Submission.find(@json['submission']['id'])
     verify_key = @json['key']
     if submission.key == verify_key
-      submission.remove_saved_runs      
-      
       if not @json['Compile']['Status']
         save = CompileSave.new
         save.output = @json['Compile']['Error']
@@ -34,13 +28,11 @@ class ApiSubmissionController < BaseApiController
         end
 
         @json['Run'].each do |key, value|
-          #puts "sample : #{key} => #{value}"
           unless value.has_key?('Result')
             render nothing: true, status: :bad_request
           end
           
           value['Result'].each do |key, value|
-            #puts "inputs : #{key} => #{value}"
             input = Input.find(key)
             save = RunSave.new(input: input)
 
@@ -54,8 +46,6 @@ class ApiSubmissionController < BaseApiController
               save.difference = value['Difference']
               save.pass = false
             end
-
-
             save.submission_id = submission.id
             save.output = value['Output']
             save.save
@@ -66,43 +56,55 @@ class ApiSubmissionController < BaseApiController
     render nothing: true and return
   end
 
+
+#Creates testcase output
   def output   
     test_case = TestCase.find(@json['testcase']['id'])
     verify_key = @json['key']
+    
     if test_case.key == verify_key
        test_case.assignment.remove_saved_runs
-      unless @json.has_key?('Run')
-        render nothing: true, status: :bad_request
-      end
-      @json['Run'].each do |key, value|
-        puts "sample : #{key} => #{value}"
 
-        unless value.has_key?('Result')
+      if not @json['Compile']['Status']
+        test_case.run_methods.map do |run|
+          run.inputs.map do |input|
+            id = input.id
+            save = Input.find(id)
+            puts save.output
+            if save.output == "Outputs not generated"
+              save.output = "Compile Error "
+              save.save
+              puts save.output
+            end
+          end
+        end
+      else 
+        unless @json.has_key?('Run')
           render nothing: true, status: :bad_request
         end
 
-        value['Result'].each do |key, value|
-          puts "inputs : #{key} => #{value}"
-          #input = Input.find(key)
-         # save = Input.new
-          #file = Input.new
+        @json['Run'].each do |key, value|
+          puts "sample : #{key} => #{value}"
 
-          #if value["Error"]
-         #   save.output = value['Error']
-          #else
+          unless value.has_key?('Result')
+            render nothing: true, status: :bad_request
+          end
 
-          #  save.output = value['Output']
-           # puts "Output : #{save.output}"
-           # save.save
-         # end
+          value['Result'].each do |key, value|
+            puts "inputs : #{key} => #{value}"
+            input = Input.find(key)
+            if value["Error"]
+              input.output = value['Error']
+            else
+              input.output = value['Output']
+              input.save
+            end
+          end
         end
       end
-
     end
-    
     render nothing: true and return
-
   end
 
-
 end
+

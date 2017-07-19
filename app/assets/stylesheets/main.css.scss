@@ -135,6 +135,10 @@ body.application {
   }
 }
 
+.compile-error {
+  border-color: red;
+}
+
 .compile-messages {
   background-color: $color-compile;
   border-radius: 5px;
@@ -163,7 +167,7 @@ body.application {
 }
 
 .breadcrumbs {
-  font-size: 11px;
+  font-size: 16px;
   position: relative;
   top: -3px;
 }
@@ -190,3 +194,4 @@ body.application {
   padding-left: 5px;
   width: 50%;
 }
+

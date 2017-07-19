@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
     if current_user
       store_location
       flash[:notice] = "You must be logged out to access this page"
-      redirect_to dashboard_url
+      redirect_to courses_url
       return false
     end
   end
@@ -23,7 +23,8 @@ class UserSessionsController < ApplicationController
 
     if @user_session.save
       flash[:notice] = "Login successful!"
-      redirect_back_or_default dashboard_url(@current_user)
+      #redirect_back_or_default dashboard_url(@current_user)
+      redirect_back_or_default courses_url
     else
       if Ldap.valid?(params[:user_session][:netid], params[:user_session][:password])
         user_cred = Ldap.getuser(params[:user_session][:netid], params[:user_session][:password])
@@ -56,3 +57,4 @@ class UserSessionsController < ApplicationController
     redirect_back_or_default new_user_session_url
   end
 end
+

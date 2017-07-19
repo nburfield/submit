@@ -22,7 +22,7 @@ $('#comment-favorites-body').html("")
     '<tr>' + 
       '<td>' +
         '<a href-"#" onclick="add_favorites(\'<%= c[0].gsub(/\r\n/, '\r\n').gsub('\'', '\\′' ) %>\')">' +
-          '<%= truncate(c[0], length: 45).gsub(/\r\n/, '\r\n').gsub('\'', '\\′' ) %>' +
+          "<%= truncate(c[0], length: 45).gsub(/\r\n/, '\r\n').gsub('\'', '\\′' ) %>" +
         '</a>' +
       '</td>' +
     '</tr>'
@@ -40,3 +40,4 @@ $("#form-error").html("");
 $('#comment_line').val("");
 $('#comment_contents').val("");
 $('.modal-curtain').hide();
+

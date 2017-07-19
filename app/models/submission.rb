@@ -3,6 +3,7 @@ class Submission < ActiveRecord::Base
   belongs_to :user
   has_many :upload_data, dependent: :destroy
   has_many :run_saves, dependent: :destroy
+  has_many :compile_saves, dependent: :destroy
 
   after_create :set_note_empty
 
@@ -145,8 +146,12 @@ class Submission < ActiveRecord::Base
     run_saves.each do |rs|
       rs.destroy
     end
+    compile_saves.each do |rs|
+      rs.destroy
+    end
   end
 
+  
   def visible_run_saves(current_user)
     return run_saves(0).select { |run_save| run_save.input.student_visible } if not (current_user.has_local_role? :grader, assignment.course)
     return run_saves(0)
@@ -175,3 +180,4 @@ class Submission < ActiveRecord::Base
       return shell
     end
 end
+

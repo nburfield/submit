@@ -1,18 +1,34 @@
-<% breadcrumb :submission, @submission %>
+<style>
+  button{
+    font-size: 14pt;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:10px;
+    right:30px;
+
+  }
+</style>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script><% breadcrumb :submission, @submission %>
 <% content_for :title, get_assignment.name + " Submission" %>
 
 <%= render :partial => 'compiler_output' %>
 
 <header>
   <h1><%= @submission.assignment.name %></h1>
-  <h2><%= @submission.user.name %></h2>
-  <h2><%= @submission.user.email %></h2>
+  <h2><%= @submission.user.first_name %> <%= @submission.user.last_name %></h2>
+  <!--<h2><%= @submission.user.email %></h2>-->
 </header>
 <div class="content-group">
   <div class="column-wrapper">
     <div class="left-column">
       <div class="subgroup manage-submission">
-        <h1>Edit Submission</h1>
+        <h1>Submission Comments</h1>
         <%= render "shared/error_messages", :target => @submission %>
         <%= form_for @submission, url: submission_url(@submission), method: :patch do |f| %>
           <%= f.text_area :note, :placeholder => 'Grader Notes' %>
@@ -60,9 +76,17 @@
     <ul>
       <li>
         <%= link_to run_submission_url(@submission), :remote => true do %>
-          <div>
+          <div id="run_submission">
             <%= image_tag('icon_test.png', id: "run", size: "64x64", alt: "Run Submission", title: "Run Submission") %><br>
             <span id="run-title">Run Tests</span>
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to delete_outputs_url(@submission), method: :delete, :remote => true do %>
+          <div>
+            <%= image_tag('icon_delete.png', size: "64x64", alt: "Delete Output", title: "Delete Output") %><br>
+            Delete Output
           </div>
         <% end %>
       </li>
@@ -104,3 +128,4 @@
     element.innerHTML = "Running..."
   }
 </script>
+

@@ -9,4 +9,4 @@ FlaskApp/out.json
 send_test.rb
 *.nfs*
 FlaskApp/my_env/
-
+*.pyc

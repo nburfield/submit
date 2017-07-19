@@ -190,7 +190,7 @@ class CoursesController < ApplicationController
     User::ROLES.each { |role| @user.remove_role role, @course }
     @course.users.delete(@user)
 
-    flash[:notice] = "User has been kicked from the course."
+    flash[:notice] = "User has been removed from the course."
     redirect_to :back
   end
 
@@ -218,7 +218,7 @@ class CoursesController < ApplicationController
   def require_admin
     if not current_user.has_role? :admin
       flash[:notice] = "That action is only available to admins"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 
@@ -227,7 +227,7 @@ class CoursesController < ApplicationController
     
     if not current_user.has_role? :instructor
       flash[:notice] = "That action is only available to instructors"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 
@@ -237,7 +237,7 @@ class CoursesController < ApplicationController
     course = Course.find(params[:id])
     if not current_user.has_role? :grader, course
       flash[:notice] = "That action is only available to the instructor of the course"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 
@@ -246,7 +246,7 @@ class CoursesController < ApplicationController
 
     if not current_user.has_role? :student
       flash[:notice] = "That action is only available to students"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 
@@ -256,7 +256,7 @@ class CoursesController < ApplicationController
     course = Course.find(params[:id])
     if not current_user.has_local_role? :student, course
       flash[:notice] = "That action is only available to students enrolled in the course"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 
@@ -266,7 +266,8 @@ class CoursesController < ApplicationController
     course = Course.find(params[:id])
     if not current_user.courses.include? course
       flash[:notice] = "That action is only available to users enrolled in the course"
-      redirect_to dashboard_url
+      redirect_to courses_url
     end
   end
 end
+

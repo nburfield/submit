@@ -26,9 +26,10 @@
     </tr>
     <% @assignment.submissions.each do |submission| %>
       <tr>
-        <td><%= submission.user.name %></td>
+        <td><%= submission.user.netid %></td>
         <td><%= submission.grade %></td>
         <td><%= simple_format(submission.note) %></td>
       </tr>
     <% end %>
   </table>
+

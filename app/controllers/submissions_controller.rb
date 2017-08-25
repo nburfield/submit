@@ -1,3 +1,4 @@
+
 class SubmissionsController < ApplicationController
   #skip_before_filter :require_user, :only => [:data]
   before_filter :require_owner, :only => [:show, :run, :submit, :delete_outputs, :get_data]
@@ -164,7 +165,7 @@ class SubmissionsController < ApplicationController
     json = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
 
     # Run the call to the Flask App
-    uri = URI('http://hpcvis6.cse.unr.edu:5000/submission')
+    uri = URI('http://10.63.162.40:5000/submission')
     http = Net::HTTP.new(uri.host, uri.port)
     req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
     req.body = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
@@ -329,7 +330,7 @@ class SubmissionsController < ApplicationController
                       </style>
                     </head>
                     <body> '
-      html_name = '<h1>' + submission.user.first_name + " " + submission.user.last_name + '</h1>'
+      html_name = '<h1>' + submission.user.first_name + ' ' + submission.user.last_name + '</h1>'
       html_title = '<h2>Grade Report for ' + submission.assignment.name + '</h2>'
       html_center1 = '<br>
                     <hr>

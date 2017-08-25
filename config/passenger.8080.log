@@ -1,0 +1,69 @@
+[ 2017-08-08 19:24:38.4690 27888/7f9767327740 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 19:24:38.4713 27891/7f076c36d740 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 19:24:38.4714 27891/7f076c36d740 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 19:24:38.4764 27891/7f076c36d740 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 27891
+[ 2017-08-08 19:24:38.4791 27900/7f3b66065740 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 19:24:38.4795 27900/7f3b66065740 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 27900
+2017/08/08 19:24:40 [error] 27928#0: *4 "/root/submit/config/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+[ 2017-08-08 19:24:41.2152 27891/7f076bb7b700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+2017/08/08 19:24:42 [error] 27928#0: *5 "/root/submit/config/public/index.html" is not found (2: No such file or directory), client: 10.56.219.1, server: _, request: "GET / HTTP/1.1", host: "localhost:8080"
+2017/08/08 19:24:43 [error] 27928#0: *5 "/root/submit/config/public/index.html" is not found (2: No such file or directory), client: 10.56.219.1, server: _, request: "GET / HTTP/1.1", host: "localhost:8080"
+2017/08/08 19:25:07 [error] 27928#0: *5 open() "/root/submit/config/public/index.rb" failed (2: No such file or directory), client: 10.56.219.1, server: _, request: "GET /index.rb HTTP/1.1", host: "localhost:8080"
+
+
+[ 2017-08-08 19:25:26.0731 27900/7f3b63fd7700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:25:26.0732 27891/7f0769ade700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:25:26.0732 27900/7f3b66065740 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:25:26.0732 27891/7f076c36d740 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:25:26.0732 27900/7f3b63fd7700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 19:25:26.0733 27900/7f3b637d6700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0733 27900/7f3b637d6700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 19:25:26.0733 27891/7f0742ffd700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0733 27891/7f07427fc700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0733 27891/7f07692dd700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0733 27891/7f0742ffd700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 19:25:26.0734 27891/7f07427fc700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 19:25:26.0734 27891/7f07692dd700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 19:25:26.0734 27891/7f0768a5b700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0734 27891/7f0768a5b700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 19:25:26.0734 27891/7f0743fff700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0735 27891/7f0743fff700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 19:25:26.0735 27891/7f07437fe700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0735 27891/7f07437fe700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 19:25:26.0735 27891/7f0741f7a700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0735 27891/7f0741f7a700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 19:25:26.0736 27900/7f3b66065740 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 19:25:26.0736 27891/7f0769ade700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0736 27891/7f0769ade700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 19:25:26.0736 27891/7f07416f8700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:25:26.0737 27891/7f07416f8700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 19:25:26.1668 27891/7f076c36d740 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-25 19:02:53.9223 18253/7f289226c780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-25 19:02:53.9321 18256/7f1b3b83a780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-25 19:02:53.9323 18256/7f1b3b83a780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-25 19:02:53.9388 18256/7f1b3b83a780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 18256
+[ 2017-08-25 19:02:53.9492 18262/7fe83013c780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-25 19:02:53.9501 18262/7fe83013c780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 18262
+2017/08/25 19:02:56 [error] 18281#0: *4 "/root/submit/config/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+2017/08/25 19:02:56 [error] 18281#0: *5 "/root/submit/config/public/index.html" is not found (2: No such file or directory), client: 10.63.162.1, server: _, request: "GET / HTTP/1.1", host: "submit.cse.unr.edu"
+[ 2017-08-25 19:02:56.7371 18256/7f1b34bfd700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+2017/08/25 19:02:58 [error] 18281#0: *5 "/root/submit/config/public/index.html" is not found (2: No such file or directory), client: 10.63.162.1, server: _, request: "GET / HTTP/1.1", host: "submit.cse.unr.edu"
+
+[ 2017-08-25 19:03:01.6669 18256/7f1b27fff700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+
+[ 2017-08-25 19:03:01.6670 18262/7fe8294ff700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-25 19:03:01.6684 18262/7fe83013c780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-25 19:03:01.6685 18256/7f1b3b83a780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-25 19:03:01.6687 18262/7fe828cfe700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-25 19:03:01.6687 18262/7fe828cfe700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-25 19:03:01.6688 18256/7f1b277fe700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-25 19:03:01.6689 18256/7f1b277fe700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-25 19:03:01.6689 18256/7f1b26ffd700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-25 19:03:01.6689 18256/7f1b26ffd700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-25 19:03:01.6692 18256/7f1b267fc700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-25 19:03:01.6693 18256/7f1b267fc700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-25 19:03:01.6693 18262/7fe8294ff700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-25 19:03:01.6694 18256/7f1b27fff700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-25 19:03:01.6694 18256/7f1b27fff700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-25 19:03:01.6698 18262/7fe83013c780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-25 19:03:01.7231 18256/7f1b3b83a780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished

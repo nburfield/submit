@@ -1,0 +1,904 @@
+[ 2017-08-07 22:25:37.8690 3441/7f0569965780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-07 22:25:37.8753 3444/7f56b3274780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-07 22:25:37.8755 3444/7f56b3274780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-07 22:25:37.8812 3444/7f56b3274780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 3444
+[ 2017-08-07 22:25:37.8880 3456/7fe68c356780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-07 22:25:37.8885 3456/7fe68c356780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 3456
+App 3497 stdout: 
+App 3497 stdout: 
+[ 2017-08-07 22:25:40.1893 3444/7f569c5f1700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: ea820447
+  Error details saved to: /tmp/passenger-error-XJFNHd.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-07 22:25:40.1972 3444/7f569f7fe700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is ea820447. Please see earlier logs for details about the error.
+[ 2017-08-07 22:25:40.6094 3444/7f56ac513700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-07 22:27:30.9996 3444/7f569f7fe700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-07 22:27:30.9996 3456/7fe685719700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-07 22:27:30.9997 3444/7f56b3274780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-07 22:27:30.9997 3456/7fe68c356780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-07 22:27:30.9997 3444/7f569f7fe700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-07 22:27:30.9997 3456/7fe685719700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-07 22:27:30.9998 3444/7f569f7fe700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-07 22:27:30.9998 3456/7fe684f18700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-07 22:27:30.9998 3444/7f567ffff700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-07 22:27:30.9998 3456/7fe684f18700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-07 22:27:30.9998 3444/7f569cff9700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-07 22:27:30.9998 3444/7f569effd700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-07 22:27:30.9998 3444/7f567ffff700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-07 22:27:30.9998 3444/7f569cff9700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-07 22:27:30.9998 3444/7f569effd700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-07 22:27:30.9999 3444/7f569e7fc700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-07 22:27:30.9999 3444/7f569e7fc700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-07 22:27:30.9999 3444/7f569dffb700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-07 22:27:30.9999 3444/7f569dffb700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-07 22:27:30.9999 3444/7f569d7fa700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-07 22:27:30.9999 3444/7f569d7fa700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-07 22:27:30.9999 3444/7f567f7fe700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-07 22:27:31.0000 3444/7f567f7fe700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-07 22:27:31.0001 3444/7f567effd700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-07 22:27:31.0001 3444/7f567effd700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-07 22:27:31.0002 3456/7fe68c356780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-07 22:27:31.1027 3444/7f56b3274780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-07 22:28:16.1386 21792/7f81a1552780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-07 22:28:16.1449 21795/7f2216c9b780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-07 22:28:16.1450 21795/7f2216c9b780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-07 22:28:16.1505 21795/7f2216c9b780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 21795
+[ 2017-08-07 22:28:16.1573 21807/7efef3ddb780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-07 22:28:16.1578 21807/7efef3ddb780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 21807
+App 21848 stdout: 
+App 21848 stdout: 
+[ 2017-08-07 22:28:18.4017 21795/7f21cd7fa700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: ddf79c88
+  Error details saved to: /tmp/passenger-error-ZIRosb.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-07 22:28:18.4077 21795/7f220b6a2700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is ddf79c88. Please see earlier logs for details about the error.
+[ 2017-08-07 22:28:18.8817 21795/7f220bf24700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-07 22:28:21.5962 21795/7f220b6a2700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-07 22:28:21.5962 21807/7efeed19e700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-07 22:28:21.5963 21807/7efef3ddb780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-07 22:28:21.5963 21795/7f2216c9b780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-07 22:28:21.5963 21795/7f220b6a2700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5963 21807/7efeed19e700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-07 22:28:21.5963 21795/7f220ae20700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5963 21807/7efeec99d700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5963 21795/7f220a59e700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5963 21795/7f220ae20700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-07 22:28:21.5963 21807/7efeec99d700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-07 22:28:21.5963 21795/7f220b6a2700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-07 22:28:21.5963 21795/7f21cffff700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5963 21795/7f21cf7fe700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5964 21795/7f21cffff700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-07 22:28:21.5963 21795/7f220a59e700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-07 22:28:21.5964 21795/7f21cf7fe700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-07 22:28:21.5964 21795/7f2209d1c700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5964 21795/7f2209d1c700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-07 22:28:21.5964 21795/7f2208c18700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5964 21795/7f2208c18700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-07 22:28:21.5964 21795/7f21ceffd700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5964 21795/7f21ceffd700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-07 22:28:21.5965 21795/7f220949a700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-07 22:28:21.5965 21795/7f220949a700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-07 22:28:21.5966 21807/7efef3ddb780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-07 22:28:21.6887 21795/7f2216c9b780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-07 22:31:05.6365 22100/7f54811af780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-07 22:31:05.6432 22103/7f0929a3a780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-07 22:31:05.6433 22103/7f0929a3a780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-07 22:31:05.6491 22103/7f0929a3a780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 22103
+[ 2017-08-07 22:31:05.6557 22115/7fd4ac172780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-07 22:31:05.6563 22115/7fd4ac172780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 22115
+App 22156 stdout: 
+App 22156 stdout: 
+[ 2017-08-07 22:31:07.9020 22103/7f092004b700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: 1c7c374b
+  Error details saved to: /tmp/passenger-error-CTdTeQ.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-07 22:31:07.9073 22103/7f0922457700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 1c7c374b. Please see earlier logs for details about the error.
+[ 2017-08-07 22:31:08.3835 22103/7f0922cd9700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-07 22:31:23.3636 22103/7f0922457700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-07 22:31:23.3636 22115/7fd4a5535700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-07 22:31:23.3636 22115/7fd4ac172780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-07 22:31:23.3636 22103/7f0929a3a780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-07 22:31:23.3637 22115/7fd4a5535700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-07 22:31:23.3637 22103/7f0922457700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3637 22115/7fd4a4d34700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3637 22103/7f0921bd5700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3637 22115/7fd4a4d34700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-07 22:31:23.3637 22103/7f0922457700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-07 22:31:23.3637 22103/7f0921bd5700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-07 22:31:23.3637 22103/7f08f37fe700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3637 22103/7f08f27fc700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3637 22103/7f08f37fe700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-07 22:31:23.3637 22103/7f08f2ffd700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3637 22103/7f08f27fc700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-07 22:31:23.3637 22103/7f08f2ffd700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-07 22:31:23.3638 22103/7f0921353700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3638 22103/7f0921353700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-07 22:31:23.3638 22103/7f08f1ffb700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3638 22103/7f08f1ffb700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-07 22:31:23.3638 22103/7f0920ad1700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3638 22103/7f0920ad1700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-07 22:31:23.3638 22103/7f08f3fff700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-07 22:31:23.3638 22103/7f08f3fff700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-07 22:31:23.3640 22115/7fd4ac172780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-07 22:31:23.4662 22103/7f0929a3a780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 17:15:58.1255 24003/7f920ce1a780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 17:15:58.1333 24006/7fe664e09780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 17:15:58.1335 24006/7fe664e09780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 17:15:58.1392 24006/7fe664e09780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 24006
+[ 2017-08-08 17:15:58.1456 24016/7f13cc71d780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 17:15:58.1461 24016/7f13cc71d780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 24016
+App 24059 stdout: 
+App 24059 stdout: 
+[ 2017-08-08 17:16:00.5527 24006/7fe65c194700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: b6604b2b
+  Error details saved to: /tmp/passenger-error-UgxOrz.html
+  Message from application: <p>It looks like Bundler could not find a gem. Maybe you didn't install all the gems that this application needs. To install your gems, please run:</p>
+
+  <pre class="commands">bundle install</pre>
+
+<p>If that didn't work, then the problem is probably caused by your application being run under a different environment than it's supposed to. Please check the following:</p>
+
+<ol>
+  <li>Is this app supposed to be run as the <code>root</code> user?</li>
+  <li>Is this app being run on the correct Ruby interpreter? Below you will
+      see which Ruby interpreter Phusion Passenger attempted to use.</li>
+</ol>
+
+<p>-------- The exception is as follows: -------</p>
+Could not find json-1.8.6 in any of the sources (Bundler::GemNotFound)
+<pre>  /usr/lib/ruby/vendor_ruby/bundler/spec_set.rb:94:in `block in materialize&#39;
+  /usr/lib/ruby/vendor_ruby/bundler/spec_set.rb:87:in `map!&#39;
+  /usr/lib/ruby/vendor_ruby/bundler/spec_set.rb:87:in `materialize&#39;
+  /usr/lib/ruby/vendor_ruby/bundler/definition.rb:137:in `specs&#39;
+  /usr/lib/ruby/vendor_ruby/bundler/definition.rb:182:in `specs_for&#39;
+  /usr/lib/ruby/vendor_ruby/bundler/definition.rb:171:in `requested_specs&#39;
+  /usr/lib/ruby/vendor_ruby/bundler/environment.rb:18:in `requested_specs&#39;
+  /usr/lib/ruby/vendor_ruby/bundler/runtime.rb:13:in `setup&#39;
+  /usr/lib/ruby/vendor_ruby/bundler.rb:92:in `setup&#39;
+  /usr/lib/ruby/vendor_ruby/bundler/setup.rb:18:in `&lt;top (required)&gt;&#39;
+  /usr/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+  /usr/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem&#39;
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code&#39;
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler&#39;
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code&#39;
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app&#39;
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `&lt;module:App&gt;&#39;
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `&lt;module:PhusionPassenger&gt;&#39;
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `&lt;main&gt;&#39;</pre>
+
+
+[ 2017-08-08 17:16:00.5595 24006/7fe65d826700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is b6604b2b. Please see earlier logs for details about the error.
+[ 2017-08-08 17:16:00.9458 24006/7fe65e0a8700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-08 17:16:18.6448 24006/7fe65d826700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 17:16:18.6448 24016/7f13c5ae0700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 17:16:18.6448 24006/7fe664e09780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 17:16:18.6449 24016/7f13cc71d780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 17:16:18.6449 24006/7fe65d826700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6449 24016/7f13c5ae0700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 17:16:18.6449 24006/7fe65cfa4700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6449 24006/7fe65cfa4700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 17:16:18.6449 24006/7fe65d826700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 17:16:18.6449 24016/7f13c52df700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6449 24006/7fe63e7fc700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6449 24016/7f13c52df700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 17:16:18.6449 24006/7fe63e7fc700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 17:16:18.6449 24006/7fe63ffff700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6449 24006/7fe63ffff700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 17:16:18.6449 24006/7fe63f7fe700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6450 24006/7fe63f7fe700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 17:16:18.6450 24006/7fe63effd700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6450 24006/7fe63effd700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 17:16:18.6450 24006/7fe63dffb700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6450 24006/7fe63dffb700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 17:16:18.6451 24016/7f13cc71d780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 17:16:18.6452 24006/7fe63d7fa700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6452 24006/7fe63d7fa700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 17:16:18.6452 24006/7fe63cff9700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 17:16:18.6452 24006/7fe63cff9700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 17:16:18.7375 24006/7fe664e09780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 17:18:13.1874 24226/7f7c04ff6780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 17:18:13.1935 24229/7fe523c3e780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 17:18:13.1936 24229/7fe523c3e780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 17:18:13.1995 24229/7fe523c3e780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 24229
+[ 2017-08-08 17:18:13.2061 24237/7f29abeb1780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 17:18:13.2066 24237/7f29abeb1780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 24237
+App 24282 stdout: 
+App 24282 stdout: 
+[ 2017-08-08 17:18:15.4533 24229/7fe51c1d2700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: 69120fcc
+  Error details saved to: /tmp/passenger-error-lz0pHJ.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-08 17:18:15.4602 24229/7fe50ffff700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 69120fcc. Please see earlier logs for details about the error.
+[ 2017-08-08 17:18:15.9367 24229/7fe51cedd700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+[ 2017-08-08 17:18:32.1010 24237/7f29a5274700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+
+[ 2017-08-08 17:18:32.1010 24237/7f29abeb1780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 17:18:32.1010 24229/7fe50ffff700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 17:18:32.1011 24229/7fe523c3e780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 17:18:32.1011 24237/7f29a5274700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 17:18:32.1011 24237/7f29a4a73700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1011 24237/7f29a4a73700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 17:18:32.1012 24229/7fe50ffff700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1012 24229/7fe50e7fc700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1012 24229/7fe50d7fa700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1012 24229/7fe50dffb700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1012 24229/7fe50e7fc700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 17:18:32.1012 24229/7fe50f7fe700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1012 24229/7fe50ffff700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 17:18:32.1012 24229/7fe50d7fa700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 17:18:32.1012 24229/7fe50dffb700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 17:18:32.1013 24229/7fe50f7fe700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 17:18:32.1012 24229/7fe50effd700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1013 24229/7fe50effd700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 17:18:32.1013 24229/7fe50cff9700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1013 24229/7fe50cff9700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 17:18:32.1013 24229/7fe4cffff700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1014 24229/7fe4cffff700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 17:18:32.1014 24229/7fe4cf7fe700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 17:18:32.1014 24229/7fe4cf7fe700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 17:18:32.1016 24237/7f29abeb1780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 17:18:32.2053 24229/7fe523c3e780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 17:20:17.7540 24654/7f8478c3b780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 17:20:17.7600 24657/7fdd97024780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 17:20:17.7601 24657/7fdd97024780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 17:20:17.7662 24657/7fdd97024780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 24657
+[ 2017-08-08 17:20:17.7725 24668/7fbf40c88780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 17:20:17.7730 24668/7fbf40c88780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 24668
+App 24710 stdout: 
+App 24710 stdout: 
+[ 2017-08-08 17:20:20.0361 24657/7fdd8036c700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: c0f1b7b1
+  Error details saved to: /tmp/passenger-error-XQOoTp.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-08 17:20:20.0429 24657/7fdd837fe700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is c0f1b7b1. Please see earlier logs for details about the error.
+[ 2017-08-08 17:20:20.5038 24657/7fdd902c3700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-08 18:02:31.4443 24657/7fdd837fe700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 18:02:31.4443 24668/7fbf3a04b700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 18:02:31.4443 24657/7fdd97024780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 18:02:31.4443 24668/7fbf40c88780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 18:02:31.4443 24657/7fdd837fe700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4443 24668/7fbf3a04b700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 18:02:31.4444 24668/7fbf3984a700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4444 24657/7fdd81ffb700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4444 24657/7fdd837fe700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 18:02:31.4444 24657/7fdd827fc700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4444 24668/7fbf3984a700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 18:02:31.4444 24657/7fdd4bfff700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4444 24657/7fdd82ffd700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4444 24657/7fdd827fc700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 18:02:31.4444 24657/7fdd817fa700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4444 24657/7fdd82ffd700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 18:02:31.4444 24657/7fdd817fa700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 18:02:31.4445 24657/7fdd4affd700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4445 24657/7fdd80f78700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4444 24657/7fdd81ffb700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 18:02:31.4445 24657/7fdd4affd700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 18:02:31.4445 24657/7fdd80f78700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 18:02:31.4444 24657/7fdd4b7fe700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 18:02:31.4445 24657/7fdd4b7fe700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 18:02:31.4444 24657/7fdd4bfff700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 18:02:31.4447 24668/7fbf40c88780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 18:02:31.5472 24657/7fdd97024780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 18:02:35.9847 25202/7fde5043c780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 18:02:35.9921 25205/7faece2ca780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 18:02:35.9922 25205/7faece2ca780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 18:02:35.9978 25205/7faece2ca780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 25205
+[ 2017-08-08 18:02:36.0041 25217/7f242e362780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 18:02:36.0046 25217/7f242e362780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 25217
+App 25258 stdout: 
+App 25258 stdout: 
+[ 2017-08-08 18:02:38.2527 25205/7faec4059700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: 66b45854
+  Error details saved to: /tmp/passenger-error-M1m03m.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-08 18:02:38.2581 25205/7faec6ce7700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 66b45854. Please see earlier logs for details about the error.
+[ 2017-08-08 18:02:38.7910 25205/7faec7569700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-08 18:03:25.0229 25205/7faec6ce7700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 18:03:25.0229 25217/7f2427725700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 18:03:25.0229 25205/7faece2ca780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 18:03:25.0229 25217/7f242e362780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 18:03:25.0230 25205/7faec6ce7700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0230 25205/7faec6ce7700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 18:03:25.0230 25217/7f2427725700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 18:03:25.0230 25217/7f2426f24700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0230 25217/7f2426f24700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 18:03:25.0230 25205/7faec6465700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0230 25205/7faec6465700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 18:03:25.0231 25205/7faec5361700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0231 25205/7faec5be3700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0231 25205/7faec5be3700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 18:03:25.0231 25205/7fae8ffff700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0231 25205/7fae8ffff700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 18:03:25.0231 25205/7faec5361700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 18:03:25.0232 25205/7faec4adf700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0232 25205/7faec4adf700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 18:03:25.0232 25205/7fae8f7fe700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0232 25205/7fae8f7fe700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 18:03:25.0232 25205/7fae8effd700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0232 25205/7fae8effd700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 18:03:25.0233 25205/7fae8e7fc700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 18:03:25.0233 25205/7fae8e7fc700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 18:03:25.0234 25217/7f242e362780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 18:03:25.1294 25205/7faece2ca780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 18:08:55.9080 25536/7f6e2071c780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 18:08:55.9144 25539/7f0542641780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 18:08:55.9146 25539/7f0542641780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 18:08:55.9204 25539/7f0542641780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 25539
+[ 2017-08-08 18:08:55.9269 25549/7f1a4cee9780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 18:08:55.9275 25549/7f1a4cee9780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 25549
+App 25592 stdout: 
+App 25592 stdout: 
+[ 2017-08-08 18:08:58.2246 25539/7f053418d700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: caf3585d
+  Error details saved to: /tmp/passenger-error-znFy66.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-08 18:08:58.2296 25539/7f0537022700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is caf3585d. Please see earlier logs for details about the error.
+[ 2017-08-08 18:08:58.6591 25539/7f05378a4700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-08 18:09:02.4131 25539/7f0537022700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 18:09:02.4131 25549/7f1a462ac700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 18:09:02.4131 25539/7f0542641780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 18:09:02.4131 25549/7f1a4cee9780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 18:09:02.4131 25539/7f0537022700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4132 25539/7f0537022700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 18:09:02.4132 25549/7f1a462ac700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 18:09:02.4132 25539/7f05367a0700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4132 25549/7f1a45aab700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4132 25549/7f1a45aab700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 18:09:02.4132 25539/7f05367a0700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 18:09:02.4132 25539/7f0535f1e700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4132 25539/7f0503fff700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4132 25539/7f0535f1e700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 18:09:02.4132 25539/7f0503fff700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 18:09:02.4132 25539/7f0502ffd700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4132 25539/7f0502ffd700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 18:09:02.4132 25539/7f053569c700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4132 25539/7f053569c700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 18:09:02.4133 25539/7f0534e1a700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4133 25539/7f0534e1a700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 18:09:02.4133 25539/7f05027fc700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4133 25539/7f05027fc700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 18:09:02.4133 25539/7f05037fe700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 18:09:02.4133 25539/7f05037fe700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 18:09:02.4134 25549/7f1a4cee9780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 18:09:02.5055 25539/7f0542641780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 19:05:56.5947 26492/7f3ec9601780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 19:05:56.6008 26495/7fe2fdd0e780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 19:05:56.6009 26495/7fe2fdd0e780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 19:05:56.6065 26495/7fe2fdd0e780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 26495
+[ 2017-08-08 19:05:56.6133 26505/7f4259161780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 19:05:56.6138 26505/7f4259161780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 26505
+App 26548 stdout: 
+App 26548 stdout: 
+[ 2017-08-08 19:05:58.8603 26495/7fe2f4097700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: 90885223
+  Error details saved to: /tmp/passenger-error-Mn2Yl5.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-08 19:05:58.8657 26495/7fe2f672b700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 90885223. Please see earlier logs for details about the error.
+[ 2017-08-08 19:05:59.4024 26495/7fe2f6fad700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-08 19:06:17.3318 26495/7fe2f672b700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:06:17.3318 26505/7f4252524700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:06:17.3318 26495/7fe2fdd0e780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:06:17.3319 26505/7f4259161780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:06:17.3319 26495/7fe2f672b700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3319 26505/7f4252524700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 19:06:17.3320 26505/7f4251d23700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3320 26495/7fe2f672b700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 19:06:17.3320 26495/7fe2f5ea9700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3320 26505/7f4251d23700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 19:06:17.3320 26495/7fe2f4da5700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3320 26495/7fe2f5ea9700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 19:06:17.3320 26495/7fe2f4da5700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 19:06:17.3322 26495/7fe2c3fff700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3322 26495/7fe2c3fff700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 19:06:17.3322 26495/7fe2c2ffd700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3322 26495/7fe2c2ffd700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 19:06:17.3322 26495/7fe2c1ffb700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3323 26495/7fe2c27fc700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3323 26495/7fe2c1ffb700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 19:06:17.3323 26495/7fe2c37fe700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3323 26495/7fe2c37fe700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 19:06:17.3323 26495/7fe2c27fc700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 19:06:17.3323 26495/7fe2f5627700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 19:06:17.3324 26495/7fe2f5627700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 19:06:17.3326 26505/7f4259161780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 19:06:17.4372 26495/7fe2fdd0e780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 19:08:33.8618 26587/7f02d9b39780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 19:08:33.8681 26590/7f86ae4f5780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 19:08:33.8682 26590/7f86ae4f5780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 19:08:33.8741 26590/7f86ae4f5780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 26590
+[ 2017-08-08 19:08:33.8807 26600/7f707dffe780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 19:08:33.8813 26600/7f707dffe780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 26600
+App 26643 stdout: 
+App 26643 stdout: 
+[ 2017-08-08 19:08:36.1226 26590/7f86a005f700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: d8f87bcb
+  Error details saved to: /tmp/passenger-error-246sg6.html
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/lib/ruby/vendor_ruby/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/share/passenger/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-08 19:08:36.1291 26590/7f86a2ef4700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is d8f87bcb. Please see earlier logs for details about the error.
+[ 2017-08-08 19:08:36.6182 26590/7f86a3776700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+
+[ 2017-08-08 19:08:38.9636 26590/7f86a2ef4700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:08:38.9636 26600/7f70773c1700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:08:38.9637 26590/7f86ae4f5780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:08:38.9637 26600/7f707dffe780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:08:38.9638 26590/7f86a2ef4700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9638 26600/7f70773c1700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 19:08:38.9638 26590/7f86a2672700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9638 26590/7f86a2ef4700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 19:08:38.9639 26590/7f86a2672700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 19:08:38.9638 26590/7f86a0cec700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9639 26590/7f86a0cec700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 19:08:38.9639 26590/7f866f7fe700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9640 26590/7f866f7fe700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 19:08:38.9640 26600/7f7076bc0700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9640 26600/7f7076bc0700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 19:08:38.9640 26590/7f86a156e700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9640 26590/7f86a156e700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 19:08:38.9640 26590/7f86a1df0700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9641 26590/7f86a1df0700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 19:08:38.9641 26590/7f866ffff700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9641 26590/7f866ffff700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 19:08:38.9641 26590/7f866e7fc700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9642 26590/7f866e7fc700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 19:08:38.9642 26590/7f866effd700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 19:08:38.9642 26590/7f866effd700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 19:08:38.9669 26600/7f707dffe780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 19:08:39.0676 26590/7f86ae4f5780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 19:10:52.9938 26739/7fcf61dcd740 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 19:10:52.9961 26742/7fbe5dfbf740 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 19:10:52.9962 26742/7fbe5dfbf740 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 19:10:53.0011 26742/7fbe5dfbf740 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 26742
+[ 2017-08-08 19:10:53.0040 26750/7fbba41c4740 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 19:10:53.0044 26750/7fbba41c4740 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 26750
+App 26794 stdout: 
+App 26794 stdout: 
+[ 2017-08-08 19:10:55.2421 26742/7fbe5c041700 age/Cor/App/Implementation.cpp:304 ]: Could not spawn process for application /root/submit: An error occurred while starting up the preloader.
+  Error ID: 69ac3ae7
+  Error details saved to: /tmp/passenger-error.D6HDwK
+  Message from application: cannot load such file -- bundler/setup (LoadError)
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+  /usr/local/rvm/gems/ruby-2.1.2/gems/passenger-5.1.7/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:430:in `activate_gem'
+  /usr/local/rvm/gems/ruby-2.1.2/gems/passenger-5.1.7/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:297:in `block in run_load_path_setup_code'
+  /usr/local/rvm/gems/ruby-2.1.2/gems/passenger-5.1.7/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:435:in `running_bundler'
+  /usr/local/rvm/gems/ruby-2.1.2/gems/passenger-5.1.7/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:296:in `run_load_path_setup_code'
+  /usr/local/rvm/gems/ruby-2.1.2/gems/passenger-5.1.7/src/helper-scripts/rack-preloader.rb:100:in `preload_app'
+  /usr/local/rvm/gems/ruby-2.1.2/gems/passenger-5.1.7/src/helper-scripts/rack-preloader.rb:156:in `<module:App>'
+  /usr/local/rvm/gems/ruby-2.1.2/gems/passenger-5.1.7/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+  /usr/local/rvm/gems/ruby-2.1.2/gems/passenger-5.1.7/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+
+
+[ 2017-08-08 19:10:55.2470 26742/7fbe575ec700 age/Cor/Con/CheckoutSession.cpp:285 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 69ac3ae7. Please see earlier logs for details about the error.
+[ 2017-08-08 19:10:55.7319 26742/7fbe5d7cd700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+
+[ 2017-08-08 19:11:42.0750 26742/7fbe575ec700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:11:42.0751 26742/7fbe5dfbf740 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:11:42.0752 26742/7fbe56deb700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0752 26742/7fbe56deb700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 19:11:42.0752 26742/7fbe565ea700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0753 26742/7fbe565ea700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 19:11:42.0753 26742/7fbe55de9700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0753 26742/7fbe55de9700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 19:11:42.0753 26742/7fbe55567700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0753 26742/7fbe55567700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 19:11:42.0754 26742/7fbe54ce5700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0754 26742/7fbe54ce5700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 19:11:42.0754 26742/7fbe1bfff700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0754 26742/7fbe1bfff700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 19:11:42.0755 26742/7fbe1b7fe700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0755 26742/7fbe1b7fe700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 19:11:42.0756 26742/7fbe575ec700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0756 26742/7fbe575ec700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 19:11:42.0756 26742/7fbe1affd700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0757 26742/7fbe1affd700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+
+[ 2017-08-08 19:11:42.0760 26750/7fbba2136700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:11:42.0760 26750/7fbba41c4740 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:11:42.0761 26750/7fbba1935700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:11:42.0761 26750/7fbba1935700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 19:11:42.0763 26750/7fbba2136700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 19:11:42.0765 26750/7fbba41c4740 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 19:11:42.1702 26742/7fbe5dfbf740 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 19:13:56.1993 27418/7f1c1ab19740 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 19:13:56.2017 27421/7f0564dcc740 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 19:13:56.2018 27421/7f0564dcc740 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 19:13:56.2070 27421/7f0564dcc740 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 27421
+[ 2017-08-08 19:13:56.2099 27429/7f7d2c65c740 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 19:13:56.2102 27429/7f7d2c65c740 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 27429
+App 27473 stdout: 
+[ 2017-08-08 19:13:58.9456 27421/7f05645da700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+App 27473 stderr: config.eager_load is set to nil. Please update your config/environments/*.rb files accordingly:
+App 27473 stderr: 
+App 27473 stderr:   * development - set it to false
+App 27473 stderr:   * test - set it to false (unless you use a tool that preloads your test environment)
+App 27473 stderr:   * production - set it to true
+App 27473 stderr: 
+App 27491 stdout: 
+
+
+[ 2017-08-08 19:14:17.2293 27429/7f7d2a5ce700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:14:17.2294 27421/7f056253d700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:14:17.2294 27429/7f7d2c65c740 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:14:17.2295 27421/7f0564dcc740 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:14:17.2295 27429/7f7d2a5ce700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 19:14:17.2295 27429/7f7d29dcd700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2295 27421/7f0564dcc740 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 27491, application /root/submit/public (development)
+[ 2017-08-08 19:14:17.2295 27429/7f7d29dcd700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 19:14:17.2297 27421/7f0532ffd700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2297 27421/7f05327fc700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2298 27421/7f0532ffd700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 19:14:17.2298 27421/7f05327fc700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 19:14:17.2299 27421/7f0561d3c700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2299 27421/7f0561d3c700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 19:14:17.2297 27421/7f0560c38700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2299 27421/7f0560c38700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 19:14:17.2300 27421/7f0533fff700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2300 27421/7f0533fff700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 19:14:17.2300 27421/7f05337fe700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2301 27421/7f05337fe700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 19:14:17.2301 27429/7f7d2c65c740 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 19:14:17.2301 27421/7f05614ba700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2301 27421/7f05614ba700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 19:14:17.2302 27421/7f056253d700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2302 27421/7f056253d700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 19:14:17.2302 27421/7f0531ffb700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:14:17.2303 27421/7f0531ffb700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 19:14:17.2303 27421/7f0564dcc740 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 27491, application /root/submit/public (development)
+[ 2017-08-08 19:14:17.5340 27421/7f0564dcc740 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 19:14:36.5808 27525/7f85b46cb740 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 19:14:36.5830 27528/7fd7d24e6740 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 19:14:36.5831 27528/7fd7d24e6740 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 19:14:36.5885 27528/7fd7d24e6740 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 27528
+[ 2017-08-08 19:14:36.5915 27536/7f5dd109e740 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 19:14:36.5919 27536/7f5dd109e740 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 27536
+App 27582 stdout: 
+[ 2017-08-08 19:14:39.3218 27528/7fd7d1cf4700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+App 27582 stderr: config.eager_load is set to nil. Please update your config/environments/*.rb files accordingly:
+App 27582 stderr: 
+App 27582 stderr:   * development - set it to false
+App 27582 stderr:   * test - set it to false (unless you use a tool that preloads your test environment)
+App 27582 stderr:   * production - set it to true
+App 27582 stderr: 
+App 27598 stdout: 
+
+
+[ 2017-08-08 19:15:36.4702 27536/7f5dcf010700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:15:36.4702 27528/7fd7cb7fe700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:15:36.4703 27536/7f5dd109e740 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:15:36.4703 27528/7fd7d24e6740 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:15:36.4703 27536/7f5dcf010700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 19:15:36.4704 27528/7fd7d24e6740 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 27598, application /root/submit/public (development)
+[ 2017-08-08 19:15:36.4704 27536/7f5dce80f700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4704 27536/7f5dce80f700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 19:15:36.4705 27528/7fd7cb7fe700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4705 27528/7fd7caffd700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4705 27528/7fd7cb7fe700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 19:15:36.4706 27528/7fd7caffd700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 19:15:36.4706 27528/7fd7ca7fc700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4706 27528/7fd7ca7fc700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 19:15:36.4706 27528/7fd7c9ffb700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4707 27528/7fd78effd700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4707 27528/7fd7c9ffb700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 19:15:36.4707 27528/7fd78effd700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 19:15:36.4707 27528/7fd78f7fe700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4707 27528/7fd78f7fe700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 19:15:36.4708 27528/7fd7c8ff9700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4708 27528/7fd7c8ff9700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 19:15:36.4708 27528/7fd7c97fa700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4708 27528/7fd7c97fa700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 19:15:36.4708 27528/7fd78ffff700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 19:15:36.4708 27528/7fd78ffff700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 19:15:36.4709 27528/7fd7d24e6740 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 27598, application /root/submit/public (development)
+[ 2017-08-08 19:15:36.4709 27536/7f5dd109e740 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 19:15:36.7738 27528/7fd7d24e6740 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 19:32:15.5054 28451/7f926a673740 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 19:32:15.5078 28454/7f3920f33740 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 19:32:15.5079 28454/7f3920f33740 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 19:32:15.5134 28454/7f3920f33740 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 28454
+[ 2017-08-08 19:32:15.5161 28462/7fb4b7731740 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 19:32:15.5165 28462/7fb4b7731740 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 28462
+App 28508 stdout: 
+[ 2017-08-08 19:32:18.2459 28454/7f3920741700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+App 28508 stderr: config.eager_load is set to nil. Please update your config/environments/*.rb files accordingly:
+App 28508 stderr: 
+App 28508 stderr:   * development - set it to false
+App 28508 stderr:   * test - set it to false (unless you use a tool that preloads your test environment)
+App 28508 stderr:   * production - set it to true
+App 28508 stderr: 
+App 28524 stdout: 
+
+
+[ 2017-08-08 19:32:27.6848 28454/7f391e6a4700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:32:27.6848 28462/7fb4b56a3700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 19:32:27.6849 28462/7fb4b7731740 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:32:27.6849 28454/7f3920f33740 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 19:32:27.6850 28454/7f3920f33740 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 28524, application /root/submit/public (development)
+[ 2017-08-08 19:32:27.6850 28462/7fb4b56a3700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 19:32:27.6850 28462/7fb4b4ea2700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6850 28462/7fb4b4ea2700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 19:32:27.6851 28454/7f391dea3700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6851 28454/7f38ea7fc700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6852 28454/7f391d621700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6852 28454/7f391dea3700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 19:32:27.6852 28454/7f38ea7fc700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 19:32:27.6852 28454/7f391d621700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 19:32:27.6853 28454/7f391cd9f700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6853 28454/7f391cd9f700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 19:32:27.6854 28454/7f38eaffd700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6854 28454/7f38e9ffb700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6854 28454/7f38eaffd700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 19:32:27.6854 28454/7f38e9ffb700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 19:32:27.6854 28462/7fb4b7731740 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 19:32:27.6855 28454/7f38eb7fe700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6855 28454/7f38eb7fe700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 19:32:27.6855 28454/7f391e6a4700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6855 28454/7f391e6a4700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 19:32:27.6856 28454/7f38ebfff700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 19:32:27.6856 28454/7f38ebfff700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 19:32:27.6857 28454/7f3920f33740 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 28524, application /root/submit/public (development)
+[ 2017-08-08 19:32:27.9886 28454/7f3920f33740 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 20:09:26.3508 28661/7fab64a35780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 20:09:26.3568 28664/7f5538f62780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 20:09:26.3569 28664/7f5538f62780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 20:09:26.3621 28664/7f5538f62780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 28664
+[ 2017-08-08 20:09:26.3683 28674/7f3b10ecd780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 20:09:26.3689 28674/7f3b10ecd780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 28674
+App 28719 stdout: 
+App 28719 stderr: config.eager_load is set to nil. Please update your config/environments/*.rb files accordingly:
+App 28719 stderr: 
+App 28719 stderr:   * development - set it to false
+App 28719 stderr:   * test - set it to false (unless you use a tool that preloads your test environment)
+App 28719 stderr:   * production - set it to true
+App 28719 stderr: 
+[ 2017-08-08 20:09:29.1582 28664/7f5532201700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+App 28734 stdout: 
+
+
+[ 2017-08-08 20:09:47.2783 28664/7f553197f700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 20:09:47.2783 28674/7f3b0a290700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 20:09:47.2783 28664/7f5538f62780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 20:09:47.2783 28674/7f3b10ecd780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 20:09:47.2783 28664/7f5538f62780 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 28734, application /root/submit/public (development)
+[ 2017-08-08 20:09:47.2784 28674/7f3b09a8f700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2784 28674/7f3b0a290700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 20:09:47.2784 28674/7f3b09a8f700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 20:09:47.2784 28664/7f553087b700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2784 28664/7f5513f7e700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2784 28664/7f55125f8700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2784 28664/7f5512e7a700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2784 28664/7f553087b700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 20:09:47.2784 28664/7f5513f7e700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 20:09:47.2784 28664/7f5512e7a700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 20:09:47.2784 28664/7f55136fc700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2784 28664/7f55125f8700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 20:09:47.2785 28664/7f55136fc700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 20:09:47.2785 28664/7f5511d76700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2785 28664/7f5511d76700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 20:09:47.2785 28664/7f55114f4700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2785 28664/7f55310fd700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2785 28664/7f55114f4700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 20:09:47.2785 28664/7f55310fd700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 20:09:47.2786 28664/7f553197f700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 20:09:47.2786 28664/7f553197f700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 20:09:47.2786 28664/7f5538f62780 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 28734, application /root/submit/public (development)
+[ 2017-08-08 20:09:47.2786 28674/7f3b10ecd780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 20:09:47.5819 28664/7f5538f62780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 20:54:44.7116 28848/7f569ed0d780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 20:54:44.7176 28851/7fc5de2dd780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 20:54:44.7177 28851/7fc5de2dd780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 20:54:44.7235 28851/7fc5de2dd780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 28851
+[ 2017-08-08 20:54:44.7300 28861/7f056ceea780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 20:54:44.7305 28861/7f056ceea780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 28861
+App 28906 stdout: 
+[ 2017-08-08 20:54:47.5386 28851/7fc5d757c700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+App 28906 stderr: config.eager_load is set to nil. Please update your config/environments/*.rb files accordingly:
+App 28906 stderr: 
+App 28906 stderr:   * development - set it to false
+App 28906 stderr:   * test - set it to false (unless you use a tool that preloads your test environment)
+App 28906 stderr:   * production - set it to true
+App 28906 stderr: 
+App 28921 stdout: 
+
+
+[ 2017-08-08 20:56:47.4061 28851/7fc5d6cfa700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 20:56:47.4061 28861/7f05662ad700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 20:56:47.4062 28861/7f056ceea780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 20:56:47.4062 28851/7fc5de2dd780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 20:56:47.4063 28851/7fc5de2dd780 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 28921, application /root/submit/public (development)
+[ 2017-08-08 20:56:47.4063 28861/7f05662ad700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 20:56:47.4063 28861/7f0565aac700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4064 28861/7f0565aac700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 20:56:47.4066 28851/7fc5d5bf6700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4066 28851/7fc5d5bf6700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 20:56:47.4066 28851/7fc5d5374700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4067 28851/7fc5d5374700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 20:56:47.4067 28851/7fc5d4af2700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4067 28851/7fc59e7fc700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4068 28851/7fc59ffff700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4068 28851/7fc59e7fc700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 20:56:47.4068 28851/7fc59ffff700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 20:56:47.4067 28851/7fc5d4af2700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 20:56:47.4068 28851/7fc59f7fe700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4069 28851/7fc59f7fe700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 20:56:47.4069 28851/7fc59effd700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4069 28851/7fc59effd700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 20:56:47.4070 28851/7fc5d6478700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4070 28851/7fc5d6478700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 20:56:47.4070 28851/7fc5d6cfa700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 20:56:47.4070 28851/7fc5d6cfa700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 20:56:47.4071 28861/7f056ceea780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 20:56:47.4071 28851/7fc5de2dd780 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 28921, application /root/submit/public (development)
+[ 2017-08-08 20:56:47.7106 28851/7fc5de2dd780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished
+[ 2017-08-08 20:56:56.2052 28997/7f182f492780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-08 20:56:56.2110 29000/7fd797796780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-08 20:56:56.2112 29000/7fd797796780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-08 20:56:56.2168 29000/7fd797796780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 29000
+[ 2017-08-08 20:56:56.2233 29008/7f3ccb780780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-08 20:56:56.2240 29008/7f3ccb780780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 29008
+App 29055 stdout: 
+[ 2017-08-08 20:56:58.9593 29000/7fd790a35700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+App 29055 stderr: config.eager_load is set to nil. Please update your config/environments/*.rb files accordingly:
+App 29055 stderr: 
+App 29055 stderr:   * development - set it to false
+App 29055 stderr:   * test - set it to false (unless you use a tool that preloads your test environment)
+App 29055 stderr:   * production - set it to true
+App 29055 stderr: 
+App 29070 stdout: 
+
+[ 2017-08-08 21:11:38.1024 29008/7f3cc4b43700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+
+[ 2017-08-08 21:11:38.1024 29008/7f3ccb780780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 21:11:38.1024 29000/7fd783fff700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-08 21:11:38.1025 29008/7f3cbffff700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1025 29008/7f3cc4b43700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-08 21:11:38.1025 29008/7f3cbffff700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-08 21:11:38.1025 29000/7fd797796780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-08 21:11:38.1026 29000/7fd797796780 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 29070, application /root/submit/public (development)
+[ 2017-08-08 21:11:38.1027 29000/7fd783fff700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1027 29000/7fd7837fe700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1027 29000/7fd782ffd700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1027 29000/7fd7827fc700 Ser/Server.h:862 ]: [ServerThr.4] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1027 29000/7fd7837fe700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-08 21:11:38.1027 29000/7fd783fff700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-08 21:11:38.1027 29000/7fd782ffd700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-08 21:11:38.1027 29000/7fd7827fc700 Ser/Server.h:490 ]: [ServerThr.4] Shutdown finished
+[ 2017-08-08 21:11:38.1027 29000/7fd780e76700 Ser/Server.h:862 ]: [ServerThr.7] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1028 29000/7fd781f7a700 Ser/Server.h:862 ]: [ServerThr.5] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1028 29000/7fd780e76700 Ser/Server.h:490 ]: [ServerThr.7] Shutdown finished
+[ 2017-08-08 21:11:38.1028 29000/7fd781f7a700 Ser/Server.h:490 ]: [ServerThr.5] Shutdown finished
+[ 2017-08-08 21:11:38.1028 29000/7fd7437fe700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1028 29000/7fd7816f8700 Ser/Server.h:862 ]: [ServerThr.6] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1028 29000/7fd7437fe700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-08 21:11:38.1028 29000/7fd7816f8700 Ser/Server.h:490 ]: [ServerThr.6] Shutdown finished
+[ 2017-08-08 21:11:38.1029 29008/7f3ccb780780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-08 21:11:38.1031 29000/7fd743fff700 Ser/Server.h:862 ]: [ServerThr.8] Freed 0 spare client objects
+[ 2017-08-08 21:11:38.1031 29000/7fd743fff700 Ser/Server.h:490 ]: [ServerThr.8] Shutdown finished
+[ 2017-08-08 21:11:38.1031 29000/7fd797796780 age/Cor/CoreMain.cpp:917 ]: Checking whether to disconnect long-running connections for process 29070, application /root/submit/public (development)
+[ 2017-08-08 21:11:38.4061 29000/7fd797796780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished

@@ -35,3 +35,4 @@ function doPoll(startTime){
     		$.get('outputs/' + v.id);
     	}
     });
+}

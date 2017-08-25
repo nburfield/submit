@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :assignments
 
   delete 'submissions/outputs/:id' => 'submissions#delete_outputs', :as => :delete_outputs
+  get 'submissions/delete/:id' => 'submissions#remove_outputs', :as => :remove_outputs
   get 'submissions/outputs/:id' => 'submissions#run_save_update', :as => :run_save_update
   get 'submissions/data/:id' => 'submissions#get_data', :as => :get_data
   get 'submissions/run_program/:id' => 'submissions#run', :as => :run_submission

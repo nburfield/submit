@@ -1,0 +1,72 @@
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+10.56.219.135 - - [22/Aug/2017 19:33:20] "POST /testcase HTTP/1.1" 500 -
+10.56.219.135 - - [22/Aug/2017 19:33:54] "POST /testcase HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "app.py", line 287, in <module>
+    app.run(host='0.0.0.0')	  	
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/flask/app.py", line 772, in run
+    run_simple(host, port, self, **options)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 739, in run_simple
+    inner()
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 699, in inner
+    fd=fd)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 593, in make_server
+    passthrough_errors, ssl_context, fd=fd)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 504, in __init__
+    HTTPServer.__init__(self, (host, int(port)), handler)
+  File "/usr/lib/python3.5/socketserver.py", line 440, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.5/http/server.py", line 138, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.5/socketserver.py", line 454, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+Traceback (most recent call last):
+  File "app.py", line 287, in <module>
+    app.run(host='0.0.0.0')	  	
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/flask/app.py", line 772, in run
+    run_simple(host, port, self, **options)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 739, in run_simple
+    inner()
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 699, in inner
+    fd=fd)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 593, in make_server
+    passthrough_errors, ssl_context, fd=fd)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 504, in __init__
+    HTTPServer.__init__(self, (host, int(port)), handler)
+  File "/usr/lib/python3.5/socketserver.py", line 440, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.5/http/server.py", line 138, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.5/socketserver.py", line 454, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+10.56.219.135 - - [22/Aug/2017 20:18:52] "POST /testcase HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "app.py", line 287, in <module>
+    app.run(host='0.0.0.0')	  	
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/flask/app.py", line 772, in run
+    run_simple(host, port, self, **options)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 739, in run_simple
+    inner()
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 699, in inner
+    fd=fd)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 593, in make_server
+    passthrough_errors, ssl_context, fd=fd)
+  File "/root/submit/FlaskApp/my_env/lib/python3.5/site-packages/werkzeug/serving.py", line 504, in __init__
+    HTTPServer.__init__(self, (host, int(port)), handler)
+  File "/usr/lib/python3.5/socketserver.py", line 440, in __init__
+    self.server_bind()
+  File "/usr/lib/python3.5/http/server.py", line 138, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib/python3.5/socketserver.py", line 454, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+10.56.219.135 - - [22/Aug/2017 20:21:02] "POST /testcase HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "app.py", line 1, in <module>
+    from flask import Flask, request, g
+ImportError: No module named 'flask'
+10.56.219.135 - - [22/Aug/2017 20:38:23] "POST /testcase HTTP/1.1" 500 -
+10.56.219.135 - - [22/Aug/2017 20:38:33] "POST /testcase HTTP/1.1" 500 -
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)

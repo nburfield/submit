@@ -12,6 +12,7 @@ from celery import Celery
 
 static_directory = os.environ["SUBMIT_COMPILE_PATH"]
 app = Flask(__name__)
+ip_for_submit = '10.63.162.136:8080'
 
 #celery = Celery(app.name, backend='amqp://guest:guest@localhost:5672//', broker='amqp://guest:guest@localhost:5672//')
 celery = Celery(app.name, backend='rpc://', broker='pyamqp://')
@@ -60,7 +61,7 @@ def test():
 	key = g.get('key')
 	dataout = my_testcase.delay(json, key)
 	headers = {'Content-Type' : 'application/json'}
-	h = http.client.HTTPConnection('hpcvis3.cse.unr.edu:3000')
+	h = http.client.HTTPConnection(ip_for_submit)
 	h.request('POST', '/api_submission/create_output/' + str(json['details']["test_case_id"]), dataout.get(), headers )
 	return m
 
@@ -268,7 +269,7 @@ def call_after_requests(response):
 
 def send(string, ID):
 	headers = {'Content-Type' : 'application/json'}
-	h = http.client.HTTPConnection('hpcvis3.cse.unr.edu:3000')
+	h = http.client.HTTPConnection(ip_for_submit)
 	h.request('POST','/api_submission/run_program/' + str(ID) , string, headers)
 	return
 

@@ -104,7 +104,7 @@ class TestCasesController < ApplicationController
     puts json
 
     # Test Case sending to Flask app
-    uri = URI('http://hpcvis6.cse.unr.edu:5000/testcase')
+    uri = URI('http://hpcvis3.cse.unr.edu:5000/testcase')
     http = Net::HTTP.new(uri.host, uri.port)
     req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
     req.body = {:details => @details, :RunMethods => @RunMethods, :sourcefiles => @sourcefiles, :sharedfiles => @makefile}.to_json

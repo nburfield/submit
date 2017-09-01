@@ -80,13 +80,19 @@ def my_submissiontask(json, key):
 				os.chmod(filepath, mode=0o777)
 				f.write(str(x['content']))
 				f.close
-		
-	for x in json['sharedfiles'].keys():
-		filepath = directory + '/' + json['sharedfiles']['name']
-		if  json['sharedfiles'][x] != json['sharedfiles']['name'] :
-			with open(filepath, 'w') as f:
-				f.write(json['sharedfiles'][x])
-				f.close
+	for x in json['sharedfiles']:
+		if x != None :
+			filepath = directory + '/' + x['name']
+			with open(filepath, 'w') as f :
+				os.chmod(filepath, mode=0o777)
+				f.write(str(x['content']))
+				f.close 	
+	#for x in json['sharedfiles'].keys():
+	#	filepath = directory + '/' + json['sharedfiles']['name']
+	#	if  json['sharedfiles'][x] != json['sharedfiles']['name'] :
+	#		with open(filepath, 'w') as f:
+	#			f.write(json['sharedfiles'][x])
+	#			f.close
  
 	# Make the submission string
 	submission = {"id" : json['details']["sid"]}
@@ -185,13 +191,19 @@ def my_testcase(json, key):
 				os.chmod(filepath, mode=0o777)
 				f.write(str(x['content']))
 				f.close 
-
-	for x in json['sharedfiles'].keys():
-		filepath = directory + '/' + json['sharedfiles']['name']
-		if json['sharedfiles'][x] != json['sharedfiles']['name'] :
-			with open(filepath, 'w') as f:
-				f.write(json['sharedfiles'][x])
-				f.close
+	for x in json['sharedfiles']:
+		if x != None :
+			filepath = directory + '/' + x['name']
+			with open(filepath, 'w') as f :
+				os.chmod(filepath, mode=0o777)
+				f.write(str(x['content']))
+				f.close 
+	#for x in json['sharedfiles'].keys():
+	#	filepath = directory + '/' + json['sharedfiles']['name']
+	#	if json['sharedfiles'][x] != json['sharedfiles']['name'] :
+	#		with open(filepath, 'w') as f:
+	#			f.write(json['sharedfiles'][x])
+	#			f.close
 
 	testcase = {"id" : json['details']['test_case_id']}
 

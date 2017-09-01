@@ -155,16 +155,16 @@ class SubmissionsController < ApplicationController
       end
     end
 
-    @assignment.test_case.upload_data.map do |upload_datum|
+    @sharedfiles = @assignment.test_case.upload_data.map do |upload_datum|
       if upload_datum.shared
-        @sharedfiles = { :name => upload_datum.name,  :content => upload_datum.contents}
+        { :name => upload_datum.name,  :content => upload_datum.contents}
       end
     end
 
     json = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json
 
     # Run the call to the Flask App
-    uri = URI('http://hpcvis6.cse.unr.edu:5000/submission')
+    uri = URI('http://hpcvis3.cse.unr.edu:5000/submission')
     http = Net::HTTP.new(uri.host, uri.port)
     req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
     req.body = {:details => @details, :RunMethods => @RunMethods, :studentfiles => @studentfiles, :sharedfiles => @sharedfiles}.to_json

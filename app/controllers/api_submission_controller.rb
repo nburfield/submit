@@ -61,7 +61,6 @@ class ApiSubmissionController < BaseApiController
   def output   
     test_case = TestCase.find(@json['testcase']['id'])
     verify_key = @json['key']
-    
     if test_case.key == verify_key
        test_case.assignment.remove_saved_runs
 

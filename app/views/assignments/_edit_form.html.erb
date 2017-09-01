@@ -1,5 +1,4 @@
 <%= render "shared/error_messages", :target => @assignment %>
-
 <style>
   button{
     font-size: 14pt;
@@ -17,6 +16,7 @@ function goBack() {
     window.history.back();
 }
 </script>
+
 <%= form_for @assignment, url: assignment_url(@assignment), method: :patch do |f| %>
   <%= f.text_field :name, :placeholder => 'Assignment Name' %><br>
   <%= f.number_field :total_grade, :class => 'text_field', :step => 0.5, :placeholder => 'Points Possible' %><br>

@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -69,3 +69,16 @@ gem 'rubyzip'
 
 # LDAP related for Authlogic
 gem 'net-ldap', '0.14.0'
+
+#passenger
+gem "passenger", ">=5.0.25", require: "phusion_passenger/rack_handler"
+
+#bootstrap for calendar
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails'
+
+#secure cookies
+#gem 'devise'
+#gem 'devise_ssl_session_verifiable'
+#gem 'openssl'
+#gem 'rack-ssl'

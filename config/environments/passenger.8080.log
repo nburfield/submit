@@ -1,0 +1,30 @@
+[ 2017-08-25 19:09:15.3218 18339/7fb56b9a4780 age/Wat/WatchdogMain.cpp:1283 ]: Starting Passenger watchdog...
+[ 2017-08-25 19:09:15.3373 18342/7f7c52e87780 age/Cor/CoreMain.cpp:1083 ]: Starting Passenger core...
+[ 2017-08-25 19:09:15.3377 18342/7f7c52e87780 age/Cor/CoreMain.cpp:248 ]: Passenger core running in multi-application mode.
+[ 2017-08-25 19:09:15.3484 18342/7f7c52e87780 age/Cor/CoreMain.cpp:830 ]: Passenger core online, PID 18342
+[ 2017-08-25 19:09:15.3651 18352/7f2ae60de780 age/Ust/UstRouterMain.cpp:537 ]: Starting Passenger UstRouter...
+[ 2017-08-25 19:09:15.3664 18352/7f2ae60de780 age/Ust/UstRouterMain.cpp:350 ]: Passenger UstRouter online, PID 18352
+2017/08/25 19:09:17 [error] 18367#0: *4 "/root/submit/config/environments/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+2017/08/25 19:09:18 [error] 18367#0: *5 "/root/submit/config/environments/public/index.html" is not found (2: No such file or directory), client: 10.63.162.1, server: _, request: "GET / HTTP/1.1", host: "submit.cse.unr.edu"
+[ 2017-08-25 19:09:18.1189 18342/7f7c4c24a700 age/Cor/SecurityUpdateChecker.h:374 ]: Security update check: no update found (next check in 24 hours)
+2017/08/25 19:09:20 [error] 18367#0: *6 "/root/submit/config/environments/public/index.html" is not found (2: No such file or directory), client: 10.63.162.1, server: _, request: "GET / HTTP/1.1", host: "submit.cse.unr.edu"
+2017/08/25 19:09:20 [error] 18367#0: *6 open() "/root/submit/config/environments/public/favicon.ico" failed (2: No such file or directory), client: 10.63.162.1, server: _, request: "GET /favicon.ico HTTP/1.1", host: "submit.cse.unr.edu", referrer: "https://submit.cse.unr.edu/"
+
+[ 2017-08-25 19:10:09.6436 18342/7f7c3f7fe700 age/Cor/CoreMain.cpp:588 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+
+[ 2017-08-25 19:10:09.6437 18352/7f2adf4a1700 age/Ust/UstRouterMain.cpp:430 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2017-08-25 19:10:09.6438 18342/7f7c52e87780 age/Cor/CoreMain.cpp:1002 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-25 19:10:09.6439 18352/7f2ae60de780 age/Ust/UstRouterMain.cpp:500 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2017-08-25 19:10:09.6439 18342/7f7c3effd700 Ser/Server.h:862 ]: [ServerThr.2] Freed 0 spare client objects
+[ 2017-08-25 19:10:09.6439 18342/7f7c3effd700 Ser/Server.h:490 ]: [ServerThr.2] Shutdown finished
+[ 2017-08-25 19:10:09.6439 18342/7f7c3e7fc700 Ser/Server.h:862 ]: [ServerThr.3] Freed 0 spare client objects
+[ 2017-08-25 19:10:09.6439 18352/7f2adeca0700 Ser/Server.h:862 ]: [UstRouterApiServer] Freed 0 spare client objects
+[ 2017-08-25 19:10:09.6439 18342/7f7c3e7fc700 Ser/Server.h:490 ]: [ServerThr.3] Shutdown finished
+[ 2017-08-25 19:10:09.6440 18352/7f2adeca0700 Ser/Server.h:490 ]: [UstRouterApiServer] Shutdown finished
+[ 2017-08-25 19:10:09.6440 18342/7f7c3f7fe700 Ser/Server.h:862 ]: [ServerThr.1] Freed 0 spare client objects
+[ 2017-08-25 19:10:09.6441 18342/7f7c3f7fe700 Ser/Server.h:490 ]: [ServerThr.1] Shutdown finished
+[ 2017-08-25 19:10:09.6443 18342/7f7c3dffb700 Ser/Server.h:862 ]: [ApiServer] Freed 0 spare client objects
+[ 2017-08-25 19:10:09.6443 18352/7f2adf4a1700 Ser/Server.h:490 ]: [UstRouter] Shutdown finished
+[ 2017-08-25 19:10:09.6443 18342/7f7c3dffb700 Ser/Server.h:490 ]: [ApiServer] Shutdown finished
+[ 2017-08-25 19:10:09.6447 18352/7f2ae60de780 age/Ust/UstRouterMain.cpp:531 ]: Passenger UstRouter shutdown finished
+[ 2017-08-25 19:10:09.6883 18342/7f7c52e87780 age/Cor/CoreMain.cpp:1068 ]: Passenger core shutdown finished

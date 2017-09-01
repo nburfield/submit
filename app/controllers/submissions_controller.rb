@@ -376,11 +376,11 @@ class SubmissionsController < ApplicationController
       #html = File.read(fileDirectory)
       html = html_top + html_name + html_title + html_center1 + html_grade + html_center2 + html_note + html_center3 + html_output + html_end
       kit = PDFKit.new(html, :page_size => 'Letter')
-      data = kit.to_pdf
+      # data = kit.to_pdf
 
       # Add File to the student, and delete
-      upload = submission.upload_data.new()
-      upload.create_file('Grade File', data, 'application/pdf')
+      # upload = submission.upload_data.new()
+      # upload.create_file('Grade File', data, 'application/pdf')
       end
 end
 

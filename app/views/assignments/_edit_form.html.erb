@@ -30,3 +30,10 @@ function goBack() {
   <%= f.submit "Save" %>
 <% end %>
 
+<script>
+  $(document).on("ready", function() {
+    $('#assignment_start_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime())});
+    $('#assignment_due_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime()) + 604800});
+  });
+</script>
+

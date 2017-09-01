@@ -22,16 +22,18 @@ function goBack() {
   <%= f.number_field :total_grade, :class => 'text_field', :step => 0.5, :placeholder => 'Points Possible' %><br>
   <%= f.text_area :description, :placeholder => 'Assignment Description' %><br>
   <%= f.label "Assignment Available Date: " %>
+  <span datetimepicker-start-date><%= :start_date %></span>
   <div class="datetime-picker-container"><%= f.text_field :start_date %></div><br>
   <%= f.label "Assignment Due Date: " %>
+  <span datetimepicker-end-date><%= :due_date %></span>
   <div class="datetime-picker-container"><%= f.text_field :due_date %></div><br>
   <%= f.submit "Create" %>
 <% end %>
 
 <script>
-  $(document).on("page:change", function() {
-    $('#assignment_start_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime()/1000)});
-    $('#assignment_due_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime()/1000) + 604800});
+  $(document).on("ready", function() {
+    $('#assignment_start_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime())});
+    $('#assignment_due_date').datetimepicker({format: 'unixtime', inline: true, value: Math.floor(new Date().getTime()) + 604800});
   });
 </script>
 

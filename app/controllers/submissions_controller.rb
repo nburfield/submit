@@ -156,9 +156,9 @@ class SubmissionsController < ApplicationController
       end
     end
 
-    @assignment.test_case.upload_data.map do |upload_datum|
+    @sharedfiles = @assignment.test_case.upload_data.map do |upload_datum|
       if upload_datum.shared
-        @sharedfiles = { :name => upload_datum.name,  :content => upload_datum.contents}
+        { :name => upload_datum.name,  :content => upload_datum.contents}
       end
     end
 

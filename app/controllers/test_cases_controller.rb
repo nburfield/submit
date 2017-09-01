@@ -94,9 +94,9 @@ class TestCasesController < ApplicationController
     end
     puts @sourcefiles
 
-    test_case.upload_data.map do |upload_datum|
+    @makefile = test_case.upload_data.map do |upload_datum|
       if upload_datum.shared
-        @makefile = { :name => upload_datum.name,  :content => upload_datum.contents}
+        { :name => upload_datum.name,  :content => upload_datum.contents}
       end
     end
     puts @makefile

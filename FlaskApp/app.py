@@ -8,8 +8,7 @@ from json import JSONEncoder
 from flask import Response
 import http
 import hashlib
-from celery import Celery 
-from kombu import serialization
+from celery import Celery
 
 static_directory = os.environ["SUBMIT_COMPILE_PATH"]
 app = Flask(__name__)
@@ -22,9 +21,6 @@ celery.conf.update(
     result_serializer='pickle',
     accept_content = ['pickle'])
 
-#serialization.registry._decoders.pop("application/x-python-serialize")
-
-#CELERY_ACCEPT_CONTENT = ['pickle']
 
 def after_this_request(func):
 	print ("function", func)	
@@ -87,12 +83,13 @@ def my_submissiontask(json, key):
 				os.chmod(filepath, mode=0o777)
 				f.write(str(x['content']))
 				f.close
-		
-	for x in json['sharedfiles'].keys():
-		filepath = directory + '/' + json['sharedfiles']['name']
-		if  json['sharedfiles'][x] != json['sharedfiles']['name'] :
+
+	for x in json['sharedfiles']:
+		if x != None:
+			filepath = directory + '/' + x['name']
 			with open(filepath, 'w') as f:
-				f.write(json['sharedfiles'][x])
+				os.chmod(filepath, mode=0o777)
+				f.write(str(x['content']))
 				f.close
  
 	# Make the submission string
@@ -142,12 +139,10 @@ def my_submissiontask(json, key):
 					Output[input['input_id']]= {"Output" : outputFileContents, "Difference" : None, "Error" : errorFileContents }
 				else:
 					diff = list(difflib.ndiff(outputFileContents.splitlines(1), input['output'].splitlines(1)))
+					difference = None
 					for x in diff:
 						if x.startswith('-'):
 							difference = "".join(diff)
-						else:
-							if x.startswith(" "):
-								difference = None
 				 
 					Output[input['input_id']]= {"Output" : outputFileContents, "Difference" : difference, "Error" : None }
 					output[input['Method']] = {"Result" : Output} 
@@ -193,11 +188,12 @@ def my_testcase(json, key):
 				f.write(str(x['content']))
 				f.close 
 
-	for x in json['sharedfiles'].keys():
-		filepath = directory + '/' + json['sharedfiles']['name']
-		if json['sharedfiles'][x] != json['sharedfiles']['name'] :
+	for x in json['sharedfiles']:
+		if x != None:
+			filepath = directory + '/' + x['name']
 			with open(filepath, 'w') as f:
-				f.write(json['sharedfiles'][x])
+				os.chmod(filepath, mode=0o777)
+				f.write(str(x['content']))
 				f.close
 
 	testcase = {"id" : json['details']['test_case_id']}

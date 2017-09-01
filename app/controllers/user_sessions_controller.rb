@@ -21,6 +21,9 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
 
+    # make cookies secure
+    cookies.signed[:secure_user_id] = {secure: true, value: "secure_key"}
+
     if @user_session.save
       flash[:notice] = "Login successful!"
       #redirect_back_or_default dashboard_url(@current_user)
@@ -52,8 +55,10 @@ class UserSessionsController < ApplicationController
 
   # Logs a user out
   def destroy
+    cookies.delete(:secure_user_id)
     current_user_session.destroy
     flash[:notice] = "Logout successful!"
     redirect_back_or_default new_user_session_url
   end
 end
+

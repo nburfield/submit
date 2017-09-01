@@ -98,3 +98,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:netid, :first_name, :last_name, :email, :commit)
   end
 end
+

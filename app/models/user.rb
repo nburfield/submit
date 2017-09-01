@@ -86,3 +86,4 @@ class Ldap
     return person
   end
 end
+

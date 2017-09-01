@@ -180,3 +180,4 @@ class Submission < ActiveRecord::Base
       return shell
     end
 end
+

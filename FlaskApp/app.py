@@ -12,12 +12,19 @@ from celery import Celery
 
 static_directory = os.environ["SUBMIT_COMPILE_PATH"]
 app = Flask(__name__)
+ip_for_submit = '10.63.162.136:8080'
 
 #celery = Celery(app.name, backend='amqp://guest:guest@localhost:5672//', broker='amqp://guest:guest@localhost:5672//')
 celery = Celery(app.name, backend='rpc://', broker='pyamqp://')
 celery.conf.update(
-    task_serializer='json',
-    result_serializer='json')
+    task_serializer='pickle',
+    result_serializer='pickle',
+    accept_content = ['pickle'])
+
+#serialization.registry._decoders.pop("application/x-python-serialize")
+
+#CELERY_ACCEPT_CONTENT = ['pickle']
+>>>>>>> master
 
 def after_this_request(func):
 	print ("function", func)	
@@ -36,7 +43,7 @@ def submission():
 	g.json_item = request.json
 	g.key = m
 
-	@after_this_request		
+	@after_this_request
 	def run_program(response):
 		return m
 	json = g.get('json_item')
@@ -44,27 +51,28 @@ def submission():
 	dataout = my_submissiontask.delay(json, key)
 	return m
 
+
 @app.route("/testcase", methods=['POST','PATCH'])
 def test():
 	app.logger.debug("JSON received...")
 	app.logger.debug(request.json)
-	# Generate Key and place that in return 
+	# Generate Key and place that in return
 	m =  hashlib.sha256(request.json['details']['username'].encode('utf-8')).hexdigest()
 	g.json_item = request.json
 	g.key = m
 
-	@after_this_request		
+	@after_this_request
 	def run_program(response):
 		return m
 	json = g.get('json_item')
 	key = g.get('key')
 	dataout = my_testcase.delay(json, key)
 	headers = {'Content-Type' : 'application/json'}
-	h = http.client.HTTPConnection('hpcvis3.cse.unr.edu:3000')
+	h = http.client.HTTPConnection(ip_for_submit)
 	h.request('POST', '/api_submission/create_output/' + str(json['details']["test_case_id"]), dataout.get(), headers )
 	return m
 
-#Submissiom	
+#Submission
 @celery.task
 def my_submissiontask(json, key):
 	directory = static_directory + "/" + json['details']['username']
@@ -217,7 +225,7 @@ def my_testcase(json, key):
 		for rm in json['RunMethods']:
 			Output = {}
 			run_method = {}
-			for input in rm:			
+			for input in rm:
 				filepath = directory + '/' + input['name']
 				with open(filepath, 'w') as f:
 					f.write(str(input['content']))
@@ -280,7 +288,7 @@ def call_after_requests(response):
 
 def send(string, ID):
 	headers = {'Content-Type' : 'application/json'}
-	h = http.client.HTTPConnection('hpcvis3.cse.unr.edu:3000')
+	h = http.client.HTTPConnection(ip_for_submit)
 	h.request('POST','/api_submission/run_program/' + str(ID) , string, headers)
 	return
 

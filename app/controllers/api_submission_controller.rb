@@ -71,7 +71,8 @@ class ApiSubmissionController < BaseApiController
             id = input.id
             save = Input.find(id)
             puts save.output
-            if save.output == "Outputs not generated" 
+
+            if save.output == "Outputs not generated"
               save.output = "Compile Error "
               save.save
               puts save.output
@@ -107,3 +108,4 @@ class ApiSubmissionController < BaseApiController
   end
 
 end
+

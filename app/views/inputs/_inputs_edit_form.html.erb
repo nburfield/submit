@@ -42,7 +42,11 @@ div.panel {
           <div class="panel">
             <div class="content-group manage-inputs">
               <%= form_for i, url: input_url(i), method: :patch, :remote => true do |f| %>
+<<<<<<< HEAD
                 <%= f.text_field :name, :placeholder => 'Run Name' %><br>
+=======
+                <%= f.text_field :name, :placeholder => 'Input Name' %><br>
+>>>>>>> master
                 <%= f.text_area :description, :placeholder => 'Input Description' %><br>
                 <%= f.text_area :data, :placeholder => 'Add Input Text' %><br><br>
                 <%= f.label :output_data, "Output of the input data." %><br>
@@ -94,7 +98,7 @@ for (i = 0; i < acc.length; i++) {
           <td>
           <div class="content-group manage-inputs">
             <%= form_for i, url: input_url(i), method: :patch, :remote => true do |f| %>
-              <%= f.text_field :name, :placeholder => 'Run Name' %><br>
+              <%= f.text_field :name, :placeholder => 'Input Name' %><br>
               <%= f.text_area :description, :placeholder => 'Input Description' %><br>
               <%= f.text_area :data, :placeholder => 'Add Input Text' %><br><br>
               <%= f.label :output_data, "Output of the input data." %><br>
@@ -109,4 +113,8 @@ for (i = 0; i < acc.length; i++) {
       <% end %>
     </tbody>
   </table>
+<<<<<<< HEAD
 </div>-->
+=======
+</div>-->
+>>>>>>> master
